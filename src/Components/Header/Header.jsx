@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <div className="relative w-full bg-white">
+    <div className="relative w-full bg-plant-700">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <span>
@@ -48,12 +48,13 @@ const Header = () => {
           </ul>
         </div>
         <div className="hidden lg:block">
-          <button
-            type="button"
-            className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-          >
-            Button text
-          </button>
+          <div>
+            <button className="w-[120px] h-8 rounded-3xl p-1 bg-plant-600 flex justify-between items-center relative text-lg">
+              <span className="bg-white absolute w-1/2 h-[26px] rounded-[46px] z-0 left-1"></span>
+              <span className="z-10 w-1/2 h-[26px]">Ban</span>
+              <span className="z-10">Eng</span>
+            </button>
+          </div>
         </div>
         <div className="lg:hidden">
           <svg
