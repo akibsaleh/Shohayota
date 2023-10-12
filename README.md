@@ -1,1 +1,1 @@
-# Shohayota
+# Shohayota - A Donation Application
