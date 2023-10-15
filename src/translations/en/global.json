@@ -14,12 +14,30 @@
   },
   "application": {
     "title": "Request for Help",
-    "description": "Considering your problem and condition, we try to provide\n assistance up to a maximum of 5 thousand BDT."
+    "description": "Considering your problem and condition, we try to provide assistance up to a maximum of 5 thousand BDT."
   },
   "achieve": {
     "assist": "Assisted",
     "assist_no": "15",
     "donate": "Donated",
     "donated_amount": "40,540"
+  },
+  "applicationForm": {
+    "form1Title": "Basic Information",
+    "form2Title": "Necessary Documents",
+    "nameLabel": "Your Full Name:",
+    "namePlaceHolder": "Full Name",
+    "addressLabel": "Current Address:",
+    "addressPlaceHolder": "Full Address",
+    "detailsLabel": "Reason",
+    "detailsPlaceHolder": "Write a brief detail",
+    "paymentLabel": "Payment Method:",
+    "paymentMethod1": "Bkash",
+    "paymentMethod2": "Nagad",
+    "phoneLabel": "Mobile Number",
+    "phonePlaceholder": "Your mobile number",
+    "checkboxTitle": "Bkash/Nagad account on this number ",
+    "termsTitle": "By providing the above information you confirm that you have read and agree to our Terms.",
+    "submitBtn": "Next Step"
   }
 }
