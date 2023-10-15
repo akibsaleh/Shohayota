@@ -7,7 +7,7 @@ import Contact from './Components/Contact/Contact';
 import { useTranslation } from 'react-i18next';
 
 const App = () => {
-  const { t, i18n } = useTranslation('global');
+  const { i18n } = useTranslation('global');
   const isBn = i18n.language === 'bn';
   return (
     <>
