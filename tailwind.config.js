@@ -6,9 +6,11 @@ export default {
       fontFamily: {
         archivo: ['Archivo', 'sans-serif'],
         nsb: ['Noto Serif Bengali', 'serif'],
+        lss: ['Sirajee Shaikh', 'cursive'],
       },
       colors: {
         plant: {
+          100: '#DADBE7',
           300: '#87C6B6',
           600: '#347666',
           700: '#215A4D',
@@ -21,6 +23,15 @@ export default {
         },
         haze: '#F2F3F8',
         snow: '#F9FAFC',
+      },
+      maxWidth: {
+        1440: '1440px',
+      },
+      backgroundImage: {
+        heroBanner: "url('src/assets/HeroOptimized.png')",
+      },
+      fontSize: {
+        sxl: '22.5px',
       },
     },
   },
