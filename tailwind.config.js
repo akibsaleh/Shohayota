@@ -29,9 +29,14 @@ export default {
       },
       backgroundImage: {
         heroBanner: "url('src/assets/HeroOptimized.png')",
+        donateBox: "url('src/assets/donatebox.svg')",
+        progressLine: 'linear-gradient(270deg, rgba(33, 90, 77, 0.20) 0%, rgba(33, 90, 77, 0.40) 25.52%, #215A4D 50.3%, rgba(33, 90, 77, 0.40) 76.04%, rgba(33, 90, 77, 0.20) 100%);',
       },
       fontSize: {
         sxl: '22.5px',
+      },
+      dropShadow: {
+        donateBox: '0px 4px 8px 0px rgba(40, 45, 61, 0.08), 0px 0px 1px 0px rgba(54, 58, 77, 0.12)',
       },
     },
   },

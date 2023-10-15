@@ -12,7 +12,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed w-full bg-plant-700 border-b border-plant-600 z-10">
+    <header className="fixed w-full bg-plant-700 border-b border-plant-600 z-50">
       <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <span>

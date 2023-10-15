@@ -21,5 +21,14 @@
     "assist_no": "15",
     "donate": "Donated",
     "donated_amount": "40,540"
+  },
+  "recentDonations": {
+    "title": "Our Latest Contributions",
+    "description": "Here, we have endeavoured to provide a comprehensive overview of the assistance that has been extended to candidates who have applied in the past, highlighting the support and aid they have received."
+  },
+  "about": {
+    "title": "Why We are Helping?",
+    "description1": "We extend our assistance with the belief that by doing so, we can contribute to the creation of a society characterised by equal opportunities and amenities for all. In every community, there exist individuals who require care, affection, and support. Through our efforts, we aim to connect with and uplift them.",
+    "description2": "We take great satisfaction in providing assistance, even if our identities remain concealed. Your happiness becomes ours, as if carried on the wind. We hear your laughter and feel it resonate within our souls. Your prayers serve as our inspiration to persist in our mission."
   }
 }

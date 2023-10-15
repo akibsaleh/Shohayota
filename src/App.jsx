@@ -11,13 +11,13 @@ const App = () => {
   const isBn = i18n.language === 'bn';
   return (
     <>
-    <div className={isBn ?  'font-nsb' : 'font-archivo'}>
-      <Header />
-      <Home />
-      <About />
-      <Terms />
-      <Contact />
-      <Footer />
+      <div className={`bg-snow ${isBn ? 'font-nsb' : 'font-archivo'}`}>
+        <Header />
+        <Home />
+        <About />
+        <Terms />
+        <Contact />
+        <Footer />
       </div>
     </>
   );
