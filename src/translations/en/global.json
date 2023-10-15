@@ -11,5 +11,11 @@
     "button": "Let’s Apply",
     "title": "A Small, Anonymous Financial Assistance",
     "description": "We believe in the power of small acts of kindness. We provide discreet financial assistance to those in need, ensuring your identity remains confidential. Together, we make a difference, one small helping hand at a time."
+  },
+  "achieve": {
+    "assist": "Assisted",
+    "assist_no": "15",
+    "donate": "Donated",
+    "donated_amount": "40,540"
   }
 }
