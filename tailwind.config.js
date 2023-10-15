@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         archivo: ['Archivo', 'sans-serif'],
         nsb: ['Noto Serif Bengali', 'serif'],
+        lss: ['LiSirajeeSheikhPlainUnicode', 'cursive'],
       },
       colors: {
         plant: {

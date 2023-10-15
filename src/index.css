@@ -4,6 +4,17 @@
 @tailwind utilities;
 /* Archivo & Noto Serif  */
 
+@font-face {
+  font-family: 'LiSirajeeSheikhPlainUnicode';
+  src: url('../public/fonts/LiSirajeeSheikhPlainUnicode-Regular.otf') format('opentype'), url('../public/fonts/LiSirajeeSheikhPlainUnicode-Regular.ttf') format('truetype');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LiSirajeeSheikhPlainUnicode';
+  src: url('../public/fonts/LiSirajeeSheikhPlainUnicode-Italic.otf') format('opentype'), url('../public/fonts/LiSirajeeSheikhPlainUnicode-Italic.ttf') format('truetype');
+  font-style: italic;
+}
 
 :root {
   font-synthesis: none;
