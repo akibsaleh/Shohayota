@@ -23,7 +23,7 @@ const Header = () => {
               ></path>
             </svg>
           </span>
-          <span className="font-bold">DevUI</span>
+          <span className="font-bold">DevUI-changed</span>
         </div>
         <div className="hidden lg:block">
           <ul className="inline-flex space-x-8">
