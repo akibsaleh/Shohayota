@@ -12,6 +12,10 @@
     "title": "A Small, Anonymous Financial Assistance",
     "description": "We believe in the power of small acts of kindness. We provide discreet financial assistance to those in need, ensuring your identity remains confidential. Together, we make a difference, one small helping hand at a time."
   },
+  "application": {
+    "title": "Request for Help",
+    "description": "Considering your problem and condition, we try to provide\n assistance up to a maximum of 5 thousand BDT."
+  },
   "achieve": {
     "assist": "Assisted",
     "assist_no": "15",
