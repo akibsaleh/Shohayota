@@ -1,4 +1,10 @@
+import { useTranslation } from "react-i18next";
+
 const Header = () => {
+  const [t, i18n] = useTranslation("global");
+  const handleLanguageChange = (lang) => {
+    i18n.changeLanguage(lang);
+  }
   return (
     <div className="relative w-full bg-plant-700">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
@@ -26,7 +32,7 @@ const Header = () => {
                 href="#"
                 className="text-sm font-semibold text-gray-800 hover:text-gray-900"
               >
-                Home
+                {t("navbar.home")}
               </a>
             </li>
             <li>
@@ -34,7 +40,7 @@ const Header = () => {
                 href="#"
                 className="text-sm font-semibold text-gray-800 hover:text-gray-900"
               >
-                About
+                {t("navbar.about")}
               </a>
             </li>
             <li>
@@ -42,7 +48,7 @@ const Header = () => {
                 href="#"
                 className="text-sm font-semibold text-gray-800 hover:text-gray-900"
               >
-                Contact
+                {t("navbar.contact")}
               </a>
             </li>
           </ul>
@@ -53,6 +59,15 @@ const Header = () => {
               <span className="bg-white absolute w-1/2 h-[26px] rounded-[46px] z-0 left-1"></span>
               <span className="z-10 w-1/2 h-[26px]">Ban</span>
               <span className="z-10">Eng</span>
+            </button>
+          </div>
+
+          <div className="space-x-5">
+            <button onClick={() => handleLanguageChange("bn")} className="px-5 py-1 bg-white rounded">
+              {t("navbar.btnBangla")}
+            </button>
+            <button onClick={() => handleLanguageChange("en")} className="px-5 py-1 bg-white rounded">
+            {t("navbar.btnEnglish")}
             </button>
           </div>
         </div>
