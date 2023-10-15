@@ -1,0 +1,10 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "terms": "Terms",
+    "btnBangla": "বাংলা",
+    "btnEnglish": "Eng"
+  }
+}

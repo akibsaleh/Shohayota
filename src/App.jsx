@@ -1,10 +1,19 @@
 import Header from './Components/Header/Header';
+import Footer from './Components/Footer/Footer';
+import Home from './Components/Home/Home';
+import About from './Components/About/About';
+import Terms from './Components/Terms/Terms';
+import Contact from './Components/Contact/Contact';
 
 const App = () => {
   return (
     <>
-      <Header></Header>
-      <h1 className="text-3xl font-bold underline">Testing akibzihan git branch</h1>
+      <Header />
+      <Home />
+      <About />
+      <Terms />
+      <Contact />
+      <Footer />
     </>
   );
 };

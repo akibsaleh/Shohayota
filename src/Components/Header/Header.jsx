@@ -1,9 +1,19 @@
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import logo from '../../assets/Shohayota-logo.svg';
+
 const Header = () => {
+  const [t, i18n] = useTranslation('global');
+  const [btnStyle, setBtnStyle] = useState(true);
+
+  const handleLanguageChange = (lang) => {
+    i18n.changeLanguage(lang);
+  };
+
   return (
-    <div className="relative w-full bg-plant-700">
-      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-10">
+    <header className="fixed w-full bg-plant-700 border-b border-plant-600">
+      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <span>
             <img
@@ -15,35 +25,54 @@ const Header = () => {
           <span className="font-bold font-lss text-white text-[40px] leading-none mt-1">সহায়তা</span>
         </div>
         <div className="hidden lg:block">
-          <ul className="flex space-x-8">
+          <ul className="flex gap-x-12">
             <li className="block">
-              <NavLink>
-                <span>হোম</span>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? 'pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4  text-lg leading-10 border-white'
+                    : 'pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4  text-lg leading-10 border-transparent'
+                }
+              >
+                <span>{t('navbar.home')}</span>
               </NavLink>
             </li>
             <li className="block">
-              <NavLink className={`py-[22.5px] block`}>
-                <span>আমরা কেন সাহায্য করছি</span>
+              <NavLink className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 text-lg leading-10 border-transparent`}>
+                <span>{t('navbar.about')}</span>
               </NavLink>
             </li>
-            <li>
-              <NavLink>
-                <span>শর্তাবলি</span>
+            <li className="block">
+              <NavLink className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 text-lg leading-10 border-transparent`}>
+                <span>{t('navbar.terms')}</span>
               </NavLink>
             </li>
-            <li>
-              <NavLink>
-                <span>যোগাযোগ করুন</span>
+            <li className="block">
+              <NavLink className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 text-lg leading-10 border-transparent`}>
+                <span>{t('navbar.contact')}</span>
               </NavLink>
             </li>
           </ul>
         </div>
         <div className="hidden lg:block">
-          <div>
-            <button className="w-[120px] h-8 rounded-3xl p-1 bg-plant-600 flex justify-between items-center relative text-lg">
-              <span className="bg-white absolute w-1/2 h-[26px] rounded-[46px] z-0 left-1"></span>
-              <span className="z-10 w-1/2 h-[26px]">Ban</span>
-              <span className="z-10">Eng</span>
+          <div className="bg-plant-600 p-[3px] rounded-full">
+            <button
+              onClick={() => {
+                handleLanguageChange('bn');
+                setBtnStyle(true);
+              }}
+              className={`px-2 py-0.5 rounded-full font-nsb text-base w-[60px] text-center ${btnStyle ? 'bg-white text-thunder-700' : 'bg-plant-600 text-plant-300'}`}
+            >
+              {t('navbar.btnBangla')}
+            </button>
+            <button
+              onClick={() => {
+                handleLanguageChange('en');
+                setBtnStyle(false);
+              }}
+              className={`px-2 py-0.5 rounded-full font-archivo text-base w-[60px] text-center ${!btnStyle ? 'bg-white text-thunder-700' : 'bg-plant-600 text-plant-300'}`}
+            >
+              {t('navbar.btnEnglish')}
             </button>
           </div>
         </div>
@@ -81,7 +110,7 @@ const Header = () => {
           </svg>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
