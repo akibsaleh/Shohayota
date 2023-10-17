@@ -28,7 +28,7 @@ export default {
         1440: '1440px',
       },
       backgroundImage: {
-        heroBanner: "url('src/assets/HeroOptimized.png')",
+        heroBanner: "url('https://i.ibb.co/HL85t3Y/Hero-Optimized.png')",
         donateBox: "url('src/assets/donatebox.svg')",
         progressLine: 'linear-gradient(270deg, rgba(33, 90, 77, 0.20) 0%, rgba(33, 90, 77, 0.40) 25.52%, #215A4D 50.3%, rgba(33, 90, 77, 0.40) 76.04%, rgba(33, 90, 77, 0.20) 100%);',
       },
