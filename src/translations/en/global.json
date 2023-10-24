@@ -48,5 +48,29 @@
     "title": "Why We are Helping?",
     "description1": "We extend our assistance with the belief that by doing so, we can contribute to the creation of a society characterised by equal opportunities and amenities for all. In every community, there exist individuals who require care, affection, and support. Through our efforts, we aim to connect with and uplift them.",
     "description2": "We take great satisfaction in providing assistance, even if our identities remain concealed. Your happiness becomes ours, as if carried on the wind. We hear your laughter and feel it resonate within our souls. Your prayers serve as our inspiration to persist in our mission."
+  },
+  "terms": {
+    "title": "Terms",
+    "description": "We consistently uphold our commitment to these terms and vow to adhere to them when delivering services to our visitors.",
+    "c1t": "01",
+    "c1d": "Applicants must submit a complete application form outlining their needs, goals and how the grant will be used.",
+    "c2t": "02",
+    "c2d": "Whether we help or not depends on your needs and our budget. We are not obligated to help you.",
+    "c3t": "03",
+    "c3d": "Once you get the money you cannot apply again.",
+    "c4t": "04",
+    "c4d": "We may contact you to verify your identity.",
+    "c5t": "05",
+    "c5d": "Applicants are required to submit all official documents related to the organization (eg: registration certificate of the organization, previous financial statements etc.).",
+    "c6t": "06",
+    "c6d": "Organizations or individuals applying for donations must not be involved in any illegal activity.",
+    "c7t": "07",
+    "c7d": "Allowed donation money must be used only for specific purposes. In case of any other use, the permission of the donating organization must be obtained.",
+    "c8t": "08",
+    "c8d": "We do our work keeping your identity completely confidential. Our support fund will depend upon the verification of the information provided by you and our team reserves the right to contact you for final decision."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "You can contact us through the form below for any query or opinion."
   }
 }

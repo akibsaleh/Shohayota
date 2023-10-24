@@ -18,6 +18,7 @@ export default {
         },
         apache: '#ECB869',
         thunder: {
+          300: '#DADBE7',
           500: '#585A6A',
           700: '#272836',
         },
@@ -35,7 +36,9 @@ export default {
       fontSize: {
         sxl: '22.5px',
       },
-      dropShadow: {
+      boxShadow: {
+        termsBox: '0px 3px 8px 0px rgba(29, 32, 46, 0.08)',
+        contactBox: '0px 6px 24px 0px rgba(29, 32, 46, 0.06)',
         donateBox: '0px 4px 8px 0px rgba(40, 45, 61, 0.08), 0px 0px 1px 0px rgba(54, 58, 77, 0.12)',
       },
     },

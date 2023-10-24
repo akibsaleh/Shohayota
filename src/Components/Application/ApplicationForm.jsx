@@ -109,7 +109,7 @@ const ApplicationForm = () => {
             <label className="label cursor-pointer">
               <input
                 type="checkbox"
-                checked="checked"
+                defaultChecked="checked"
                 name="checkbox"
                 className="checkbox checkbox-primary"
               />
