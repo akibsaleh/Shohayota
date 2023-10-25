@@ -71,6 +71,19 @@
   },
   "contact": {
     "title": "Contact Us",
-    "description": "You can contact us through the form below for any query or opinion."
+    "description": "You can contact us through the form below for any query or opinion.",
+    "nameInputLabel": "Your Full Name:",
+    "nameInput": "ex: Rakibul Islam",
+    "phoneInputLabel": "Mobile Number:",
+    "phoneInputPrefix": "+880",
+    "phoneInput": "Write here",
+    "emailInputLabel": "Email Address:",
+    "emailInput": "ex: rakibulislam@gmail.com",
+    "messageInputLabel": "Your Message:*",
+    "messageInput": "Write your message here",
+    "submitButton": "Submit Message"
+  },
+  "copyright": {
+    "text": "২০২৩ সহায়তা | সমস্ত অধিকার সংরক্ষিত"
   }
 }

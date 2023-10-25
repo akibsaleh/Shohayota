@@ -71,6 +71,19 @@
   },
   "contact": {
     "title": "যোগাযোগ করুন",
-    "description": "আপনার কোন জিজ্ঞাসা বা মতামতের জন্যে নিচের ফর্মের মাধ্যমে আমাদের সাথে যোগাযোগ করতে পারেন।"
+    "description": "আপনার কোন জিজ্ঞাসা বা মতামতের জন্যে নিচের ফর্মের মাধ্যমে আমাদের সাথে যোগাযোগ করতে পারেন।",
+    "nameInputLabel": "আপনার সম্পূর্ণ নামঃ",
+    "nameInput": "যেমনঃ রাকিবুল ইসলাম",
+    "phoneInputLabel": "আপনার মোবাইল নাম্বারঃ",
+    "phoneInputPrefix": "+৮৮০",
+    "phoneInput": "এখানে লিখুন",
+    "emailInputLabel": "আপনার ইমেইল এড্রেসঃ",
+    "emailInput": "যেমনঃ rakibul@gmail.com",
+    "messageInputLabel": "আপনার মেসেজঃ",
+    "messageInput": "আপনার মেসেজ টি এখানে লিখুন",
+    "submitButton": "মেসেজ পাঠান"
+  },
+  "copyright": {
+    "text": "2023 সহায়তা | All rights reserved"
   }
 }
