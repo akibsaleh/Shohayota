@@ -4,6 +4,10 @@ import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import { useTranslation } from 'react-i18next';
 import ApplicationCardStep2 from './ApplicationCardStep2';
+import BkashIcon from './bkashIcon';
+import NagadIcon from './NagadIcon';
+import FileIcon from './FileIcon';
+import UploadButton from './UploadButton';
 
 const ApplicationForm = () => {
   const { t, i18n } = useTranslation('global');
@@ -47,7 +51,7 @@ const ApplicationForm = () => {
       <form onSubmit={handleSubmit(formSubmit)}>
         {formStep === 0 && (
           <div className="space-y-5">
-            <div className="grid grid-cols-[200px_auto] gap-6 items-center">
+            <div className="grid grid-cols-[210px_auto] gap-6 items-center">
               <div className="w-full font-medium text-lg text-thunder-500">
                 <label>
                   <span>{t('applicationForm.nameLabel')}</span>
@@ -64,7 +68,7 @@ const ApplicationForm = () => {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-[200px_auto] gap-6 items-center">
+            <div className="grid grid-cols-[210px_auto] gap-6 items-center">
               <div className="w-full font-medium text-lg text-thunder-500">
                 <label>
                   <span>{t('applicationForm.addressLabel')}</span>
@@ -81,7 +85,7 @@ const ApplicationForm = () => {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-[200px_auto] gap-6">
+            <div className="grid grid-cols-[210px_auto] gap-6">
               <div className="w-full font-medium text-lg text-thunder-500">
                 <label>
                   <span>{t('applicationForm.detailsLabel')}</span>
@@ -97,7 +101,7 @@ const ApplicationForm = () => {
                 ></textarea>
               </div>
             </div>
-            <div className="grid grid-cols-[200px_auto] gap-6">
+            <div className="grid grid-cols-[210px_auto] gap-6">
               <div className="w-full font-medium text-lg text-thunder-500">
                 <label>
                   <span>{t('applicationForm.paymentLabel')}</span>
@@ -113,11 +117,11 @@ const ApplicationForm = () => {
                     value={t('applicationForm.paymentMethod1')}
                     className="hidden"
                   />
-                  <label
-                    htmlFor="bkash"
-                    className="py-[5px] pr-[72px] pl-[80px] bg-haze border-[1px] border-plant-100 rounded-md text-thunder-500 text-lg"
-                  >
-                    {t('applicationForm.paymentMethod1')}
+                  <label htmlFor="bkash">
+                    <button className="h-11 w-full flex gap-2 justify-center items-center bg-haze border-[1px] border-plant-100 rounded-md text-thunder-500 text-lg">
+                      <BkashIcon />
+                      <span>{t('applicationForm.paymentMethod1')}</span>
+                    </button>
                   </label>
                 </div>
                 <div className="w-1/2">
@@ -128,16 +132,16 @@ const ApplicationForm = () => {
                     value={t('applicationForm.paymentMethod2')}
                     className="hidden"
                   />
-                  <label
-                    htmlFor="nagad"
-                    className="py-[5px] pr-[72px] pl-[80px] bg-haze border-[1px] border-plant-100 rounded-md text-thunder-500 text-lg"
-                  >
-                    {t('applicationForm.paymentMethod2')}
+                  <label htmlFor="nagad">
+                    <button className="h-11 w-full flex justify-center items-center gap-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-500 text-lg">
+                      <NagadIcon />
+                      <span>{t('applicationForm.paymentMethod2')}</span>
+                    </button>
                   </label>
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-[200px_auto] gap-6 items-center">
+            <div className="grid grid-cols-[210px_auto] gap-6 items-center">
               <div className="w-full font-medium text-lg text-thunder-500">
                 <label>
                   <span>{t('applicationForm.phoneLabel')}</span>
@@ -154,7 +158,7 @@ const ApplicationForm = () => {
                 />
               </div>
             </div>
-            <div className="flex gap-6 items-center pl-56">
+            <div className="flex gap-6 items-center pl-[234px]">
               <div className="w-full pb-5">
                 <label className="label cursor-pointer">
                   <input
@@ -181,45 +185,47 @@ const ApplicationForm = () => {
           </div>
         )}
         {formStep === 1 && (
-          <div className="p-10 space-y-5">
-            <div className="flex gap-6 items-center">
+          <div className="space-y-5">
+            <div className="grid grid-cols-[210px_auto] gap-6 items-center">
               <div className="w-full font-medium text-lg text-thunder-500">
-                <label>
+                <p>
                   <span>{t('applicationFormStep2.mainDocumentTitle')}</span>
                   <span className="text-[#F02727]">*</span>
-                </label>
+                </p>
                 <p className="text-[#848696] text-xs font-medium leading-5">{t('applicationFormStep2.mainDocumentDescription')}</p>
               </div>
               <div className="w-full">
+                <label htmlFor="mainFile">
+                  <UploadButton />
+                </label>
                 <input
                   {...register('mainFile')}
+                  className="hidden"
                   id="mainFile"
                   type="file"
                   required
                 />
               </div>
-              <div>
-                <label htmlFor="mainFile">{t('applicationFormStep2.upload')}</label>
-              </div>
             </div>
-            <div className="flex gap-6 items-center">
+            <div className="grid grid-cols-[210px_auto] gap-6 items-center">
               <div className="w-full font-medium text-lg text-thunder-500">
-                <label>
+                <p>
                   <span>{t('applicationFormStep2.otherDocumentsTitle')}</span>
                   <span className="text-[#F02727]">*</span>
-                </label>
+                </p>
                 <p className="text-[#848696] text-xs font-medium leading-5">{t('applicationFormStep2.otherDocumentsDescription')}</p>
               </div>
               <div className="w-full">
+                <label htmlFor="others">
+                  <UploadButton />
+                </label>
                 <input
                   id="others"
+                  className="hidden"
                   type="file"
                   {...register('others')}
                   required
                 />
-              </div>
-              <div>
-                <label htmlFor="mainFile">{t('applicationFormStep2.upload')}</label>
               </div>
             </div>
             <div className="flex justify-center gap-5 pt-5">
