@@ -40,6 +40,7 @@ export default {
         termsBox: '0px 3px 8px 0px rgba(29, 32, 46, 0.08)',
         contactBox: '0px 6px 24px 0px rgba(29, 32, 46, 0.06)',
         donateBox: '0px 4px 8px 0px rgba(40, 45, 61, 0.08), 0px 0px 1px 0px rgba(54, 58, 77, 0.12)',
+        applicationBox: '0px 6px 24px 0px rgba(29, 32, 46, 0.06)',
       },
     },
   },
