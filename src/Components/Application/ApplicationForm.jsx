@@ -10,47 +10,15 @@ const ApplicationForm = () => {
   const isBn = i18n.language === "bn";
   const [formStep, setFormStep] = useState(0);
 
+
   const { register, control, handleSubmit } = useForm();
 
   const completeFormStep = () => {
     setFormStep((step) => step + 1);
   };
 
-  const renderButton = () => {
-    if (formStep === 0) {
-      return (
-        <div className="flex justify-center gap-5 pt-5">
-          <button
-            type="button"
-            className={`text-xl font-semibold leading-8 text-white bg-plant-700 rounded-[70px] py-2.5 px-7 ${
-              isBn ? "font-nsb" : "font-archivo"
-            }`}
-            onClick={completeFormStep}
-          >
-            <span className="h-8">{t("applicationForm.nextStepBtn")}</span>
-          </button>
-        </div>
-      );
-    } else if (formStep === 1) {
-      return (
-        <div className="flex justify-center gap-5 pt-5">
-          <button
-            type="submit"
-            className={`text-xl font-semibold leading-8 text-white bg-plant-700 rounded-[70px] py-2.5 px-7 ${
-              isBn ? "font-nsb" : "font-archivo"
-            }`}
-            onClick={completeFormStep}
-          >
-            <span className="h-8">{t("applicationForm.submitBtn")}</span>
-          </button>
-        </div>
-      );
-    } else {
-      return undefined;
-    }
-  };
-  const formSubmit = () => {
-    console.log('form submitted');
+  const formSubmit = (data) => {
+    console.log('form submitted', data);
   };
 
   return (
@@ -134,20 +102,6 @@ const ApplicationForm = () => {
                 </label>
               </div>
               <div className="w-[494px] space-x-3 flex">
-                {/* <button
-                type="button"
-                {...register("paymentMethod", { value: t("applicationForm.paymentMethod1") })}
-                  className="py-[5px] pr-[80px] pl-[72px] bg-haze border-[1px] border-plant-100 rounded-md text-thunder-500 text-lg"
-                >
-                  {t("applicationForm.paymentMethod1")}
-                </button>
-                <button
-                type="button"
-                {...register("paymentMethod", { value: t("applicationForm.paymentMethod2") })}
-                  className="py-[5px] pr-[72px] pl-[80px] bg-haze border-[1px] border-plant-100 rounded-md text-thunder-500 text-lg"
-                >
-                  {t("applicationForm.paymentMethod2")}
-                </button> */}
                 <input
                   type="radio"
                   id="bkash"
@@ -208,10 +162,81 @@ const ApplicationForm = () => {
                 </label>
               </div>
             </div>
+
+            <div className="flex justify-center gap-5 pt-5">
+          <button
+            type="button"
+            className={`text-xl font-semibold leading-8 text-white bg-plant-700 rounded-[70px] py-2.5 px-7 ${
+              isBn ? "font-nsb" : "font-archivo"
+            }`}
+            onClick={completeFormStep}
+          >
+            <span className="h-8">{t("applicationForm.nextStepBtn")}</span>
+          </button>
+        </div>
           </div>
         )}
-        {formStep === 1 && <ApplicationCardStep2 t={t} register={register} control={control}></ApplicationCardStep2>}
-        {renderButton()}
+        {formStep === 1 && (
+          <div className="p-10 space-y-5">
+      <div className="flex gap-6 items-center">
+        <div className="w-full font-medium text-lg text-thunder-500">
+          <label>
+            <span>{t("applicationFormStep2.mainDocumentTitle")}</span>
+            <span className="text-[#F02727]">*</span>
+          </label>
+          <p className="text-[#848696] text-xs font-medium leading-5">
+            {t("applicationFormStep2.mainDocumentDescription")}
+          </p>
+        </div>
+        <div className="w-full">
+          <input
+            {...register("mainFile")}
+            id="mainFile"
+            type="file"
+            required
+            
+          />
+        </div>
+        <div>
+            <label htmlFor="mainFile">{t("applicationFormStep2.upload")}</label>
+        </div>
+      </div>
+      <div className="flex gap-6 items-center">
+        <div className="w-full font-medium text-lg text-thunder-500">
+          <label>
+            <span>{t("applicationFormStep2.otherDocumentsTitle")}</span>
+            <span className="text-[#F02727]">*</span>
+          </label>
+          <p className="text-[#848696] text-xs font-medium leading-5">
+            {t("applicationFormStep2.otherDocumentsDescription")}
+          </p>
+        </div>
+        <div className="w-full">
+          <input
+            id="others"
+            type="file"
+            {...register("others")}
+            required
+            
+          />
+        </div>
+        <div>
+            <label htmlFor="mainFile">{t("applicationFormStep2.upload")}</label>
+        </div>
+      </div>
+      <div className="flex justify-center gap-5 pt-5">
+          <button
+            type="submit"
+            className={`text-xl font-semibold leading-8 text-white bg-plant-700 rounded-[70px] py-2.5 px-7 ${
+              isBn ? "font-nsb" : "font-archivo"
+            }`}
+          >
+            <span className="h-8">{t("applicationForm.submitBtn")}</span>
+          </button>
+        </div>
+    </div>
+          
+        )}
       </form>
       <DevTool control={control} />
     </div>
