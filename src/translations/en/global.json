@@ -23,6 +23,8 @@
     "donated_amount": "40,540"
   },
   "applicationForm": {
+    "formCount1": "1",
+    "formCount2": "2",
     "form1Title": "Basic Information",
     "form2Title": "Necessary Documents",
     "nameLabel": "Your Full Name:",
@@ -38,7 +40,16 @@
     "phonePlaceholder": "Your mobile number",
     "checkboxTitle": "Bkash/Nagad account on this number ",
     "termsTitle": "By providing the above information you confirm that you have read and agree to our Terms.",
-    "submitBtn": "Next Step"
+    "nextStepBtn": "Next Step",
+    "submitBtn": "Submit"
+  },
+  "applicationFormStep2": {
+    "mainDocumentTitle": "National ID/Passport: ",
+    "mainDocumentDescription": "Your identity card or passport will be safe with us. You can safely upload.",
+    "otherDocumentsTitle": "Other Necessary Documents(optional): ", 
+    "otherDocumentsDescription": "Add photos relevant to your residence, physical condition or other needs you are seeking assistance with",
+    "upload": "Upload",
+    "fileType": "Supported Files: Image, PDF"
   },
   "recentDonations": {
     "title": "Our Latest Contributions",
