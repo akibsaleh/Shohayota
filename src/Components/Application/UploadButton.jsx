@@ -10,6 +10,7 @@ const UploadButton = () => {
         <FileIcon /> <span>{t('applicationFormStep2.upload')}</span>
       </p>
       <p className="leading-7 text-base text-thunder-500">{t('applicationFormStep2.fileType')}</p>
+      
     </div>
   );
 };

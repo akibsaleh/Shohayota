@@ -12,7 +12,8 @@ const ApplicationForm = () => {
   const { t, i18n } = useTranslation("global");
   const isBn = i18n.language === "bn";
   const [formStep, setFormStep] = useState(0);
-  const [singleImage, setSingleImage] = useState("");
+  const [otherFiles, setOtherFiles] = useState([]);
+  const [singleImage, setSingleImage] = useState(null);
 
   const { register, control, handleSubmit } = useForm();
 
@@ -32,12 +33,8 @@ const ApplicationForm = () => {
       formData.append("status", "pending");
       formData.append("mainFile", data.mainFile[0]);
 
-      for (let i = 0; i < data.others.length; i++) {
-        formData.append("others", data.others[i]);
-      }
-
-      for (var pair of formData.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
+      for (let i = 0; i < otherFiles.length; i++) {
+        formData.append("others", otherFiles[i]);
       }
 
       const response = await axios.post(
@@ -53,9 +50,10 @@ const ApplicationForm = () => {
     }
   };
 
-  const handleSingleImageChange = (e) => {
-    const singleFile = e.target.files[0];
-    setSingleImage("");
+
+  const handleMultipleImageChange = (e) => {
+    const newFiles = Array.from(e.target.files);
+    setOtherFiles((prevFiles) => [...prevFiles, ...newFiles]);
   };
 
   return (
@@ -266,21 +264,24 @@ const ApplicationForm = () => {
                     {t("applicationFormStep2.mainDocumentDescription")}
                   </p>
                 </div>
-                <div className="w-full">
-                  {singleImage ? (
-                    <div>Hello there</div>
-                  ) : (
-                    <label htmlFor="mainFile">
-                      <UploadButton />
-                    </label>
-                  )}
 
+                <div className="w-full">
+                  <label htmlFor="mainFile">
+                    {singleImage ? (
+                      <img
+                        src={URL.createObjectURL(singleImage)}
+                        alt='uploaded-image'
+                        className="w-80 h-40 object-fit"
+                      />
+                    ) : (
+                      <UploadButton />
+                    )}
+                  </label>
                   <input
-                    {...register("mainFile")}
+                    {...register("mainFile", {onChange: e => setSingleImage(e.target.files[0])})}
                     className="hidden"
                     id="mainFile"
                     type="file"
-                    onChange={handleSingleImageChange}
                     accept="image/*,.pdf"
                     required
                   />
@@ -298,14 +299,28 @@ const ApplicationForm = () => {
                 </div>
                 <div className="w-full">
                   <label htmlFor="others">
-                    <UploadButton />
+                    {otherFiles.length > 0 ? (
+                      <div className="grid grid-cols-3 gap-4">
+                        {otherFiles.map((file, index) => (
+                          <div key={index} className="relative w-80 h-40">
+                            <img
+                              src={URL.createObjectURL(file)}
+                              alt={`uploaded-image-${index}`}
+                              className="w-80 h-40 object-cover"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <UploadButton />
+                    )}
                   </label>
                   <input
                     id="others"
                     className="hidden"
                     type="file"
                     accept="image/*,.pdf"
-                    {...register("others")}
+                    {...register("others", {onChange: (e) => handleMultipleImageChange(e)})}
                     required
                     multiple
                   />
