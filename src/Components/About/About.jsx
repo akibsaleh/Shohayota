@@ -1,15 +1,17 @@
+/* eslint-disable react/prop-types */
 import whyhelping from '../../assets/whyhelping.png';
 import arrowTopLeft from '../../assets/VectorArrowTopLeft.svg';
 import arrowBottomRight from '../../assets/VectorArrowBottomRight.svg';
 import { useTranslation } from 'react-i18next';
-const About = () => {
+const About = ({ aboutRef }) => {
   const { t, i18n } = useTranslation('global');
   const isBn = i18n.language === 'bn';
 
   return (
     <div
       id="about"
-      className="flex max-w-1440 mx-auto w-full justify-center items-center gap-x-[80px] pb-[62px] -mt-[86px] pt-[146px]"
+      ref={aboutRef}
+      className="flex max-w-1440 mx-auto w-full justify-center items-center gap-x-[80px] -mt-[86px] pt-[146px]  pb-[85px]"
     >
       <div className="w-1/3">
         <img
