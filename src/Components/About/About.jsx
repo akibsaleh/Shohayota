@@ -7,7 +7,10 @@ const About = () => {
   const isBn = i18n.language === 'bn';
 
   return (
-    <div className="flex max-w-1440 mx-auto w-full justify-center items-center gap-x-[80px] py-[62px]">
+    <div
+      id="about"
+      className="flex max-w-1440 mx-auto w-full justify-center items-center gap-x-[80px] pb-[62px] -mt-[86px] pt-[146px]"
+    >
       <div className="w-1/3">
         <img
           src={whyhelping}
