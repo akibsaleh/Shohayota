@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useTranslation } from "react-i18next";
+import { Document, Page } from "react-pdf";
 import BkashIcon from "./bkashIcon";
 import NagadIcon from "./NagadIcon";
 import UploadButton from "./UploadButton";
@@ -15,10 +16,20 @@ const ApplicationForm = () => {
   const [otherFiles, setOtherFiles] = useState([]);
   const [singleImage, setSingleImage] = useState(null);
 
-  const { register, reset, control, handleSubmit, formState: { errors } } = useForm({mode: "all"});
+  const {
+    register,
+    reset,
+    control,
+    handleSubmit,
+    formState: { errors, isValid },
+    trigger,
+  } = useForm({ mode: "all" });
 
-  const completeFormStep = () => {
-    setFormStep((step) => step + 1);
+  const completeFormStep = async () => {
+    const isValidForm = await trigger();
+    if (isValidForm) {
+      setFormStep((step) => step + 1);
+    }
   };
 
   const formSubmit = async (data) => {
@@ -47,13 +58,12 @@ const ApplicationForm = () => {
         reset();
         setSingleImage(null);
         setOtherFiles([]);
+        setFormStep(0);
       }
     } catch (error) {
       console.error("Error submitting data: ", error);
     }
-    
   };
-
 
   const handleMultipleImageChange = (e) => {
     const newFiles = Array.from(e.target.files);
@@ -117,13 +127,17 @@ const ApplicationForm = () => {
                 </div>
                 <div className="w-full">
                   <input
-                    {...register("name", {required: true,})}
+                    {...register("name", { required: true })}
                     type="text"
                     placeholder={t("applicationForm.namePlaceHolder")}
                     required
                     className="w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none text-lg"
                   />
-                  {errors.name && <p className="text-plant-700">{}</p>}
+                  {errors.name && (
+                    <p className="text-[#F02727] font-medium">
+                      {t("validation.name")}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="grid grid-cols-[210px_auto] gap-6 items-center">
@@ -135,13 +149,18 @@ const ApplicationForm = () => {
                 </div>
                 <div className="w-full">
                   <input
-                    {...register("address")}
+                    {...register("address", { required: true })}
                     type="text"
                     name="address"
                     placeholder={t("applicationForm.addressPlaceHolder")}
                     required
                     className="w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none text-lg"
                   />
+                  {errors.address && (
+                    <p className="text-[#F02727] font-medium">
+                      {t("validation.address")}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="grid grid-cols-[210px_auto] gap-6">
@@ -153,12 +172,17 @@ const ApplicationForm = () => {
                 </div>
                 <div className="w-full">
                   <textarea
-                    {...register("reason")}
+                    {...register("reason", { required: true })}
                     name="reason"
                     placeholder={t("applicationForm.detailsPlaceHolder")}
                     required
                     className="w-[480px] h-[100px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none text-lg resize-none"
                   ></textarea>
+                  {errors.reason && (
+                    <p className="text-[#F02727] font-medium">
+                      {t("validation.reason")}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="grid grid-cols-[210px_auto] gap-6">
@@ -174,7 +198,9 @@ const ApplicationForm = () => {
                       type="radio"
                       id="bkash"
                       name="paymentMethod"
-                      {...register("paymentMethod")}
+                      {...register("paymentMethod", {
+                        required: true,
+                      })}
                       value={t("applicationForm.paymentMethod1")}
                       className="hidden"
                     />
@@ -190,7 +216,9 @@ const ApplicationForm = () => {
                       type="radio"
                       id="nagad"
                       name="paymentMethod"
-                      {...register("paymentMethod")}
+                      {...register("paymentMethod", {
+                        required: true,
+                      })}
                       value={t("applicationForm.paymentMethod2")}
                       className="hidden"
                     />
@@ -201,6 +229,11 @@ const ApplicationForm = () => {
                       </div>
                     </label>
                   </div>
+                  {errors.paymentMethod && (
+                    <p className="text-[#F02727] font-medium w-full col-span-2">
+                      {t("validation.paymentMethod")}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="grid grid-cols-[210px_auto] gap-6 items-center">
@@ -212,13 +245,20 @@ const ApplicationForm = () => {
                 </div>
                 <div className="w-full">
                   <input
-                    {...register("phone")}
+                    {...register("phone", {
+                      required: true,
+                    })}
                     name="phone"
                     type="text"
                     placeholder={t("applicationForm.phonePlaceholder")}
                     required
                     className="w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none text-lg"
                   />
+                  {errors.phone && (
+                    <p className="text-[#F02727] font-medium w-full">
+                      {t("validation.phone")}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="flex gap-6 items-center pl-[234px]">
@@ -226,15 +266,21 @@ const ApplicationForm = () => {
                   <label className="label cursor-pointer">
                     <input
                       type="checkbox"
-                      defaultChecked=""
+                      defaultChecked
                       name="checkbox"
-                      {...register("checkbox")}
+                      {...register("checkbox", { required: true })}
                       className="checkbox checkbox-primary"
                     />
+
                     <span className="w-[480px] text-thunder-500 text-lg pl-2">
                       {t("applicationForm.checkboxTitle")}
                     </span>
                   </label>
+                  {errors.checkbox && (
+                    <p className="text-[#F02727] font-medium w-full">
+                      {t("validation.checkbox")}
+                    </p>
+                  )}
                   <p className="text-thunder-500 text-base">
                     {t("applicationForm.termsTitle")}
                   </p>
@@ -272,30 +318,42 @@ const ApplicationForm = () => {
                 <div className="w-full">
                   <label htmlFor="mainFile">
                     {singleImage ? (
-                      <img
-                        src={URL.createObjectURL(singleImage)}
-                        alt='uploaded-image'
-                        className="w-80 h-40 object-fit"
-                      />
+                      singleImage.type.includes("pdf") ? (
+                        <Document file={URL.createObjectURL(singleImage)}>
+                          <Page pageNumber={1} width={200} />
+                        </Document>
+                      ) : (
+                        <img
+                          src={URL.createObjectURL(singleImage)}
+                          alt="uploaded-image"
+                          className="w-80 h-40 object-fit"
+                        />
+                      )
                     ) : (
                       <UploadButton />
                     )}
                   </label>
                   <input
-                    {...register("mainFile", {onChange: e => setSingleImage(e.target.files[0])})}
+                    {...register("mainFile", {
+                      onChange: (e) => setSingleImage(e.target.files[0]),
+                      required: true,
+                    })}
                     className="hidden"
                     id="mainFile"
                     type="file"
-                    accept="image/*,.pdf"
-                    required
                   />
+
+                  {errors.mainFile && (
+                    <p className="text-[#F02727] font-medium w-full">
+                      {t("validation.mainFile")}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="grid grid-cols-[210px_auto] gap-6 items-center">
                 <div className="w-full font-medium text-lg text-thunder-500">
                   <p>
                     <span>{t("applicationFormStep2.otherDocumentsTitle")}</span>
-                    <span className="text-[#F02727]">*</span>
                   </p>
                   <p className="text-[#848696] text-xs font-medium leading-5">
                     {t("applicationFormStep2.otherDocumentsDescription")}
@@ -305,15 +363,23 @@ const ApplicationForm = () => {
                   <label htmlFor="others">
                     {otherFiles.length > 0 ? (
                       <div className="grid grid-cols-3 gap-4">
-                        {otherFiles.map((file, index) => (
-                          <div key={index} className="relative w-80 h-40">
-                            <img
-                              src={URL.createObjectURL(file)}
-                              alt={`uploaded-image-${index}`}
-                              className="w-80 h-40 object-cover"
-                            />
-                          </div>
-                        ))}
+                        {otherFiles.map((file, index) =>
+                          file.type.includes("pdf") ? (
+                            <div key={index} className="relative w-80 h-40">
+                              <Document file={URL.createObjectURL(file)}>
+                                <Page pageNumber={1} width={200} />
+                              </Document>
+                            </div>
+                          ) : (
+                            <div key={index} className="relative w-80 h-40">
+                              <img
+                                src={URL.createObjectURL(file)}
+                                alt={`uploaded-image-${index}`}
+                                className="w-80 h-40 object-cover"
+                              />
+                            </div>
+                          )
+                        )}
                       </div>
                     ) : (
                       <UploadButton />
@@ -323,9 +389,9 @@ const ApplicationForm = () => {
                     id="others"
                     className="hidden"
                     type="file"
-                    accept="image/*,.pdf"
-                    {...register("others", {onChange: (e) => handleMultipleImageChange(e)})}
-                    required
+                    {...register("others", {
+                      onChange: (e) => handleMultipleImageChange(e),
+                    })}
                     multiple
                   />
                 </div>
