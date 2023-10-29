@@ -3,13 +3,15 @@ import loginBg from '../../assets/loginBG.png';
 import relief from '../../assets/relief.png';
 import logoWhite from '../../assets/shohayota-white.svg';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { useContext, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
-const Login = () => {
-  const [visible, setVisible] = useState(false);
-  const passwordRef = useRef();
+import toast from 'react-hot-toast';
 
-  const { handleLogin } = useContext(AuthContext);
+const Register = () => {
+  const [visible, setVisible] = useState(false);
+  const { handleRegistration, profileUpdate } = useContext(AuthContext);
+  const passwordRef = useRef();
   const bgImg = {
     backgroundImage: `url(${loginBg})`,
   };
@@ -17,10 +19,14 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+    const name = formData.get('name');
     const email = formData.get('email');
     const password = formData.get('password');
 
-    console.log(email, password);
+    console.log(name, email, password);
+    handleRegistration(email, password)
+      .then(() => profileUpdate(name).then(() => toast.success(`${name} registered successfully`)))
+      .catch((error) => toast.error(error.message));
   };
 
   return (
@@ -37,12 +43,12 @@ const Login = () => {
               className="h-8 w-auto"
             />
             <p className="mt-2 text-sm text-gray-600 ">
-              Don&#39;t have an account yet?{' '}
+              Already have an account?{' '}
               <Link
-                to="/register"
+                to="/login"
                 className="text-plant-700 decoration-2 hover:underline font-medium"
               >
-                Sign up here
+                Sign in here
               </Link>
             </p>
           </div>
@@ -50,6 +56,26 @@ const Login = () => {
             {/* Form */}
             <form onSubmit={handleSubmit}>
               <div className="grid gap-y-4">
+                {/* Form Group */}
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block text-sm mb-2 "
+                  >
+                    Name
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      className="py-3 px-4 block w-full border border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500"
+                      required=""
+                      placeholder="Enter your Full Name"
+                    />
+                  </div>
+                </div>
+                {/* End Form Group */}
                 {/* Form Group */}
                 <div>
                   <label
@@ -92,7 +118,7 @@ const Login = () => {
                       <div className="flex rounded-md shadow-sm">
                         <input
                           ref={passwordRef}
-                          type="text"
+                          type="password"
                           id="password"
                           name="password"
                           className="py-3 px-4 block w-full border border-gray-300 shadow-sm rounded-l-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500"
@@ -117,7 +143,7 @@ const Login = () => {
                   type="submit"
                   className="text-xl font-semibold leading-8 text-white bg-plant-700 rounded-[70px] py-2.5 px-7 w-40 place-self-center mt-3"
                 >
-                  Sign in
+                  Sign up
                 </button>
               </div>
             </form>
@@ -134,4 +160,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
