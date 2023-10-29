@@ -15,7 +15,7 @@ const ApplicationForm = () => {
   const [otherFiles, setOtherFiles] = useState([]);
   const [singleImage, setSingleImage] = useState(null);
 
-  const { register, control, handleSubmit } = useForm();
+  const { register, reset, control, handleSubmit } = useForm();
 
   const completeFormStep = () => {
     setFormStep((step) => step + 1);
@@ -44,10 +44,14 @@ const ApplicationForm = () => {
 
       if (response.data.insertedId) {
         alert("application submitted successfully!");
+        reset();
+        setSingleImage(null);
+        setOtherFiles([]);
       }
     } catch (error) {
       console.error("Error submitting data: ", error);
     }
+    
   };
 
 
