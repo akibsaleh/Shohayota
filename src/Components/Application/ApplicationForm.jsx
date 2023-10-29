@@ -15,7 +15,7 @@ const ApplicationForm = () => {
   const [otherFiles, setOtherFiles] = useState([]);
   const [singleImage, setSingleImage] = useState(null);
 
-  const { register, reset, control, handleSubmit } = useForm();
+  const { register, reset, control, handleSubmit, formState: { errors } } = useForm({mode: "all"});
 
   const completeFormStep = () => {
     setFormStep((step) => step + 1);
@@ -117,13 +117,13 @@ const ApplicationForm = () => {
                 </div>
                 <div className="w-full">
                   <input
-                    {...register("name")}
-                    name="name"
+                    {...register("name", {required: true,})}
                     type="text"
                     placeholder={t("applicationForm.namePlaceHolder")}
                     required
                     className="w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none text-lg"
                   />
+                  {errors.name && <p className="text-plant-700">{}</p>}
                 </div>
               </div>
               <div className="grid grid-cols-[210px_auto] gap-6 items-center">
