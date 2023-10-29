@@ -1,13 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import loginBg from '../../assets/loginBG.png';
 import relief from '../../assets/relief.png';
 import logoWhite from '../../assets/shohayota-white.svg';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { useContext, useRef, useState } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
+import toast from 'react-hot-toast';
 const Login = () => {
   const [visible, setVisible] = useState(false);
   const passwordRef = useRef();
+  const navigate = useNavigate();
 
   const { handleLogin } = useContext(AuthContext);
   const bgImg = {
@@ -20,7 +22,12 @@ const Login = () => {
     const email = formData.get('email');
     const password = formData.get('password');
 
-    console.log(email, password);
+    handleLogin(email, password)
+      .then(() => {
+        navigate('/dashboard');
+        toast.success('Successfully logged in');
+      })
+      .catch((error) => toast.error(error.message));
   };
 
   return (
@@ -92,7 +99,7 @@ const Login = () => {
                       <div className="flex rounded-md shadow-sm">
                         <input
                           ref={passwordRef}
-                          type="text"
+                          type="password"
                           id="password"
                           name="password"
                           className="py-3 px-4 block w-full border border-gray-300 shadow-sm rounded-l-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500"

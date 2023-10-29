@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import loginBg from '../../assets/loginBG.png';
 import relief from '../../assets/relief.png';
 import logoWhite from '../../assets/shohayota-white.svg';
@@ -12,6 +12,9 @@ const Register = () => {
   const [visible, setVisible] = useState(false);
   const { handleRegistration, profileUpdate } = useContext(AuthContext);
   const passwordRef = useRef();
+
+  const navigate = useNavigate();
+
   const bgImg = {
     backgroundImage: `url(${loginBg})`,
   };
@@ -25,7 +28,12 @@ const Register = () => {
 
     console.log(name, email, password);
     handleRegistration(email, password)
-      .then(() => profileUpdate(name).then(() => toast.success(`${name} registered successfully`)))
+      .then(() =>
+        profileUpdate(name).then(() => {
+          navigate('/dashboard');
+          toast.success(`${name} registered successfully`);
+        })
+      )
       .catch((error) => toast.error(error.message));
   };
 

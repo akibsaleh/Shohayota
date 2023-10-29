@@ -3,6 +3,10 @@ import App from '../../App';
 import Layout from '../../Layout';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
+import PrivateRoute from './PrivateRoute';
+import Dashboard from '../Dashboard/Dashboard';
+import DashboardLayout from '../Dashboard/DashboardLayout';
+import RequestDetails from '../Dashboard/RequestDetails';
 
 export const route = createBrowserRouter([
   {
@@ -23,7 +27,35 @@ export const route = createBrowserRouter([
       },
       {
         path: '/dashboard',
-        element: <h1>Dashboard</h1>,
+        element: (
+          <PrivateRoute>
+            <DashboardLayout />
+          </PrivateRoute>
+        ),
+        children: [
+          {
+            path: '/dashboard',
+            element: (
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            ),
+            loader: () => fetch('http://localhost:5000/applications'),
+          },
+          {
+            path: '/dashboard/request/:id',
+            element: <RequestDetails />,
+            loader: ({ params }) => fetch(`http://localhost:5000/applications/${params.id}`),
+          },
+          {
+            path: '/dashboard/pending',
+            element: <div>Pending</div>,
+          },
+          {
+            path: '/dashboard/approved',
+            element: <div>Approved</div>,
+          },
+        ],
       },
     ],
   },
