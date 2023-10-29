@@ -1,13 +1,13 @@
+/* eslint-disable react/prop-types */
 import { useForm } from 'react-hook-form';
 import BangladeshIcon from './BangladeshIcon';
 import { useTranslation } from 'react-i18next';
-import { DevTool } from '@hookform/devtools';
 
-const ContactForm = () => {
+const ContactForm = ({ contactRef }) => {
   const { t, i18n } = useTranslation('global');
   const isBn = i18n.language === 'bn';
   const form = useForm();
-  const { register, control, handleSubmit } = form;
+  const { register, handleSubmit } = form;
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -75,7 +75,10 @@ const ContactForm = () => {
             {...register('message')}
           ></textarea>
         </div>
-        <div className="form-control flex justify-center gap-5 pt-5">
+        <div
+          ref={contactRef}
+          className="form-control flex justify-center gap-5 pt-5"
+        >
           <button
             type="submit"
             className={`text-xl font-semibold leading-8 text-white bg-plant-700 rounded-[70px] py-2.5 px-7 ${isBn ? 'font-nsb' : 'font-archivo'}`}

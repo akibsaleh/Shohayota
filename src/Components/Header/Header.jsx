@@ -1,14 +1,23 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
 import logo from '../../assets/Shohayota-logo.svg';
 
-const Header = () => {
+const Header = ({ elementsInViewport }) => {
   const [t, i18n] = useTranslation('global');
   const [btnStyle, setBtnStyle] = useState(true);
 
+  const { aboutIsInViewport, homeIsInViewport, termsIsInViewport, contactIsInViewport } = elementsInViewport;
+
   const handleLanguageChange = (lang) => {
     i18n.changeLanguage(lang);
+  };
+
+  const handleMenuItem = (section) => {
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -25,34 +34,34 @@ const Header = () => {
           <span className="font-bold font-lss text-white text-[40px] leading-none mt-1">সহায়তা</span>
         </div>
         <div className="hidden lg:block">
-          <ul className="flex gap-x-12">
-            <li className="block">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? 'pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4  text-lg leading-10 border-white'
-                    : 'pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4  text-lg leading-10 border-transparent'
-                }
-              >
-                <span>{t('navbar.home')}</span>
-              </NavLink>
-            </li>
-            <li className="block">
-              <NavLink className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 text-lg leading-10 border-transparent`}>
-                <span>{t('navbar.about')}</span>
-              </NavLink>
-            </li>
-            <li className="block">
-              <NavLink className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 text-lg leading-10 border-transparent`}>
-                <span>{t('navbar.terms')}</span>
-              </NavLink>
-            </li>
-            <li className="block">
-              <NavLink className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 text-lg leading-10 border-transparent`}>
-                <span>{t('navbar.contact')}</span>
-              </NavLink>
-            </li>
-          </ul>
+          <div className="flex gap-x-12">
+            <button
+              onClick={() => handleMenuItem('home')}
+              className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${homeIsInViewport ? 'border-white' : 'border-transparent'}`}
+            >
+              <span>{t('navbar.home')}</span>
+            </button>
+            <button
+              onClick={() => handleMenuItem('about')}
+              className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${aboutIsInViewport ? 'border-white' : 'border-transparent'}`}
+            >
+              <span>{t('navbar.about')}</span>
+            </button>
+            <button
+              onClick={() => handleMenuItem('terms')}
+              className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${termsIsInViewport ? 'border-white' : 'border-transparent'}`}
+            >
+              <span>{t('navbar.terms')}</span>
+            </button>
+            <button
+              onClick={() => handleMenuItem('contact')}
+              className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${
+                contactIsInViewport ? 'border-white' : 'border-transparent'
+              }`}
+            >
+              <span>{t('navbar.contact')}</span>
+            </button>
+          </div>
         </div>
         <div className="hidden lg:block">
           <div className="bg-plant-600 p-[3px] rounded-full">
