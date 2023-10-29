@@ -10,7 +10,10 @@ const Contact = ({ contactRef }) => {
     backgroundImage: `url(${footerBG})`,
   };
   return (
-    <div className="pt-[206px]">
+    <div
+      id="contact"
+      className="pt-[140px]"
+    >
       <div className="mt-[140px] ">
         <div
           className="flex justify-center w-full bg-plant-700 pb-[120px] bg-contain bg-no-repeat bg-center"

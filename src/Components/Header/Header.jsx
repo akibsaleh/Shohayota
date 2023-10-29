@@ -43,20 +43,24 @@ const Header = ({ elementsInViewport }) => {
             </button>
             <button
               onClick={() => handleMenuItem('about')}
-              className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${aboutIsInViewport ? 'border-white' : 'border-transparent'}`}
+              className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${
+                !homeIsInViewport && aboutIsInViewport ? 'border-white' : 'border-transparent'
+              }`}
             >
               <span>{t('navbar.about')}</span>
             </button>
             <button
               onClick={() => handleMenuItem('terms')}
-              className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${termsIsInViewport ? 'border-white' : 'border-transparent'}`}
+              className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${
+                !aboutIsInViewport && termsIsInViewport ? 'border-white' : 'border-transparent'
+              }`}
             >
               <span>{t('navbar.terms')}</span>
             </button>
             <button
               onClick={() => handleMenuItem('contact')}
               className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${
-                contactIsInViewport ? 'border-white' : 'border-transparent'
+                !termsIsInViewport && contactIsInViewport ? 'border-white' : 'border-transparent'
               }`}
             >
               <span>{t('navbar.contact')}</span>
