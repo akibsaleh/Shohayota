@@ -54,7 +54,7 @@ const ApplicationForm = () => {
         formData.append('others', otherFiles[i]);
       }
 
-      const response = await axios.post('https://shohahoyta-server.vercel.app/applications', formData);
+      const response = await axios.post('https://shohahoyta-server.vercel.app/applications/', formData);
 
       if (response.data.insertedId) {
         Swal.fire({
@@ -196,7 +196,7 @@ const ApplicationForm = () => {
                     <label htmlFor="bkash">
                       <div
                         className={`h-11 w-full flex gap-2 justify-center items-center  border-[1px] border-plant-100 rounded-md text-thunder-500 text-l ${
-                          payMethod === 'বিকাশ' || payMethod === 'বিকাশ' ? 'bg-plant-300/50' : 'bg-haze'
+                          payMethod === 'বিকাশ' || payMethod === 'Bkash' ? 'bg-plant-300/50' : 'bg-haze'
                         }`}
                       >
                         <BkashIcon />
