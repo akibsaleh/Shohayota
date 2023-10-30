@@ -12,6 +12,8 @@ import { IoClose } from 'react-icons/io5';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.js', import.meta.url).toString();
 
+pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.js', import.meta.url).toString();
+
 const ApplicationForm = () => {
   const { t, i18n } = useTranslation('global');
   const isBn = i18n.language === 'bn';
