@@ -77,6 +77,12 @@ const HeaderDashboard = () => {
             >
               Home
             </Link>
+            <Link
+              to="/dashboard"
+              className="font-medium text-white sm:py-6 "
+            >
+              Dashboard
+            </Link>
             <NavLink
               to="pending"
               className="font-medium text-white sm:py-6 "

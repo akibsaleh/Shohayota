@@ -25,7 +25,13 @@ const RequestCard = ({ request }) => {
         )}
       </td>
       <td className="whitespace-nowrap px-4 py-4">
-        <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800 capitalize">{request?.status}</span>
+        <span
+          className={`inline-flex rounded-full px-3 pt-1 pb-1.5 text-xs font-semibold leading-5 capitalize ${request?.status === 'declined' && 'bg-red-200 text-red-800'} ${
+            request?.status === 'approved' && 'bg-green-200 text-green-800'
+          } ${request?.status === 'pending' && 'bg-yellow-200 text-yellow-800'}`}
+        >
+          {request?.status}
+        </span>
       </td>
       <td className="whitespace-nowrap px-4 py-4 text-right text-sm font-medium">
         <Link to={`/dashboard/request/${request?._id}`}>

@@ -2,11 +2,13 @@ import { useLoaderData } from 'react-router-dom';
 import BkashIcon from '../Application/bkashIcon';
 import NagadIcon from '../Application/NagadIcon';
 import { BsCheckLg, BsTrash } from 'react-icons/bs';
-import toast from 'react-hot-toast';
+import { useState } from 'react';
+// import toast from 'react-hot-toast';
 // import { useState } from 'react';
 
 const RequestDetails = () => {
-  const [data] = useLoaderData();
+  const [loaderResponse, setLoaderResponse] = useState(useLoaderData());
+  const [data] = loaderResponse;
   console.log(data);
 
   const handleStatus = (status) => {
@@ -20,8 +22,10 @@ const RequestDetails = () => {
       body: JSON.stringify(newData),
     })
       .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
+      .then(({ result, latestRequest }) => {
+        if (result.modifiedCount > 0) {
+          setLoaderResponse(latestRequest);
+        }
         // if (result.modifiedCount > 0) toast.success(`Approved request of ${data.name}`);
       });
   };
@@ -34,18 +38,24 @@ const RequestDetails = () => {
       <div className="pt-14 pb-5 w-full max-w-3xl flex justify-between items-center">
         <h1 className="font-bold text-xl">
           {data?.name}&#39;s Request Details{' '}
-          <span className={`${data?.status === 'pending' ? 'bg-yellow-200 text-yellow-900' : 'bg-green-200 text-green-600'} px-4 py-2 rounded-3xl capitalize`}>{data?.status}</span>
+          <span
+            className={`${data?.status === 'declined' && 'bg-red-200 text-red-800'} ${data?.status === 'approved' && 'bg-green-200 text-green-800'} ${
+              data?.status === 'pending' && 'bg-yellow-200 text-yellow-800'
+            } capitalize px-4 pt-2 pb-2.5 rounded-full`}
+          >
+            {data?.status}
+          </span>
         </h1>
         <div className="inline-flex rounded-md shadow-sm">
           <button
-            onClick={() => handleStatus('Approved')}
+            onClick={() => handleStatus('approved')}
             type="button"
             className="py-3 px-4 inline-flex justify-center items-center gap-1 -ml-px first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-green-200 text-green-900 align-middle hover:bg-gray-50 focus:z-10 transition-all sm:p-4"
           >
             <BsCheckLg className="text-2xl" /> Approve
           </button>
           <button
-            onClick={() => handleStatus('Declined')}
+            onClick={() => handleStatus('declined')}
             type="button"
             className="py-3 px-4 inline-flex justify-center items-center gap-1 -ml-px first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-red-200 text-red-900 align-middle hover:bg-gray-50 focus:z-10 focus:outline-none transition-all sm:p-4"
           >
