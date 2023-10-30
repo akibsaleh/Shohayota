@@ -50,11 +50,12 @@ export const route = createBrowserRouter([
           {
             path: '/dashboard/pending',
             element: <Dashboard />,
-            loader: () => fetch('http://localhost:5000/applications/pending'),
+            loader: () => fetch('http://localhost:5000/pending'),
           },
           {
             path: '/dashboard/approved',
-            element: <div>Approved</div>,
+            element: <Dashboard />,
+            loader: () => fetch('http://localhost:5000/approved'),
           },
         ],
       },
