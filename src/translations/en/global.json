@@ -41,7 +41,10 @@
     "checkboxTitle": "Bkash/Nagad account on this number ",
     "termsTitle": "By providing the above information you confirm that you have read and agree to our Terms.",
     "nextStepBtn": "Next Step",
-    "submitBtn": "Submit"
+    "submitBtn": "Submit",
+    "modaltitle": "Your Message Has Been Sent Successfully",
+    "modaldesc": "Please wait. Your message will be answered by our company, Thank You.",
+    "modalBtn": "Back to Home"
   },
   "applicationFormStep2": {
     "mainDocumentTitle": "National ID/Passport: ",

@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import Swal from 'sweetalert2';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
@@ -9,6 +10,7 @@ import NagadIcon from './NagadIcon';
 import UploadButton from './UploadButton';
 import axios from 'axios';
 import { IoClose } from 'react-icons/io5';
+import successapply from '../../assets/success-application.svg';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.js', import.meta.url).toString();
 
@@ -56,7 +58,21 @@ const ApplicationForm = () => {
       const response = await axios.post('http://localhost:5000/applications', formData);
 
       if (response.data.insertedId) {
-        alert('application submitted successfully!');
+        Swal.fire({
+          html: `<div class="custom-success-modal">
+          <img
+            src=${window.location.origin + successapply}
+            alt="Success"
+            class="modal-image"
+          />
+          <p class="modal-title">${t('applicationForm.modaltitle')}</p>
+          <p class="modal-desc">${t('applicationForm.modaldesc')}</p>
+          
+        </div>`,
+          confirmButtonText: `<button class="modal-btn">${t('applicationForm.modalBtn')}</button>`,
+          confirmButtonColor: '#215A4D',
+          cancelButtonText: '<i class="fa fa-thumbs-down"></i>',
+        });
         reset();
         setSingleImage(null);
         setOtherFiles([]);
@@ -339,19 +355,29 @@ const ApplicationForm = () => {
                             key={index}
                             className="relative overflow-hidden w-auto h-[148px]"
                           >
-                            <Document file={URL.createObjectURL(file)}>
-                              <Page
-                                pageNumber={1}
-                                width={200}
-                              />
-                            </Document>
+                            {' '}
+                            <div>
+                              <Document file={URL.createObjectURL(file)}>
+                                <Page
+                                  pageNumber={1}
+                                  width={200}
+                                />
+                              </Document>
+                            </div>
+                            <button
+                              type="button"
+                              className="absolute top-1 right-1 bg-gray-900 rounded-full p-0.5"
+                              onClick={() => setOtherFiles(otherFiles.filter((_, idx) => idx !== index))}
+                            >
+                              <IoClose className="text-lg text-white" />
+                            </button>
                           </div>
                         ) : (
                           <div
                             key={index}
                             className="relative overflow-hidden w-fit h-[148px]"
                           >
-                            <div className="">
+                            <div>
                               <img
                                 src={URL.createObjectURL(file)}
                                 alt={`uploaded-image-${index}`}
@@ -383,7 +409,7 @@ const ApplicationForm = () => {
                     })}
                     multiple
                   />
-                  {otherFiles.length > 0 ? (
+                  {otherFiles.length > 0 && otherFiles.length < 5 ? (
                     <div className="block w-44 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-50">
                       <button
                         type="button"

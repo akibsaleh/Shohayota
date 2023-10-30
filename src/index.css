@@ -73,3 +73,42 @@ canvas.react-pdf__Page__canvas {
   width: 320px !important;
   height: auto !important;
 }
+
+.custom-success-modal {
+  @apply p-10;
+  @apply pb-0;
+  @apply flex;
+  @apply flex-col;
+  @apply items-center;
+}
+
+.modal-image {
+  @apply pb-10;
+}
+
+.modal-title {
+  @apply pb-10;
+  @apply pb-3;
+  @apply text-3xl;
+  @apply font-bold;
+}
+
+.modal-btn {
+  /* @apply px-7;
+  @apply pt-2.5;
+  @apply pb-2; */
+  @apply text-white;
+}
+
+button.swal2-confirm.swal2-styled.swal2-default-outline {
+  padding: 10px 28px 10px 28px !important;
+  border-radius: 30px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.swal2-popup.swal2-modal.swal2-show {
+  padding-bottom: 40px;
+  width: 720px;
+  border-radius: 16px;
+}
