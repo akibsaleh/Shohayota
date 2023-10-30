@@ -1,21 +1,35 @@
 /* eslint-disable react/prop-types */
-import { useForm } from 'react-hook-form';
+
+import { useRef } from 'react';
 import BangladeshIcon from './BangladeshIcon';
 import { useTranslation } from 'react-i18next';
+import emailjs from '@emailjs/browser';
+import toast from 'react-hot-toast';
 
 const ContactForm = ({ contactRef }) => {
   const { t, i18n } = useTranslation('global');
   const isBn = i18n.language === 'bn';
-  const form = useForm();
-  const { register, handleSubmit } = form;
-  const onSubmit = (data) => {
-    console.log(data);
+
+  const form = useRef();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    emailjs.sendForm('service_97cax8q', 'template_4pgmo4q', form.current, 'ldur-PuGdgsotgwML')
+      .then((result) => {
+          if(result.status === 200){
+            toast.success("Your message sent successfully")
+          }
+      }, (error) => {
+          toast.error('Failed to send message.')
+          console.log(error.text);
+      });
   };
+
   return (
     <div>
       <form
         className="flex flex-col gap-y-5"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit}
+        ref={form}
       >
         <div className="form-control flex gap-x-6">
           <label className="label w-52 text-thunder-500 font-archivo leading-[26px] pt-2 pb-1.5">
@@ -26,7 +40,8 @@ const ContactForm = ({ contactRef }) => {
             type="text"
             placeholder={t('contact.nameInput')}
             id="fullName"
-            {...register('fullName')}
+            name='fullName'
+            required
             className={`input leading-[26px] w-full pt-2 pb-1.5 px-3 rounded-md border-thunder-300 border bg-haze ${isBn ? 'font-nsb' : 'font-archivo'}`}
           />
         </div>
@@ -46,7 +61,8 @@ const ContactForm = ({ contactRef }) => {
               type="text"
               placeholder={t('contact.phoneInput')}
               id="phone"
-              {...register('phone')}
+              name='phone'
+              required
               className={`input w-full bg-haze pl-2.5 leading-[26px] ${isBn ? 'font-nsb' : 'font-archivo'}`}
             />
           </div>
@@ -59,7 +75,8 @@ const ContactForm = ({ contactRef }) => {
             type="text"
             placeholder={t('contact.emailInput')}
             id="email"
-            {...register('email')}
+            name='email'
+            required
             className={`input leading-[26px] w-full pt-2 pb-1.5 px-3 rounded-md border-thunder-300 border bg-haze ${isBn ? 'font-nsb' : 'font-archivo'}`}
           />
         </div>
@@ -72,7 +89,8 @@ const ContactForm = ({ contactRef }) => {
             className={`textarea textarea-bordered h-24 w-full pt-2 pb-1.5 px-3 rounded-md border-thunder-300 border bg-haze ${isBn ? 'font-nsb' : 'font-archivo'}`}
             placeholder={t('contact.messageInput')}
             id="message"
-            {...register('message')}
+            name='message'
+            required
           ></textarea>
         </div>
         <div

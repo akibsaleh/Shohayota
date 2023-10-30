@@ -9,6 +9,7 @@ import NagadIcon from "./NagadIcon";
 import UploadButton from "./UploadButton";
 import axios from "axios";
 
+
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
