@@ -17,7 +17,11 @@ const RequestDetails = () => {
   const navigate = useNavigate();
 
   const handleStatus = (status) => {
-    const newData = { status };
+    const date = new Date(); // Create a Date object
+    const month = date.getMonth() + 1; // Get the current month (0-based index)
+    const year = date.getFullYear(); // Get the current year
+    const formattedDate = `${month.toString().padStart(2, '0')}/${year.toString()}`;
+    const newData = { status, date: formattedDate };
     const id = data?._id;
     fetch(`https://shohahoyta-server.vercel.app/applications/${id}`, {
       method: 'PUT',

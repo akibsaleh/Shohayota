@@ -2,6 +2,7 @@
 import { PiMapPinDuotone } from 'react-icons/pi';
 
 const SlideContent = () => {
+
   return (
     <>
       {/* <p className="font-archivo text-sm font-semibold text-center pb-[30px]">27 December, 2022</p>
