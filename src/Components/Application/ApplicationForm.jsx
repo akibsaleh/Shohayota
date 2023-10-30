@@ -3,11 +3,16 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useTranslation } from "react-i18next";
-import { Document, Page } from "react-pdf";
+import { Document, Page, pdfjs } from "react-pdf";
 import BkashIcon from "./bkashIcon";
 import NagadIcon from "./NagadIcon";
 import UploadButton from "./UploadButton";
 import axios from "axios";
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.js',
+  import.meta.url,
+).toString();
 
 const ApplicationForm = () => {
   const { t, i18n } = useTranslation("global");
@@ -68,6 +73,10 @@ const ApplicationForm = () => {
   const handleMultipleImageChange = (e) => {
     const newFiles = Array.from(e.target.files);
     setOtherFiles((prevFiles) => [...prevFiles, ...newFiles]);
+  };
+
+  const handlePdfError = (error) => {
+    console.error('Error loading PDF:', error);
   };
 
   return (
@@ -316,11 +325,11 @@ const ApplicationForm = () => {
                 </div>
 
                 <div className="w-full">
-                  <label htmlFor="mainFile">
+                  <label htmlFor="mainFile" className="w-80 h-40 block">
                     {singleImage ? (
                       singleImage.type.includes("pdf") ? (
-                        <Document file={URL.createObjectURL(singleImage)}>
-                          <Page pageNumber={1} width={200} />
+                        <Document file={URL.createObjectURL(singleImage)} className="overflow-hidden w-80 h-40">
+                          <Page pageNumber={1} width={320} height={160} />
                         </Document>
                       ) : (
                         <img
@@ -345,7 +354,7 @@ const ApplicationForm = () => {
 
                   {errors.mainFile && (
                     <p className="text-[#F02727] font-medium w-full">
-                      {t("validation.mainFile")}
+                      {singleImage ? "" : t("validation.mainFile")}
                     </p>
                   )}
                 </div>
@@ -360,14 +369,14 @@ const ApplicationForm = () => {
                   </p>
                 </div>
                 <div className="w-full">
-                  <label htmlFor="others">
+                  <label htmlFor="others" className="w-80 block">
                     {otherFiles.length > 0 ? (
                       <div className="grid grid-cols-3 gap-4">
                         {otherFiles.map((file, index) =>
                           file.type.includes("pdf") ? (
                             <div key={index} className="relative w-80 h-40">
-                              <Document file={URL.createObjectURL(file)}>
-                                <Page pageNumber={1} width={200} />
+                              <Document file={URL.createObjectURL(file)}  className="overflow-hidden w-80 h-40">
+                                <Page pageNumber={1} width={320} height={160} />
                               </Document>
                             </div>
                           ) : (
