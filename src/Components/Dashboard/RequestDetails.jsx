@@ -128,7 +128,7 @@ const RequestDetails = () => {
           </div>
         </div>
         <div className="grid grid-cols-[200px_auto] divide-x divide-gray-200">
-          <p className="w-full py-4 pl-5 font-semibold">NID/Passport:</p>
+          <p className="w-full py-4 pl-5 font-semibold">Other Documents:</p>
           <div className="w-full py-4 px-5 font-semibold grid grid-cols-3 gap-3">
             {data?.others?.map((img, idx) => (
               <a key={idx} href={img} rel="noreferrer" target="_blank">
