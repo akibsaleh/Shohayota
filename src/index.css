@@ -68,3 +68,8 @@
   @apply bg-white;
   @apply -mt-0.5;
 }
+
+canvas.react-pdf__Page__canvas {
+  width: 320px !important;
+  height: auto !important;
+}
