@@ -15,7 +15,6 @@ const DonationCarousel = () => {
   useEffect(() => {
     axios.get('https://shohahoyta-server.vercel.app/approved').then((res) => setData(res.data));
   }, [setData]);
-  console.log(data);
   return (
     <div className="relative flex flex-col w-full items-center">
       <div className="w-full max-w-screen-2xl h-0.5 bg-progressLine absolute top-[51px] z-00"></div>

@@ -186,7 +186,6 @@ const ApplicationForm = () => {
                       type="radio"
                       onClick={(e) => setPayMethod(e.target.value)}
                       id="bkash"
-                      name="paymentMethod"
                       {...register('paymentMethod', {
                         required: true,
                       })}
@@ -209,7 +208,6 @@ const ApplicationForm = () => {
                       onClick={(e) => setPayMethod(e.target.value)}
                       type="radio"
                       id="nagad"
-                      name="paymentMethod"
                       {...register('paymentMethod', {
                         required: true,
                       })}
