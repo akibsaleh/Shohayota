@@ -46,10 +46,11 @@
   "applicationFormStep2": {
     "mainDocumentTitle": "National ID/Passport: ",
     "mainDocumentDescription": "Your identity card or passport will be safe with us. You can safely upload.",
-    "otherDocumentsTitle": "Other Necessary Documents(optional): ", 
+    "otherDocumentsTitle": "Other Necessary Documents(optional): ",
     "otherDocumentsDescription": "Add photos relevant to your residence, physical condition or other needs you are seeking assistance with",
     "upload": "Upload",
-    "fileType": "Supported Files: Image, PDF"
+    "fileType": "Supported Files: Image, PDF",
+    "more": "+ Add More Files"
   },
   "validation": {
     "name": "Please type your Name.",
