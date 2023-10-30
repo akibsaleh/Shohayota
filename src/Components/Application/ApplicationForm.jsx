@@ -10,9 +10,8 @@ import NagadIcon from './NagadIcon';
 import UploadButton from './UploadButton';
 import axios from 'axios';
 import { IoClose } from 'react-icons/io5';
+import BangladeshIcon from '../Contact/BangladeshIcon';
 import successapply from '../../assets/success-application.svg';
-
-pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.js', import.meta.url).toString();
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.js', import.meta.url).toString();
 
@@ -239,16 +238,24 @@ const ApplicationForm = () => {
                   </label>
                 </div>
                 <div className="w-full">
-                  <input
-                    {...register('phone', {
-                      required: true,
-                    })}
-                    name="phone"
-                    type="text"
-                    placeholder={t('applicationForm.phonePlaceholder')}
-                    required
-                    className="w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none text-lg"
-                  />
+                  <div className="flex items-center justify-start w-full pt-2 pb-1.5 px-3 rounded-md border-thunder-300 border bg-haze divide-x divide-solid gap-x-2.5">
+                    <span className="flex gap-x-1 leading-[26px] text-thunder-500 font-archivo">
+                      <span className="mt-[3px]">
+                        <BangladeshIcon />
+                      </span>
+                      <span className={isBn ? 'font-nsb' : 'font-archivo'}>{t('contact.phoneInputPrefix')}</span>
+                    </span>
+                    <input
+                      {...register('phone', {
+                        required: true,
+                      })}
+                      name="phone"
+                      type="text"
+                      placeholder={t('applicationForm.phonePlaceholder')}
+                      required
+                      className={`input w-full bg-haze pl-2.5 leading-[26px] ${isBn ? 'font-nsb' : 'font-archivo'}`}
+                    />
+                  </div>
                   {errors.phone && <p className="text-[#F02727] font-medium w-full">{t('validation.phone')}</p>}
                 </div>
               </div>

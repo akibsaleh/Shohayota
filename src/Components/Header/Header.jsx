@@ -37,13 +37,13 @@ const Header = ({ elementsInViewport }) => {
           <div className="flex gap-x-12">
             <button
               onClick={() => handleMenuItem('home')}
-              className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${homeIsInViewport ? 'border-white' : 'border-transparent'}`}
+              className={`pt-[22.5px] pb-[18.5px] block text-[#87C6B6] font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${homeIsInViewport ? 'border-white' : 'border-transparent'}`}
             >
               <span>{t('navbar.home')}</span>
             </button>
             <button
               onClick={() => handleMenuItem('about')}
-              className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${
+              className={`pt-[22.5px] pb-[18.5px] block text-[#87C6B6] font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${
                 !homeIsInViewport && aboutIsInViewport ? 'border-white' : 'border-transparent'
               }`}
             >
@@ -51,7 +51,7 @@ const Header = ({ elementsInViewport }) => {
             </button>
             <button
               onClick={() => handleMenuItem('terms')}
-              className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${
+              className={`pt-[22.5px] pb-[18.5px] block text-[#87C6B6] font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${
                 !aboutIsInViewport && termsIsInViewport ? 'border-white' : 'border-transparent'
               }`}
             >
@@ -59,7 +59,7 @@ const Header = ({ elementsInViewport }) => {
             </button>
             <button
               onClick={() => handleMenuItem('contact')}
-              className={`pt-[22.5px] pb-[18.5px] block text-white font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${
+              className={`pt-[22.5px] pb-[18.5px] block text-[#87C6B6] font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${
                 !termsIsInViewport && contactIsInViewport ? 'border-white' : 'border-transparent'
               }`}
             >

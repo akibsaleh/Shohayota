@@ -4,6 +4,8 @@ import NagadIcon from "../Application/NagadIcon";
 import { BsCheckLg, BsTrash } from "react-icons/bs";
 import { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
+import { useNavigate } from "react-router-dom/dist";
+
 
 // import toast from 'react-hot-toast';
 // import { useState } from 'react';
@@ -16,7 +18,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 const RequestDetails = () => {
   const [loaderResponse, setLoaderResponse] = useState(useLoaderData());
   const [data] = loaderResponse;
-  console.log(data);
+  const navigate = useNavigate();
 
   const handleStatus = (status) => {
     const newData = { status };
@@ -32,6 +34,9 @@ const RequestDetails = () => {
       .then(({ result, latestRequest }) => {
         if (result.modifiedCount > 0) {
           setLoaderResponse(latestRequest);
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 1500);
         }
         // if (result.modifiedCount > 0) toast.success(`Approved request of ${data.name}`);
       });
