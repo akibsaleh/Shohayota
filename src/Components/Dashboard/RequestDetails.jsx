@@ -6,7 +6,6 @@ import { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useNavigate } from "react-router-dom/dist";
 
-
 // import toast from 'react-hot-toast';
 // import { useState } from 'react';
 
@@ -21,7 +20,13 @@ const RequestDetails = () => {
   const navigate = useNavigate();
 
   const handleStatus = (status) => {
-    const newData = { status };
+    const date = new Date(); // Create a Date object
+    const month = date.getMonth() + 1; // Get the current month (0-based index)
+    const year = date.getFullYear(); // Get the current year
+    const formattedDate = `${month
+      .toString()
+      .padStart(2, "0")}/${year.toString()}`;
+    const newData = { status, date: formattedDate };
     const id = data?._id;
     fetch(`http://localhost:5000/applications/${id}`, {
       method: "PUT",
@@ -137,17 +142,19 @@ const RequestDetails = () => {
           <div className="w-full py-4 px-5 font-semibold grid grid-cols-3 gap-3">
             {data?.others?.map((img, idx) => (
               <a key={idx} href={img} rel="noreferrer" target="_blank">
-              {img?.includes('.pdf') ? (
-                <Document file={img} className="overflow-hidden w-full h-48 border-[3px] border-gray-200 shadow-sm rounded">
-                  <Page pageNumber={1} width={320} height={160} />
-                </Document>
-              ) : (
-                <img
-                  src={img}
-                  className="border-[3px] border-gray-200 shadow-sm rounded"
-                />
-              )}
-                
+                {img?.includes(".pdf") ? (
+                  <Document
+                    file={img}
+                    className="overflow-hidden w-full h-48 border-[3px] border-gray-200 shadow-sm rounded"
+                  >
+                    <Page pageNumber={1} width={320} height={160} />
+                  </Document>
+                ) : (
+                  <img
+                    src={img}
+                    className="border-[3px] border-gray-200 shadow-sm rounded"
+                  />
+                )}
               </a>
             ))}
           </div>

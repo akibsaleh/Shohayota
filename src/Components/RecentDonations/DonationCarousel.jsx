@@ -10,6 +10,7 @@ import SlideContent from './SlideContent';
 
 const DonationCarousel = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  
 
   return (
     <div className="relative flex flex-col w-full items-center">
