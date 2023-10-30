@@ -54,7 +54,7 @@ const ApplicationForm = () => {
         formData.append('others', otherFiles[i]);
       }
 
-      const response = await axios.post('http://localhost:5000/applications', formData);
+      const response = await axios.post('https://shohahoyta-server.vercel.app/applications', formData);
 
       if (response.data.insertedId) {
         Swal.fire({

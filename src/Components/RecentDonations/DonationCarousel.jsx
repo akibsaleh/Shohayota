@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -7,10 +7,15 @@ import 'swiper/css/thumbs';
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { BsCircleFill } from 'react-icons/bs';
 import SlideContent from './SlideContent';
+import axios from 'axios';
 
 const DonationCarousel = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    axios.get('https://shohahoyta-server.vercel.app/approved').then((res) => setData(res.data));
+  }, [setData]);
+  console.log(data);
   return (
     <div className="relative flex flex-col w-full items-center">
       <div className="w-full max-w-screen-2xl h-0.5 bg-progressLine absolute top-[51px] z-00"></div>

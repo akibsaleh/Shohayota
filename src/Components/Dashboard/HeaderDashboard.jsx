@@ -5,7 +5,8 @@ import { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import toast from 'react-hot-toast';
 const HeaderDashboard = () => {
-  const { logOut } = useContext(AuthContext);
+  const { loggedInUser, logOut } = useContext(AuthContext);
+  console.log(loggedInUser.displayName);
   const navigate = useNavigate();
 
   const handleLogoutBtn = () => {
@@ -96,7 +97,7 @@ const HeaderDashboard = () => {
               Approved
             </NavLink>
             <div className="bg-plant-600 text-white px-5 py-2 rounded-full font-semibold flex justify-center items-center gap-3">
-              <p>Akib Saleh</p>{' '}
+              <p>{loggedInUser?.displayName ? loggedInUser?.displayName : 'User'}</p>{' '}
               <button
                 type="button"
                 onClick={handleLogoutBtn}

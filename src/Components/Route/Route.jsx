@@ -40,22 +40,22 @@ export const route = createBrowserRouter([
                 <Dashboard />
               </PrivateRoute>
             ),
-            loader: () => fetch('http://localhost:5000/applications'),
+            loader: () => fetch('https://shohahoyta-server.vercel.app/applications'),
           },
           {
             path: '/dashboard/request/:id',
             element: <RequestDetails />,
-            loader: ({ params }) => fetch(`http://localhost:5000/applications/${params.id}`),
+            loader: ({ params }) => fetch(`https://shohahoyta-server.vercel.app/applications/${params.id}`),
           },
           {
             path: '/dashboard/pending',
             element: <Dashboard />,
-            loader: () => fetch('http://localhost:5000/pending'),
+            loader: () => fetch('https://shohahoyta-server.vercel.app/pending'),
           },
           {
             path: '/dashboard/approved',
             element: <Dashboard />,
-            loader: () => fetch('http://localhost:5000/approved'),
+            loader: () => fetch('https://shohahoyta-server.vercel.app/approved'),
           },
         ],
       },
