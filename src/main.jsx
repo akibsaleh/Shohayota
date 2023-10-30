@@ -7,6 +7,7 @@ import i18next from 'i18next';
 import { RouterProvider } from 'react-router-dom';
 import AuthProvider from './Components/Providers/AuthProvider';
 import { route } from './Components/Route/Route';
+import('preline');
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
