@@ -45,8 +45,6 @@ const RequestDetails = () => {
   // const x = data?.image.split('/')[4].toString();
   // console.log(/\.pdf$/i.test(x));
 
-  console.log(data);
-
   return (
     <section className="w-full min-h-screen flex flex-col items-center">
       <div className="pt-14 pb-5 w-full max-w-3xl flex justify-between items-center">
