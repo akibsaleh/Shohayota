@@ -459,7 +459,6 @@ const ApplicationForm = () => {
             </div>
           )}
         </form>
-        <DevTool control={control} />
       </div>
     </>
   );
