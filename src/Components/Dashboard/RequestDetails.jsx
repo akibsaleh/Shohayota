@@ -45,6 +45,8 @@ const RequestDetails = () => {
   // const x = data?.image.split('/')[4].toString();
   // console.log(/\.pdf$/i.test(x));
 
+  console.log(data);
+
   return (
     <section className="w-full min-h-screen flex flex-col items-center">
       <div className="pt-14 pb-5 w-full max-w-3xl flex justify-between items-center">
@@ -112,14 +114,14 @@ const RequestDetails = () => {
           <p className="w-full py-4 pl-5 font-semibold">NID/Passport:</p>
           <div className="w-full py-4 px-5 font-semibold">
             <a
-              href={data?.image}
+              href={data?.mainFile}
               rel="noreferrer"
               target="_blank"
             >
-              {data?.image &&
-                (data?.image.includes('.pdf') ? (
+              {data?.mainFile &&
+                (data?.mainFile.includes('.pdf') ? (
                   <Document
-                    file={data?.image}
+                    file={data?.mainFile}
                     className="overflow-hidden w-full h-96 border-[6px] border-gray-200 shadow-sm rounded"
                   >
                     <Page
@@ -130,7 +132,7 @@ const RequestDetails = () => {
                   </Document>
                 ) : (
                   <img
-                    src={data?.image}
+                    src={data?.mainFile}
                     className="w-48 h-auto border-[6px] border-gray-200 shadow-sm rounded"
                   />
                 ))}
@@ -139,13 +141,14 @@ const RequestDetails = () => {
         </div>
         <div className="grid grid-cols-[200px_auto] divide-x divide-gray-200">
           <p className="w-full py-4 pl-5 font-semibold">Other Documents:</p>
-          <div className="w-full py-4 px-5 font-semibold grid grid-cols-3 gap-3">
+          <div className="w-full py-4 px-5 font-semibold flex flex-wrap gap-3">
             {data?.others?.map((img, idx) => (
               <a
                 key={idx}
                 href={img}
                 rel="noreferrer"
                 target="_blank"
+                className="max-w-[48%]"
               >
                 {img?.includes('.pdf') ? (
                   <Document
