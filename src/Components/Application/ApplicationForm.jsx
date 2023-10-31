@@ -84,10 +84,7 @@ const ApplicationForm = () => {
           });
       }
 
-      const response = await axios.post(
-        "http://localhost:5000/applications",
-        formData
-      );
+      const response = await axios.post('https://shohahoyta-server.vercel.app/applications', formData);
 
       if (response.data.insertedId) {
         Swal.fire({
@@ -264,9 +261,7 @@ const ApplicationForm = () => {
                     <label htmlFor="bkash">
                       <div
                         className={`h-11 w-full flex gap-2 justify-center items-center  border-[1px] border-plant-100 rounded-md text-thunder-500 text-l ${
-                          payMethod === "বিকাশ" || payMethod === "বিকাশ"
-                            ? "bg-plant-300/50"
-                            : "bg-haze"
+                          payMethod === 'বিকাশ' || payMethod === 'বিকাশ' ? 'bg-plant-300/50' : 'bg-haze'
                         }`}
                       >
                         <BkashIcon />
@@ -554,7 +549,7 @@ const ApplicationForm = () => {
             </div>
           )}
         </form>
-        <DevTool control={control} />
+        {/* <DevTool control={control} /> */}
       </div>
     </>
   );
