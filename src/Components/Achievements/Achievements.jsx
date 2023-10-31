@@ -7,9 +7,9 @@ const Achievements = () => {
   const isEng = i18n.language === 'en';
 
   return (
-    <div className="relative max-w-screen-xl mx-auto bg-apache min-h-[212px] -mt-[106px] z-20 rounded-[20px] px-[60px] py-[50px] flex">
-      <div className="w-6/12">
-        <h2 className="text-[42px] text-thunder-700 leading-snug font-bold">
+    <div className="relative max-w-screen-xl lg:mx-auto bg-apache min-h-[212px] -mt-[106px] z-20 rounded-[20px] px-10 md:px-[60px] py-[50px] flex flex-col md:flex-row mx-5">
+      <div className="w-full md:w-1/3 lg:w-6/12">
+        <h2 className=" text-3xl md:text-[42px] text-thunder-700 leading-snug font-bold text-center lg:text-left pb-5 md:pb-0">
           {isBn && (
             <span className="font-lss">
               এখন পর্যন্ত
@@ -26,28 +26,28 @@ const Achievements = () => {
           )}
         </h2>
       </div>
-      <div className="w-6/12 flex items-center">
-        <div className="w-1/2 flex items-center justify-center gap-x-6 text-thunder-700">
+      <div className="w-full md:w-2/3 lg:w-6/12 flex items-start md:items-center">
+        <div className="w-1/2 flex flex-col lg:flex-row items-center justify-center gap-x-6 text-thunder-700">
           <img
             src={people}
             alt="Assited"
             className="w-[68] h-auto p-[14px] bg-white/40 rounded-[20px]"
           />
-          <div>
-            <p className="text-2xl font-medium leading-[36px] -mb-[5px]">{t('achieve.assist')}</p>
+          <div className="text-center lg:text-left pt-5 lg:pt-0">
+            <p className="text-lg md:text-2xl font-medium leading-normal md:leading-[36px] -mb-[5px]">{t('achieve.assist')}</p>
             <p className="text-[26px] font-bold leading-[48px]">
               {t('achieve.assist_no')} {isBn ? 'জন' : 'Individuals'}
             </p>
           </div>
         </div>
-        <div className="w-1/2 flex justify-center items-center gap-x-6 text-thunder-700">
+        <div className="w-1/2 flex flex-col lg:flex-row justify-center items-center gap-x-6 text-thunder-700">
           <img
             src={gift}
             alt="Donated"
             className="w-[68] h-auto p-[14px] bg-white/40 rounded-[20px]"
           />
-          <div>
-            <p className="text-2xl font-medium leading-[36px] -mb-[5px]">{t('achieve.donate')}</p>
+          <div className="text-center lg:text-left pt-5 lg:pt-0">
+            <p className="text-lg md:text-2xl font-medium leading-normal -mb-[5px]">{t('achieve.donate')}</p>
             <p className="text-[26px] font-bold leading-[48px]">
               {t('achieve.donated_amount')} {isBn ? 'টাকা' : 'BDT'}
             </p>

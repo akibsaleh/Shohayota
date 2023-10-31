@@ -2,10 +2,12 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import logo from '../../assets/Shohayota-logo.svg';
+import { HiOutlineMenu } from 'react-icons/hi';
 
 const Header = ({ elementsInViewport }) => {
   const [t, i18n] = useTranslation('global');
   const [btnStyle, setBtnStyle] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const { aboutIsInViewport, homeIsInViewport, termsIsInViewport, contactIsInViewport } = elementsInViewport;
 
@@ -21,23 +23,25 @@ const Header = ({ elementsInViewport }) => {
   };
 
   return (
-    <header className="fixed w-full bg-plant-700 border-b border-plant-600 z-50">
-      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4sm:px-6 lg:px-8">
-        <div className="inline-flex items-center space-x-2">
+    <header className="fixed w-full bg-plant-700 border-b border-plant-600 z-50 px-2 lg:px-0 py-5 md:py-0">
+      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="inline-flex items-center space-x-2 order-2 md:order-1 w-[136px] md:w-auto">
           <span>
             <img
               src={logo}
               alt="Shohayota"
-              className="w-auto h-10"
+              className="w-auto h-8 lg:h-10"
             />
           </span>
-          <span className="font-bold font-lss text-white text-[40px] leading-none mt-1">সহায়তা</span>
+          <span className="font-bold font-lss text-white text-3xl lg:text-[40px] leading-none mt-1">সহায়তা</span>
         </div>
-        <div className="hidden lg:block">
-          <div className="flex gap-x-12">
+        <div className="hidden order-2 md:block">
+          <div className="flex gap-x-5 lg:gap-x-12">
             <button
               onClick={() => handleMenuItem('home')}
-              className={`pt-[22.5px] pb-[18.5px] block text-[#87C6B6] font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${homeIsInViewport ? 'border-white' : 'border-transparent'}`}
+              className={`pt-[22.5px] pb-[18.5px] block text-[#87C6B6] font-medium border-b-4 transition-all duration-200 text-lg leading-10 ${
+                homeIsInViewport ? 'border-white' : 'border-transparent'
+              }`}
             >
               <span>{t('navbar.home')}</span>
             </button>
@@ -67,8 +71,8 @@ const Header = ({ elementsInViewport }) => {
             </button>
           </div>
         </div>
-        <div className="hidden lg:block">
-          <div className="bg-plant-600 p-[3px] rounded-full">
+        <div className="block order-1 md:order-3 w-[136px] md:w-auto">
+          <div className="bg-plant-600 p-[3px] rounded-full w-fit">
             <button
               onClick={() => {
                 handleLanguageChange('bn');
@@ -89,38 +93,43 @@ const Header = ({ elementsInViewport }) => {
             </button>
           </div>
         </div>
-        <div className="lg:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-6 w-6 cursor-pointer"
+        <div className="md:hidden order-3 w-[136px] md:w-auto flex justify-end relative">
+          <button
+            className="p-2.5"
+            onClick={() => {
+              setVisible(!visible);
+            }}
           >
-            <line
-              x1="4"
-              y1="12"
-              x2="20"
-              y2="12"
-            ></line>
-            <line
-              x1="4"
-              y1="6"
-              x2="20"
-              y2="6"
-            ></line>
-            <line
-              x1="4"
-              y1="18"
-              x2="20"
-              y2="18"
-            ></line>
-          </svg>
+            <HiOutlineMenu className="text-white text-2xl" />
+          </button>
+          <div className={`${visible ? 'flex' : 'hidden'} flex-col gap-x-5 lg:gap-x-12 absolute top-16 z-50 bg-plant-600 w-52 rounded-lg`}>
+            <button
+              onClick={() => handleMenuItem('home')}
+              className={`py-2.5 block text-[#87C6B6] font-medium border-b-4 transition-all duration-200 ${homeIsInViewport ? 'border-white text-white' : 'border-transparent'}`}
+            >
+              <span>{t('navbar.home')}</span>
+            </button>
+            <button
+              onClick={() => handleMenuItem('about')}
+              className={`py-2.5 block text-[#87C6B6] font-medium border-b-4 transition-all duration-200 ${!homeIsInViewport && aboutIsInViewport ? 'border-white text-white' : 'border-transparent'}`}
+            >
+              <span>{t('navbar.about')}</span>
+            </button>
+            <button
+              onClick={() => handleMenuItem('terms')}
+              className={`py-2.5 block text-[#87C6B6] font-medium border-b-4 transition-all duration-200 ${!aboutIsInViewport && termsIsInViewport ? 'border-white text-white' : 'border-transparent'}`}
+            >
+              <span>{t('navbar.terms')}</span>
+            </button>
+            <button
+              onClick={() => handleMenuItem('contact')}
+              className={`py-2.5 block text-[#87C6B6] font-medium border-b-4 transition-all duration-200 ${
+                !termsIsInViewport && contactIsInViewport ? 'border-white text-white' : 'border-transparent'
+              }`}
+            >
+              <span>{t('navbar.contact')}</span>
+            </button>
+          </div>
         </div>
       </div>
     </header>
