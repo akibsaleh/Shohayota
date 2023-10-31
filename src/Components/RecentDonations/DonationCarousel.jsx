@@ -31,7 +31,7 @@ const DonationCarousel = () => {
         freeMode={false}
         watchSlidesProgress={true}
         modules={[Autoplay, FreeMode, Navigation, Thumbs]}
-        className="donate-Swiper max-w-screen-2xl mx-auto h-24"
+        className="donate-Swiper max-w-screen-2xl mx-auto h-24 w-full"
         loop={true}
       >
         <SwiperSlide>
@@ -163,7 +163,7 @@ const DonationCarousel = () => {
         thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
         modules={[Autoplay, FreeMode, Thumbs]}
         loop={true}
-        className="date-swiper max-w-screen-2xl mx-auto"
+        className="date-swiper max-w-screen-2xl mx-auto w-full"
       >
         <SwiperSlide>
           <SlideContent />

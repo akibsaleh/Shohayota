@@ -10,12 +10,12 @@ const Banner = () => {
     }
   };
   return (
-    <div className="relative w-full bg-plant-700 min-h-[719px] pt-[85.2px] mb-[44px] flex justify-center items-center ">
+    <div className="relative w-full bg-plant-700 min-h-[550px] md:min-h-[719px] pt-[85.2px] mb-[44px] flex justify-center items-center ">
       <div className="bg-heroBanner w-full h-full absolute inset-0 bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center gap-y-4">
-        <h1 className="font-bold text-white leading-snug text-5xl">
+        <h1 className="font-bold text-white leading-snug text-4xl md:text-5xl text-center px-5 md:px-0">
           <span className={isBn ? 'font-lss' : 'font-archivo'}>{t('banner.title')}</span>
         </h1>
-        <p className="text-plant-100 text-sxl max-w-[830px] text-center">
+        <p className="text-plant-100 text-base md:text-sxl max-w-[830px] text-center px-5 md:px-0">
           <span>{t('banner.description')}</span>
         </p>
         <button

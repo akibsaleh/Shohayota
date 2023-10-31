@@ -9,6 +9,7 @@ const Home = ({ homeRef }) => {
     <div
       ref={homeRef}
       id="home"
+      className="overflow-hidden"
     >
       <Banner />
       <Achievements />

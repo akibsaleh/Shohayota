@@ -13,15 +13,17 @@ const ContactForm = ({ contactRef }) => {
   const form = useRef();
   const handleSubmit = (e) => {
     e.preventDefault();
-    emailjs.sendForm('service_97cax8q', 'template_4pgmo4q', form.current, 'ldur-PuGdgsotgwML')
-      .then((result) => {
-          if(result.status === 200){
-            toast.success("Your message sent successfully")
-          }
-      }, (error) => {
-          toast.error('Failed to send message.')
-          console.log(error.text);
-      });
+    emailjs.sendForm('service_97cax8q', 'template_4pgmo4q', form.current, 'ldur-PuGdgsotgwML').then(
+      (result) => {
+        if (result.status === 200) {
+          toast.success('Your message sent successfully');
+        }
+      },
+      (error) => {
+        toast.error('Failed to send message.');
+        console.log(error.text);
+      }
+    );
   };
 
   return (
@@ -31,7 +33,7 @@ const ContactForm = ({ contactRef }) => {
         onSubmit={handleSubmit}
         ref={form}
       >
-        <div className="form-control flex gap-x-6">
+        <div className="form-control flex gap-2 md:gap-5 flex-col md:flex-row">
           <label className="label w-52 text-thunder-500 font-archivo leading-[26px] pt-2 pb-1.5">
             <span className={`label-text ${isBn ? 'font-nsb' : 'font-archivo'}`}>{t('contact.nameInputLabel')}</span>
             <span className="text-red-600">*</span>
@@ -40,12 +42,12 @@ const ContactForm = ({ contactRef }) => {
             type="text"
             placeholder={t('contact.nameInput')}
             id="fullName"
-            name='fullName'
+            name="fullName"
             required
             className={`input leading-[26px] w-full pt-2 pb-1.5 px-3 rounded-md border-thunder-300 border bg-haze ${isBn ? 'font-nsb' : 'font-archivo'}`}
           />
         </div>
-        <div className="form-control flex gap-5">
+        <div className="form-control flex gap-2 md:gap-5 flex-col md:flex-row">
           <label className="label w-52 text-thunder-500 font-archivo leading-[26px] pt-2 pb-1.5">
             <span className={`label-text ${isBn ? 'font-nsb' : 'font-archivo'}`}>{t('contact.phoneInputLabel')}</span>
             <span className="text-red-600">*</span>
@@ -61,13 +63,13 @@ const ContactForm = ({ contactRef }) => {
               type="text"
               placeholder={t('contact.phoneInput')}
               id="phone"
-              name='phone'
+              name="phone"
               required
               className={`input w-full bg-haze pl-2.5 leading-[26px] ${isBn ? 'font-nsb' : 'font-archivo'}`}
             />
           </div>
         </div>
-        <div className="form-control flex gap-5">
+        <div className="form-control flex gap-2 md:gap-5 flex-col md:flex-row">
           <label className="label w-52 text-thunder-500 font-archivo leading-[26px] pt-2 pb-1.5">
             <span className={`label-text ${isBn ? 'font-nsb' : 'font-archivo'}`}>{t('contact.emailInputLabel')}</span>
           </label>
@@ -75,12 +77,12 @@ const ContactForm = ({ contactRef }) => {
             type="text"
             placeholder={t('contact.emailInput')}
             id="email"
-            name='email'
+            name="email"
             required
             className={`input leading-[26px] w-full pt-2 pb-1.5 px-3 rounded-md border-thunder-300 border bg-haze ${isBn ? 'font-nsb' : 'font-archivo'}`}
           />
         </div>
-        <div className="form-control flex gap-5">
+        <div className="form-control flex gap-2 md:gap-5 flex-col md:flex-row">
           <label className="label w-52 text-thunder-500 leading-[26px] pt-2 pb-1.5">
             <span className={`label-text ${isBn ? 'font-nsb' : 'font-archivo'}`}>{t('contact.messageInputLabel')}</span>
             <span className="text-red-600">*</span>
@@ -89,7 +91,7 @@ const ContactForm = ({ contactRef }) => {
             className={`textarea textarea-bordered h-24 w-full pt-2 pb-1.5 px-3 rounded-md border-thunder-300 border bg-haze ${isBn ? 'font-nsb' : 'font-archivo'}`}
             placeholder={t('contact.messageInput')}
             id="message"
-            name='message'
+            name="message"
             required
           ></textarea>
         </div>

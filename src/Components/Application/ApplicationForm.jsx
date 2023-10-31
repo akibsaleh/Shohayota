@@ -115,10 +115,10 @@ const ApplicationForm = () => {
 
   return (
     <>
-      <div className="w-[794px] mx-auto bg-white rounded-xl shadow-applicationBox p-10">
-        <div className="flex gap-10 w-full justify-center items-center pb-10">
+      <div className="w-full max-w-xl md:max-w-[794px] mx-auto bg-white rounded-xl shadow-applicationBox py-10 px-10 md:px-6 lg:p-10">
+        <div className="flex gap-4 md:gap-10 w-full justify-center items-center pb-10">
           <div
-            className="flex gap-3.5 cursor-pointer text-thunder-500 text-[22px] font-normal"
+            className="flex gap-3.5 cursor-pointer text-thunder-500 text-base md:text-[22px] font-normal"
             onClick={() => setFormStep(0)}
           >
             <h1 className={`border border-plant-700 rounded-full w-7 h-7 flex justify-center items-center ${formStep === 0 ? 'bg-plant-700 text-white' : ''}`}>
@@ -128,7 +128,7 @@ const ApplicationForm = () => {
           </div>
 
           <div
-            className="flex gap-3.5 cursor-pointer text-thunder-500 text-[22px] font-normal"
+            className="flex gap-3.5 cursor-pointer text-thunder-500 text-base md:text-[22px] font-normal"
             onClick={() => setFormStep(1)}
           >
             <h1 className={`border border-plant-700 rounded-full w-7 h-7 flex justify-center items-center ${formStep === 1 ? 'bg-plant-700 text-white' : ''}`}>{t('applicationForm.formCount2')}</h1>
@@ -139,8 +139,8 @@ const ApplicationForm = () => {
         <form onSubmit={handleSubmit(formSubmit)}>
           {formStep === 0 && (
             <div className="space-y-5">
-              <div className="grid grid-cols-[210px_auto] gap-6 items-center">
-                <div className="w-full font-medium text-lg text-thunder-500">
+              <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6 items-center">
+                <div className="w-full font-medium md:text-lg text-thunder-500">
                   <label>
                     <span>{t('applicationForm.nameLabel')}</span>
                     <span className="text-[#F02727]">*</span>
@@ -152,13 +152,13 @@ const ApplicationForm = () => {
                     type="text"
                     placeholder={t('applicationForm.namePlaceHolder')}
                     required
-                    className="w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none text-lg"
+                    className="w-full md:w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none md:text-lg"
                   />
                   {errors.name && <p className="text-[#F02727] font-medium">{t('validation.name')}</p>}
                 </div>
               </div>
-              <div className="grid grid-cols-[210px_auto] gap-6 items-center">
-                <div className="w-full font-medium text-lg text-thunder-500">
+              <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6 items-center">
+                <div className="w-full font-medium md:text-lg text-thunder-500">
                   <label>
                     <span>{t('applicationForm.addressLabel')}</span>
                     <span className="text-[#F02727]">*</span>
@@ -171,13 +171,13 @@ const ApplicationForm = () => {
                     name="address"
                     placeholder={t('applicationForm.addressPlaceHolder')}
                     required
-                    className="w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none text-lg"
+                    className="w-full md:w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none md:text-lg"
                   />
                   {errors.address && <p className="text-[#F02727] font-medium">{t('validation.address')}</p>}
                 </div>
               </div>
-              <div className="grid grid-cols-[210px_auto] gap-6">
-                <div className="w-full font-medium text-lg text-thunder-500">
+              <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6">
+                <div className="w-full font-medium md:text-lg text-thunder-500">
                   <label>
                     <span>{t('applicationForm.detailsLabel')}</span>
                     <span className="text-[#F02727]">*</span>
@@ -189,13 +189,13 @@ const ApplicationForm = () => {
                     name="reason"
                     placeholder={t('applicationForm.detailsPlaceHolder')}
                     required
-                    className="w-[480px] h-[100px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none text-lg resize-none"
+                    className="w-full md:w-[480px] h-[100px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none md:text-lg resize-none"
                   ></textarea>
                   {errors.reason && <p className="text-[#F02727] font-medium">{t('validation.reason')}</p>}
                 </div>
               </div>
-              <div className="grid grid-cols-[210px_auto] gap-6">
-                <div className="w-full font-medium text-lg text-thunder-500">
+              <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6">
+                <div className="w-full font-medium md:text-lg text-thunder-500">
                   <label>
                     <span>{t('applicationForm.paymentLabel')}</span>
                     <span className="text-[#F02727]">*</span>
@@ -249,8 +249,8 @@ const ApplicationForm = () => {
                   {errors.paymentMethod && <p className="text-[#F02727] font-medium w-full col-span-2">{t('validation.paymentMethod')}</p>}
                 </div>
               </div>
-              <div className="grid grid-cols-[210px_auto] gap-6 items-center">
-                <div className="w-full font-medium text-lg text-thunder-500">
+              <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6 items-center">
+                <div className="w-full font-medium md:text-lg text-thunder-500">
                   <label>
                     <span>{t('applicationForm.phoneLabel')}</span>
                     <span className="text-[#F02727]">*</span>
@@ -278,7 +278,7 @@ const ApplicationForm = () => {
                   {errors.phone && <p className="text-[#F02727] font-medium w-full">{t('validation.phone')}</p>}
                 </div>
               </div>
-              <div className="flex gap-6 items-center pl-[234px]">
+              <div className="flex gap-x-6 gap-y-2 md:gap-6 items-center md:pl-[234px]">
                 <div className="w-full pb-5">
                   <label className="label cursor-pointer">
                     <input
@@ -289,7 +289,7 @@ const ApplicationForm = () => {
                       className="checkbox checkbox-primary"
                     />
 
-                    <span className="w-[480px] text-thunder-500 text-lg pl-2">{t('applicationForm.checkboxTitle')}</span>
+                    <span className="w-full md:w-[480px] text-thunder-500 md:text-lg pl-2">{t('applicationForm.checkboxTitle')}</span>
                   </label>
                   {errors.checkbox && <p className="text-[#F02727] font-medium w-full">{t('validation.checkbox')}</p>}
                   <p className="text-thunder-500 text-base">{t('applicationForm.termsTitle')}</p>
@@ -309,8 +309,8 @@ const ApplicationForm = () => {
           )}
           {formStep === 1 && (
             <div className="space-y-5">
-              <div className="grid grid-cols-[210px_auto] gap-6 items-center">
-                <div className="w-full font-medium text-lg text-thunder-500">
+              <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6 items-center">
+                <div className="w-full font-medium md:text-lg text-thunder-500 text-center md:text-left">
                   <p>
                     <span>{t('applicationFormStep2.mainDocumentTitle')}</span>
                     <span className="text-[#F02727]">*</span>
@@ -318,7 +318,7 @@ const ApplicationForm = () => {
                   <p className="text-[#848696] text-xs font-medium leading-5">{t('applicationFormStep2.mainDocumentDescription')}</p>
                 </div>
 
-                <div className="w-80 max-w-full relative">
+                <div className="w-80 max-w-full relative place-self-center md:place-self-start">
                   <label htmlFor="mainFile">
                     {singleImage ? (
                       singleImage.type.includes('pdf') ? (
@@ -365,14 +365,14 @@ const ApplicationForm = () => {
                   {errors.mainFile && <p className="text-[#F02727] font-medium w-full">{t('validation.mainFile')}</p>}
                 </div>
               </div>
-              <div className="grid grid-cols-[210px_auto] gap-6 items-center">
-                <div className="w-full font-medium text-lg text-thunder-500">
+              <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6 items-center">
+                <div className="w-full font-medium md:text-lg text-thunder-500 text-center md:text-left">
                   <p>
                     <span>{t('applicationFormStep2.otherDocumentsTitle')}</span>
                   </p>
                   <p className="text-[#848696] text-xs font-medium leading-5">{t('applicationFormStep2.otherDocumentsDescription')}</p>
                 </div>
-                <div className="w-80 h-40 relative">
+                <div className="w-80 h-40 relative place-self-center md:place-self-start">
                   {otherFiles.length > 0 ? (
                     <div className={`grid grid-cols-${otherFiles.length} gap-2 w-80 h-40 overflow-hidden border-plant-700 border rounded-md p-1.5`}>
                       {otherFiles.map((file, index) =>
@@ -395,7 +395,7 @@ const ApplicationForm = () => {
                               className="absolute top-1 right-1 bg-gray-900 rounded-full p-0.5"
                               onClick={() => setOtherFiles(otherFiles.filter((_, idx) => idx !== index))}
                             >
-                              <IoClose className="text-lg text-white" />
+                              <IoClose className="md:text-lg text-white" />
                             </button>
                           </div>
                         ) : (
@@ -415,7 +415,7 @@ const ApplicationForm = () => {
                               className="absolute top-1 right-1 bg-gray-900 rounded-full p-0.5"
                               onClick={() => setOtherFiles(otherFiles.filter((_, idx) => idx !== index))}
                             >
-                              <IoClose className="text-lg text-white" />
+                              <IoClose className="md:text-lg text-white" />
                             </button>
                           </div>
                         )
