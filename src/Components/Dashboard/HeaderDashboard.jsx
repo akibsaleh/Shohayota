@@ -6,7 +6,6 @@ import { AuthContext } from '../Providers/AuthProvider';
 import toast from 'react-hot-toast';
 const HeaderDashboard = () => {
   const { loggedInUser, logOut } = useContext(AuthContext);
-  console.log(loggedInUser.displayName);
   const navigate = useNavigate();
 
   const handleLogoutBtn = () => {
