@@ -17,7 +17,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  overflow-x: hidden;
 }
 
 /* .swiper-wrapper {
@@ -95,9 +94,6 @@ canvas.react-pdf__Page__canvas {
 }
 
 .modal-btn {
-  /* @apply px-7;
-  @apply pt-2.5;
-  @apply pb-2; */
   @apply text-white;
 }
 
