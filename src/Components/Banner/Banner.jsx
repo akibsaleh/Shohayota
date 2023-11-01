@@ -15,7 +15,7 @@ const Banner = () => {
         <h1 className="font-bold text-white leading-snug text-4xl md:text-5xl text-center px-5 md:px-0">
           <span className={isBn ? 'font-lss' : 'font-archivo'}>{t('banner.title')}</span>
         </h1>
-        <p className="text-plant-100 text-base md:text-sxl max-w-[830px] text-center px-5 md:px-0">
+        <p className="text-plant-100 text-base md:text-sxl leading-9 max-w-[830px] text-center px-5 md:px-0">
           <span>{t('banner.description')}</span>
         </p>
         <button
