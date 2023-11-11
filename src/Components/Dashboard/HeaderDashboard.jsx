@@ -25,7 +25,7 @@ const HeaderDashboard = () => {
         <div className="flex items-center justify-between">
           <a
             className="flex-none text-xl font-semibold text-white"
-            href="#"
+            href="/"
             aria-label="Brand"
           >
             <img

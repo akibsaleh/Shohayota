@@ -42,10 +42,10 @@ const ApplicationForm = () => {
     if (inputVal.length === 11) {
       const result = await axios.get(`http://localhost:5000/checkApplicants?phone=${inputVal}`);
       if (result.data === 'absent') {
-        setUnique(!unique);
+        setUnique(true);
       }
     } else {
-      setUnique(!unique);
+      setUnique(false);
     }
   };
 
@@ -321,6 +321,7 @@ const ApplicationForm = () => {
                       />
                     </div>
                     {errors.phone && <p className="text-[#F02727] font-medium w-full mt-2">{errors.phone?.message}</p>}
+                    {!unique ? <p className="text-[#F02727] font-medium w-full mt-2">Already Applied</p> : ''}
                   </div>
                 </div>
                 <div className="flex gap-x-6 gap-y-2 md:gap-6 items-center md:pl-[234px]">
@@ -365,9 +366,7 @@ const ApplicationForm = () => {
                 <div className="flex justify-center gap-5 pt-5">
                   <button
                     type="button"
-                    className={`text-xl font-semibold leading-8 text-white bg-plant-700 rounded-[70px] py-2.5 px-7 ${unique ? 'cursor-pointer' : 'cursor-not-allowed'} ${
-                      isBn ? 'font-nsb' : 'font-archivo'
-                    }`}
+                    className={`text-xl font-semibold leading-8 text-white bg-plant-700 rounded-[70px] py-2.5 px-7 ${isBn ? 'font-nsb' : 'font-archivo'}`}
                     onClick={completeFormStep}
                   >
                     <span className="h-8">{t('applicationForm.nextStepBtn')}</span>
@@ -440,14 +439,13 @@ const ApplicationForm = () => {
                   </div>
                   <div className="w-80 h-40 relative place-self-center md:place-self-start">
                     {otherFiles.length > 0 ? (
-                      <div className={`grid grid-cols-${otherFiles.length} gap-2 w-80 h-40 overflow-hidden border-plant-700 border rounded-md p-1.5`}>
+                      <div className={`flex gap-x-2 w-80 h-40 overflow-hidden border-plant-700 border rounded-md p-1.5`}>
                         {otherFiles.map((file, index) =>
                           file.type.includes('pdf') ? (
                             <div
                               key={index}
-                              className="relative overflow-hidden w-auto h-[148px]"
+                              className={`relative overflow-hidden ${otherFiles.length > 1 ? `w-1/${otherFiles.length}` : 'w-full'} min-w-[97px] h-[148px] object-cover`}
                             >
-                              {' '}
                               <div>
                                 <Document file={URL.createObjectURL(file)}>
                                   <Page
@@ -467,13 +465,13 @@ const ApplicationForm = () => {
                           ) : (
                             <div
                               key={index}
-                              className="relative overflow-hidden w-fit h-[148px]"
+                              className={`relative overflow-hidden ${otherFiles.length > 1 ? `w-1/${otherFiles.length}` : 'w-full'} min-w-[97px] h-[148px] object-cover`}
                             >
                               <div>
                                 <img
                                   src={URL.createObjectURL(file)}
                                   alt={`uploaded-image-${index}`}
-                                  className="w-auto h-[148px] object-cover rounded-md"
+                                  className="w-full h-[148px] object-cover rounded-md"
                                 />
                               </div>
                               <button
