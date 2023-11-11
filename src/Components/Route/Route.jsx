@@ -7,6 +7,7 @@ import PrivateRoute from './PrivateRoute';
 import Dashboard from '../Dashboard/Dashboard';
 import DashboardLayout from '../Dashboard/DashboardLayout';
 import RequestDetails from '../Dashboard/RequestDetails';
+import ApprovedForm from '../Dashboard/ApprovedForm';
 
 export const route = createBrowserRouter([
   {
@@ -44,7 +45,12 @@ export const route = createBrowserRouter([
           },
           {
             path: '/dashboard/request/:id',
-            element: <RequestDetails />,
+            element: <PrivateRoute><RequestDetails /></PrivateRoute>,
+            loader: ({ params }) => fetch(`https://shohahoyta-server.vercel.app/applications/${params.id}`),
+          },
+          {
+            path: '/dashboard/request/:id/approvedForm',
+            element: <PrivateRoute><ApprovedForm></ApprovedForm></PrivateRoute>,
             loader: ({ params }) => fetch(`https://shohahoyta-server.vercel.app/applications/${params.id}`),
           },
           {

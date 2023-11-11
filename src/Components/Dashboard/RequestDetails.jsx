@@ -1,12 +1,12 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import BkashIcon from "../Application/bkashIcon";
 import NagadIcon from "../Application/NagadIcon";
 import { BsCheckLg, BsTrash } from "react-icons/bs";
 import { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useNavigate } from "react-router-dom/dist";
+import toast from "react-hot-toast";
 
-// import toast from 'react-hot-toast';
 // import { useState } from 'react';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -18,6 +18,7 @@ const RequestDetails = () => {
   const [loaderResponse, setLoaderResponse] = useState(useLoaderData());
   const [data] = loaderResponse;
   const navigate = useNavigate();
+  const id = data?._id;
 
   const handleStatus = (status) => {
     const date = new Date(); // Create a Date object
@@ -27,7 +28,6 @@ const RequestDetails = () => {
       .toString()
       .padStart(2, "0")}/${year.toString()}`;
     const newData = { status, date: formattedDate };
-    const id = data?._id;
     fetch(`https://shohahoyta-server.vercel.app/applications/${id}`, {
       method: "PUT",
       headers: {
@@ -43,7 +43,8 @@ const RequestDetails = () => {
             navigate("/dashboard");
           }, 1500);
         }
-        // if (result.modifiedCount > 0) toast.success(`Approved request of ${data.name}`);
+        if (result.modifiedCount > 0)
+          toast.success(`Declined request of ${data.name}`);
       });
   };
 
@@ -66,13 +67,13 @@ const RequestDetails = () => {
           </span>
         </h1>
         <div className="inline-flex rounded-md shadow-sm">
-          <button
-            onClick={() => handleStatus("approved")}
+          <Link
+            to={`/dashboard/request/${id}/approvedForm`}
             type="button"
             className="py-3 px-4 inline-flex justify-center items-center gap-1 -ml-px first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-green-200 text-green-900 align-middle hover:bg-gray-50 focus:z-10 transition-all sm:p-4"
           >
             <BsCheckLg className="text-2xl" /> Approve
-          </button>
+          </Link>
           <button
             onClick={() => handleStatus("declined")}
             type="button"
@@ -116,6 +117,20 @@ const RequestDetails = () => {
           <p className="w-full py-4 pl-5 font-semibold">Reason:</p>
           <p className="w-full py-4 pl-5 font-semibold">{data?.reason}</p>
         </div>
+        {data?.status === "approved" && (
+          <>
+            <div className="grid grid-cols-[200px_auto] divide-x divide-gray-200">
+              <p className="w-full py-4 pl-5 font-semibold">Amount:</p>
+              <p className="w-full py-4 pl-5 font-semibold">
+                {data?.amount} BDT
+              </p>
+            </div>
+            <div className="grid grid-cols-[200px_auto] divide-x divide-gray-200">
+              <p className="w-full py-4 pl-5 font-semibold">Area:</p>
+              <p className="w-full py-4 pl-5 font-semibold">{data?.area}</p>
+            </div>
+          </>
+        )}
         <div className="grid grid-cols-[200px_auto] divide-x divide-gray-200">
           <p className="w-full py-4 pl-5 font-semibold">NID/Passport:</p>
           <div className="w-full py-4 px-5 font-semibold">
