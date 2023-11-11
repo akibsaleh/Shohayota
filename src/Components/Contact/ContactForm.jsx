@@ -17,6 +17,7 @@ const ContactForm = ({ contactRef }) => {
       (result) => {
         if (result.status === 200) {
           toast.success('Your message sent successfully');
+          form.reset();
         }
       },
       (error) => {

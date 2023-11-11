@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import Swal from 'sweetalert2';
-import { useState } from 'react';
+import {useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import { useTranslation } from 'react-i18next';
@@ -14,6 +14,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { IoClose } from 'react-icons/io5';
 import BangladeshIcon from '../Contact/BangladeshIcon';
 import successapply from '../../assets/success-application.svg';
+import emailjs from '@emailjs/browser';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.js', import.meta.url).toString();
 
@@ -41,6 +42,10 @@ const ApplicationForm = () => {
   };
 
   const formSubmit = async (data) => {
+    const emailData = {
+      name: data.name,
+      phone: data.phone,
+    };
     const dateTime = Date.now();
     try {
       const formData = new FormData();
@@ -93,6 +98,16 @@ const ApplicationForm = () => {
           confirmButtonColor: '#215A4D',
           cancelButtonText: '<i class="fa fa-thumbs-down"></i>',
         });
+        emailjs.send('service_97cax8q', 'template_snvmhsm', emailData, 'ldur-PuGdgsotgwML').then(
+          (result) => {
+            if (result.status === 200) {
+              console.log('Your message sent successfully');
+            }
+          },
+          (error) => {
+            console.error(error.text);
+          }
+        );
         reset();
         setSingleImage(null);
         setOtherFiles([]);
