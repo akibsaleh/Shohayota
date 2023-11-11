@@ -39,9 +39,13 @@ const ApplicationForm = () => {
 
   const checkUniqueness = async (e) => {
     const inputVal = e.target.value;
-    const result = await axios.get(`http://localhost:5000/checkApplicants?phone=${inputVal}`);
-    if (result.data === 'absent') {
-      setUnique(true);
+    if (inputVal.length === 11) {
+      const result = await axios.get(`http://localhost:5000/checkApplicants?phone=${inputVal}`);
+      if (result.data === 'absent') {
+        setUnique(!unique);
+      }
+    } else {
+      setUnique(!unique);
     }
   };
 
@@ -313,10 +317,10 @@ const ApplicationForm = () => {
                         type="text"
                         placeholder={t('applicationForm.phonePlaceholder')}
                         required
-                        className={`input w-full bg-haze pl-2.5 leading-[26px] ${isBn ? 'font-nsb' : 'font-archivo'}`}
+                        className={`input w-full bg-haze pl-2.5 leading-[26px] focus-within:outline-none ${isBn ? 'font-nsb' : 'font-archivo'}`}
                       />
                     </div>
-                    {errors.phone && <p className="text-[#F02727] font-medium w-full">{errors.phone?.message}</p>}
+                    {errors.phone && <p className="text-[#F02727] font-medium w-full mt-2">{errors.phone?.message}</p>}
                   </div>
                 </div>
                 <div className="flex gap-x-6 gap-y-2 md:gap-6 items-center md:pl-[234px]">
@@ -324,7 +328,6 @@ const ApplicationForm = () => {
                     <label className="label cursor-pointer">
                       <input
                         type="checkbox"
-                        defaultChecked
                         name="checkbox"
                         {...register('checkbox', { required: true })}
                         className="checkbox checkbox-primary"
@@ -362,7 +365,9 @@ const ApplicationForm = () => {
                 <div className="flex justify-center gap-5 pt-5">
                   <button
                     type="button"
-                    className={`text-xl font-semibold leading-8 text-white bg-plant-700 rounded-[70px] py-2.5 px-7 ${isBn ? 'font-nsb' : 'font-archivo'}`}
+                    className={`text-xl font-semibold leading-8 text-white bg-plant-700 rounded-[70px] py-2.5 px-7 ${unique ? 'cursor-pointer' : 'cursor-not-allowed'} ${
+                      isBn ? 'font-nsb' : 'font-archivo'
+                    }`}
                     onClick={completeFormStep}
                   >
                     <span className="h-8">{t('applicationForm.nextStepBtn')}</span>

@@ -24,8 +24,8 @@ const Header = ({ elementsInViewport }) => {
 
   return (
     <header className="fixed w-full bg-plant-700 border-b border-plant-600 z-50 px-2 lg:px-0 py-5 md:py-0">
-      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <div className="inline-flex items-center space-x-2 order-2 md:order-1 w-[136px] md:w-auto">
+      <div className="mx-auto flex max-w-screen-xl items-center justify-between xs:px-4 sm:px-6 lg:px-8">
+        <div className="inline-flex items-center space-x-2 order-1 grow md:grow-0 w-auto">
           <span>
             <img
               src={logo}
@@ -71,14 +71,14 @@ const Header = ({ elementsInViewport }) => {
             </button>
           </div>
         </div>
-        <div className="block order-1 md:order-3 w-[136px] md:w-auto">
-          <div className="bg-plant-600 p-[3px] rounded-full w-fit">
+        <div className="block order-2 md:order-3 w-auto">
+          <div className="bg-plant-600 px-1 pb-[3px] sm:h-auto sm:p-[3px] rounded-full w-fit">
             <button
               onClick={() => {
                 handleLanguageChange('bn');
                 setBtnStyle(true);
               }}
-              className={`px-2 py-0.5 rounded-full font-nsb text-base w-[60px] text-center ${btnStyle ? 'bg-white text-thunder-700' : 'bg-plant-600 text-plant-300'}`}
+              className={`px-2 py-0.5 rounded-full font-nsb text-xs sm:text-lg sm:w-[60px] text-center ${btnStyle ? 'bg-white text-thunder-700' : 'bg-plant-600 text-plant-300'}`}
             >
               {t('navbar.btnBangla')}
             </button>
@@ -87,13 +87,13 @@ const Header = ({ elementsInViewport }) => {
                 handleLanguageChange('en');
                 setBtnStyle(false);
               }}
-              className={`px-2 py-0.5 rounded-full font-archivo text-base w-[60px] text-center ${!btnStyle ? 'bg-white text-thunder-700' : 'bg-plant-600 text-plant-300'}`}
+              className={`px-2 py-0.5 rounded-full font-archivo text-xs sm:text-base sm:w-[60px] text-center ${!btnStyle ? 'bg-white text-thunder-700' : 'bg-plant-600 text-plant-300'}`}
             >
               {t('navbar.btnEnglish')}
             </button>
           </div>
         </div>
-        <div className="md:hidden order-3 w-[136px] md:w-auto flex justify-end relative">
+        <div className="md:hidden order-3 w-auto flex justify-end relative">
           <button
             className="p-2.5"
             onClick={() => {
