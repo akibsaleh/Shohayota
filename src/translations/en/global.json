@@ -44,7 +44,8 @@
     "submitBtn": "Submit",
     "modaltitle": "Your Message Has Been Sent Successfully",
     "modaldesc": "Please wait. Your message will be answered by our company, Thank You.",
-    "modalBtn": "Back to Home"
+    "modalBtn": "Back to Home",
+    "loading": "Submitting form..."
   },
   "applicationFormStep2": {
     "mainDocumentTitle": "National ID/Passport: ",
