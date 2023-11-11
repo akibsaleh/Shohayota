@@ -26,6 +26,8 @@ const ApplicationForm = () => {
   const [formStep, setFormStep] = useState(0);
   const [otherFiles, setOtherFiles] = useState([]);
   const [singleImage, setSingleImage] = useState(null);
+  const [loader, setLoader] = useState(false);
+
   const {
     register,
     reset,
@@ -43,6 +45,7 @@ const ApplicationForm = () => {
   };
 
   const formSubmit = async (data) => {
+    setLoader(true);
     const emailData = {
       name: data.name,
       phone: data.phone,
@@ -84,6 +87,7 @@ const ApplicationForm = () => {
       const response = await axios.post('https://shohahoyta-server.vercel.app/applications', formData);
 
       if (response.data.insertedId) {
+        setLoader(false);
         Swal.fire({
           html: `<div class="custom-success-modal">
           <img
@@ -159,7 +163,7 @@ const ApplicationForm = () => {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit(formSubmit)}>
+          <form onSubmit={handleSubmit(formSubmit)}>
           {formStep === 0 && (
             <div className="space-y-5">
               <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6 items-center">
@@ -495,7 +499,10 @@ const ApplicationForm = () => {
               </div>
             </div>
           )}
+
+          {loader && <div className='min-h-[598px] flex flex-col justify-center items-center'>Loading...</div>}
         </form>
+        
       </div>
     </>
   );
