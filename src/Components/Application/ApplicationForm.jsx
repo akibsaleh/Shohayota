@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import Swal from 'sweetalert2';
-import {useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import { useTranslation } from 'react-i18next';
@@ -21,6 +21,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.j
 const ApplicationForm = () => {
   const { t, i18n } = useTranslation('global');
   const isBn = i18n.language === 'bn';
+  const isEn = i18n.language === 'en';
   const [payMethod, setPayMethod] = useState('');
   const [formStep, setFormStep] = useState(0);
   const [otherFiles, setOtherFiles] = useState([]);
@@ -126,6 +127,13 @@ const ApplicationForm = () => {
   const handleMoreFiles = () => {
     const otherInput = document.getElementById('others');
     if (otherInput) otherInput.click();
+  };
+
+  const handleTerms = (section) => {
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -281,7 +289,11 @@ const ApplicationForm = () => {
                     </span>
                     <input
                       {...register('phone', {
-                        required: true,
+                        required: isBn ? 'বিকাশ/নগদ একাউন্ট খোলা আছে এমন একটি মোবাইল নাম্বার লিখুন' : 'Please insert a valid phone number which has a Bkash/Nagad account',
+                        pattern: {
+                          value: /^(013|014|015|016|017|018|019)\d{8}$/,
+                          message: isBn ? 'অনুগ্রহও করে একটি সঠিক বাংলাদেশী ফোন নাম্বার দিন।' : 'Please enter a valid BD phone number',
+                        },
                       })}
                       name="phone"
                       type="text"
@@ -290,7 +302,7 @@ const ApplicationForm = () => {
                       className={`input w-full bg-haze pl-2.5 leading-[26px] ${isBn ? 'font-nsb' : 'font-archivo'}`}
                     />
                   </div>
-                  {errors.phone && <p className="text-[#F02727] font-medium w-full">{t('validation.phone')}</p>}
+                  {errors.phone && <p className="text-[#F02727] font-medium w-full">{errors.phone?.message}</p>}
                 </div>
               </div>
               <div className="flex gap-x-6 gap-y-2 md:gap-6 items-center md:pl-[234px]">
@@ -307,7 +319,17 @@ const ApplicationForm = () => {
                     <span className="w-full md:w-[480px] text-thunder-500 md:text-lg pl-2">{t('applicationForm.checkboxTitle')}</span>
                   </label>
                   {errors.checkbox && <p className="text-[#F02727] font-medium w-full">{t('validation.checkbox')}</p>}
-                  <p className="text-thunder-500 text-base">{t('applicationForm.termsTitle')}</p>
+                  <p className="text-thunder-500 text-base">
+                    {isBn ? (
+                      <span>
+                        উপরক্ত তথ্য প্রদানের মাধ্যমে আপনি নিশ্চিত করছেন যে আপনি আমাদের <button onClick={() => handleTerms('terms')}>শর্তাবলি</button> পড়েছেন এবং একমত প্রকাশ করছেন।
+                      </span>
+                    ) : isEn ? (
+                      <span>
+                        By providing the above information you confirm that you have read and agree to our <button onClick={() => handleTerms('terms')}>Terms</button>.
+                      </span>
+                    ) : undefined}
+                  </p>
                 </div>
               </div>
 

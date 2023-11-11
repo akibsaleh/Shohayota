@@ -37,7 +37,7 @@
     "paymentMethod1": "Bkash",
     "paymentMethod2": "Nagad",
     "phoneLabel": "Mobile Number",
-    "phonePlaceholder": "Your mobile number",
+    "phonePlaceholder": "Your mobile number. Ex. 01700000000",
     "checkboxTitle": "Bkash/Nagad account on this number ",
     "termsTitle": "By providing the above information you confirm that you have read and agree to our Terms.",
     "nextStepBtn": "Next Step",
@@ -61,6 +61,7 @@
     "reason": "Please describe a brief description of why you need the donation.",
     "paymentMethod": "Please select a payment option",
     "phone": "Please insert a valid phone number which has a Bkash/Nagad account",
+    "BDphone": "Please enter a valid BD phone number",
     "checkbox": "Please check to confirm you have inserted the number with a Bkash/Nagad account",
     "mainFile": "Please insert a NID/Passport image/pdf"
   },
