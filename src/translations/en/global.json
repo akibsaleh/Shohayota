@@ -64,7 +64,8 @@
     "phone": "Please insert a valid phone number which has a Bkash/Nagad account",
     "BDphone": "Please enter a valid BD phone number",
     "checkbox": "Please check to confirm you have inserted the number with a Bkash/Nagad account",
-    "mainFile": "Please insert a NID/Passport image/pdf"
+    "mainFile": "Please insert a NID/Passport image/pdf",
+    "present": "You have already applied once. You can not apply again."
   },
   "recentDonations": {
     "title": "Our Latest Contributions",

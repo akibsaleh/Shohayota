@@ -27,7 +27,7 @@ const ApplicationForm = () => {
   const [otherFiles, setOtherFiles] = useState([]);
   const [singleImage, setSingleImage] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [unique, setUnique] = useState(false);
+  const [unique, setUnique] = useState('');
   const {
     register,
     reset,
@@ -41,11 +41,7 @@ const ApplicationForm = () => {
     const inputVal = e.target.value;
     if (inputVal.length === 11) {
       const result = await axios.get(`http://localhost:5000/checkApplicants?phone=${inputVal}`);
-      if (result.data === 'absent') {
-        setUnique(true);
-      }
-    } else {
-      setUnique(false);
+      setUnique(result.data);
     }
   };
 
@@ -53,7 +49,7 @@ const ApplicationForm = () => {
 
   const completeFormStep = async () => {
     const isValidForm = await trigger();
-    if (isValidForm && unique) {
+    if (isValidForm && unique === 'absent') {
       setFormStep((step) => step + 1);
     }
   };
@@ -320,8 +316,7 @@ const ApplicationForm = () => {
                         className={`input w-full bg-haze pl-2.5 leading-[26px] focus-within:outline-none ${isBn ? 'font-nsb' : 'font-archivo'}`}
                       />
                     </div>
-                    {errors.phone && <p className="text-[#F02727] font-medium w-full mt-2">{errors.phone?.message}</p>}
-                    {!unique ? <p className="text-[#F02727] font-medium w-full mt-2">Already Applied</p> : ''}
+                    <p className="text-[#F02727] font-medium w-full mt-2">{errors.phone?.message || (unique === 'present' ? t('validation.present') : '')}</p>
                   </div>
                 </div>
                 <div className="flex gap-x-6 gap-y-2 md:gap-6 items-center md:pl-[234px]">
