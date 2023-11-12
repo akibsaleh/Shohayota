@@ -5,14 +5,14 @@ import { FiSearch } from 'react-icons/fi';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import PaginationCustom from './PaginationCustom';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
-  const { t } = useTranslation('global');
+  // const { t } = useTranslation('global');
   const [data, setData] = useState(useLoaderData());
   const [pageNumber, setPageNumber] = useState(1);
   const [count, setCount] = useState(1);
-  const arr = [4, 5];
+  // const arr = [4, 5];
 
   const lastPage = Math.ceil(parseInt(count) / 2);
 
@@ -76,6 +76,11 @@ const Dashboard = () => {
               </button>
               <button
                 type="button"
+                onClick={() => {
+                  searchRef.current.value = '';
+                  setPageNumber(1);
+                  getData(pageNumber);
+                }}
                 className="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-e-md border border-transparent bg-orange-700 text-white hover:bg-orange-700"
               >
                 <AiOutlineCloseCircle className="text-xl" /> Clear
@@ -143,13 +148,13 @@ const Dashboard = () => {
           lastPage={lastPage}
         />
       </div>
-      <div>
+      {/* <div>
         <p>
           {arr.map((item, idx) => (
             <span key={idx}>{t(`numbers.${item}`)}</span>
           ))}
         </p>
-      </div>
+      </div> */}
     </section>
   );
 };
