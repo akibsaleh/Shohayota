@@ -1,10 +1,16 @@
+/* eslint-disable react/prop-types */
 import { useTranslation } from 'react-i18next';
 import people from '../../assets/people-fill.svg';
 import gift from '../../assets/gift-fill.svg';
-const Achievements = () => {
+const Achievements = ({approvedData}) => {
   const { t, i18n } = useTranslation('global');
   const isBn = i18n.language === 'bn';
   const isEng = i18n.language === 'en';
+
+  const totalApproved = approvedData.length;
+  const totalAmount = approvedData.reduce((acc, curr) => acc + curr.amount, 0);
+  const totalAmountBD = approvedData.reduce((acc, curr) => acc + curr.amount, 0).toLocaleString("bn-BD");
+  const totalApprovedBD = totalApproved.toLocaleString("bn-BD");
 
   return (
     <div className="relative max-w-screen-xl lg:mx-auto bg-apache min-h-[212px] -mt-[106px] z-20 rounded-[20px] px-10 md:px-[60px] py-[50px] flex flex-col md:flex-row mx-5">
@@ -36,7 +42,7 @@ const Achievements = () => {
           <div className="text-center lg:text-left pt-5 lg:pt-0">
             <p className="text-lg md:text-2xl font-medium leading-normal md:leading-[36px] -mb-[5px]">{t('achieve.assist')}</p>
             <p className="text-[26px] font-bold leading-[48px]">
-              {t('achieve.assist_no')} {isBn ? 'জন' : 'Individuals'}
+              {isBn ? totalApprovedBD : totalApproved} {isBn ? 'জন' : 'Individuals'}
             </p>
           </div>
         </div>
@@ -49,7 +55,7 @@ const Achievements = () => {
           <div className="text-center lg:text-left pt-5 lg:pt-0">
             <p className="text-lg md:text-2xl font-medium leading-normal -mb-[5px]">{t('achieve.donate')}</p>
             <p className="text-[26px] font-bold leading-[48px]">
-              {t('achieve.donated_amount')} {isBn ? 'টাকা' : 'BDT'}
+            {isBn ? totalAmountBD : totalAmount} {isBn ? 'টাকা' : 'BDT'}
             </p>
           </div>
         </div>

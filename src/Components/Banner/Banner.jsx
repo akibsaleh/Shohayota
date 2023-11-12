@@ -29,4 +29,6 @@ const Banner = () => {
   );
 };
 
+Banner.displayName = 'Banner';
+
 export default Banner;
