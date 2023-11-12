@@ -22,13 +22,15 @@ const ApprovedForm = () => {
   const formSubmit = (data) => {
     const amount = data.amount;
     const area = data.area;
+    const amountBangla = data.amountBangla;
+    const areaBangla = data.areaBangla;
     const formatedDate = data.approveDate.toLocaleString("en-US", {
       month: "long",
       day: "2-digit",
       year: "numeric",  
     });
 
-    const newData = { status: "approved", amount, area, formatedDate };
+    const newData = { status: "approved", amount, area, amountBangla, areaBangla, formatedDate };
     fetch(`${import.meta.env.VITE_API_URL}/applications/${id}`, {
       method: "PUT",
       headers: {
@@ -80,6 +82,27 @@ const ApprovedForm = () => {
             <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6 items-center">
               <div className="w-full font-medium md:text-lg text-thunder-500">
                 <label>
+                  <span>অনুমোদিত টাকার পরিমান</span>
+                </label>
+              </div>
+              <div className="w-full">
+                <input
+                  {...register("amountBangla", { required: true })}
+                  type="text"
+                  placeholder="অনুমোদিত টাকার পরিমান"
+                  className="w-full md:w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none md:text-lg"
+                />
+
+                {errors.amount && (
+                  <p className="text-[#F02727] font-medium">
+                  অনুমোদিত টাকার পরিমান লিখুন
+                  </p>
+                )}
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6 items-center">
+              <div className="w-full font-medium md:text-lg text-thunder-500">
+                <label>
                   <span>Area</span>
                 </label>
               </div>
@@ -93,6 +116,27 @@ const ApprovedForm = () => {
                 {errors.area && (
                   <p className="text-[#F02727] font-medium">
                     Please insert Area info
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6 items-center">
+              <div className="w-full font-medium md:text-lg text-thunder-500">
+                <label>
+                  <span>এলাকা</span>
+                </label>
+              </div>
+              <div className="w-full">
+                <input
+                  {...register("areaBangla", { required: true })}
+                  type="text"
+                  placeholder="আবেদনকারীর এলাকা"
+                  className="w-full md:w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none md:text-lg"
+                />
+                {errors.area && (
+                  <p className="text-[#F02727] font-medium">
+                  আবেদনকারীর এলাকাটি লিখুন
                   </p>
                 )}
               </div>
