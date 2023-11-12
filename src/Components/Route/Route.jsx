@@ -41,16 +41,23 @@ export const route = createBrowserRouter([
                 <Dashboard />
               </PrivateRoute>
             ),
-            loader: () => fetch('https://shohahoyta-server.vercel.app/applications'),
           },
           {
             path: '/dashboard/request/:id',
-            element: <PrivateRoute><RequestDetails /></PrivateRoute>,
+            element: (
+              <PrivateRoute>
+                <RequestDetails />
+              </PrivateRoute>
+            ),
             loader: ({ params }) => fetch(`https://shohahoyta-server.vercel.app/applications/${params.id}`),
           },
           {
             path: '/dashboard/request/:id/approvedForm',
-            element: <PrivateRoute><ApprovedForm></ApprovedForm></PrivateRoute>,
+            element: (
+              <PrivateRoute>
+                <ApprovedForm></ApprovedForm>
+              </PrivateRoute>
+            ),
             loader: ({ params }) => fetch(`https://shohahoyta-server.vercel.app/applications/${params.id}`),
           },
           {

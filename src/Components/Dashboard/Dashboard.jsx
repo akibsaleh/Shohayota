@@ -2,18 +2,44 @@ import { useLoaderData } from 'react-router-dom';
 import RequestCard from './RequestCard';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { FiSearch } from 'react-icons/fi';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
+import PaginationCustom from './PaginationCustom';
+import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
+  const { t } = useTranslation('global');
   const [data, setData] = useState(useLoaderData());
+  const [pageNumber, setPageNumber] = useState(1);
+  const [count, setCount] = useState(1);
+  const arr = [4, 5];
+
+  const lastPage = Math.ceil(parseInt(count) / 2);
+
+  const getData = async (page) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/paginated-requests?page=${page}`);
+      setData(response?.data?.data);
+      setCount(response?.data?.items);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData(pageNumber);
+  }, [pageNumber]);
+
+  const handlePagination = (page) => {
+    setPageNumber(page);
+  };
+
   const searchRef = useRef();
   const handleSearch = async (e) => {
     e.preventDefault();
     const result = await axios.get(`http://localhost:5000/searchResult?search=${searchRef.current.value}`);
     setData(result?.data);
   };
-  console.log(data);
   return (
     <section className="container mx-auto w-full max-w-7xl px-4 py-4">
       <div className="flex flex-col pt-10 pb-5 space-y-4 md:flex-row md:items-center md:justify-center md:space-y-0">
@@ -98,7 +124,7 @@ const Dashboard = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
-                  {data.map((request, idx) => (
+                  {data?.map((request, idx) => (
                     <RequestCard
                       key={idx}
                       request={request}
@@ -109,6 +135,20 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="w-full mt-6 flex justify-center items-center">
+        <PaginationCustom
+          pageNumber={pageNumber}
+          handlePagination={handlePagination}
+          lastPage={lastPage}
+        />
+      </div>
+      <div>
+        <p>
+          {arr.map((item, idx) => (
+            <span key={idx}>{t(`numbers.${item}`)}</span>
+          ))}
+        </p>
       </div>
     </section>
   );
