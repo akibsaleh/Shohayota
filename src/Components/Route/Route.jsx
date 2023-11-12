@@ -8,6 +8,8 @@ import Dashboard from '../Dashboard/Dashboard';
 import DashboardLayout from '../Dashboard/DashboardLayout';
 import RequestDetails from '../Dashboard/RequestDetails';
 import ApprovedForm from '../Dashboard/ApprovedForm';
+import PendingDashboard from '../Dashboard/PendingDashboard';
+import ApprovedDashboard from '../Dashboard/ApprovedDashboard';
 
 export const route = createBrowserRouter([
   {
@@ -62,13 +64,11 @@ export const route = createBrowserRouter([
           },
           {
             path: '/dashboard/pending',
-            element: <Dashboard />,
-            loader: () => fetch('https://shohahoyta-server.vercel.app/pending'),
+            element: <PendingDashboard />,
           },
           {
             path: '/dashboard/approved',
-            element: <Dashboard />,
-            loader: () => fetch('https://shohahoyta-server.vercel.app/approved'),
+            element: <ApprovedDashboard />,
           },
         ],
       },

@@ -78,13 +78,13 @@ const HeaderDashboard = () => {
               Dashboard
             </Link>
             <NavLink
-              to="pending"
+              to="/dashboard/pending"
               className="font-medium text-white sm:py-6 "
             >
               Pending
             </NavLink>
             <NavLink
-              to="approved"
+              to="/dashboard/approved"
               className="font-medium text-white sm:py-6 "
             >
               Approved

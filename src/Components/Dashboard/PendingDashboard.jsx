@@ -6,18 +6,17 @@ import axios from 'axios';
 import PaginationCustom from './PaginationCustom';
 // import { useTranslation } from 'react-i18next';
 
-const Dashboard = () => {
+const ApprovedDashboard = () => {
   const [data, setData] = useState();
   const [pageNumber, setPageNumber] = useState(1);
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(null);
   const [lastPage, setLastPage] = useState(1);
-  // const arr = [4, 5];
 
   const getData = async (page) => {
     try {
-      const response = await axios.get(`http://localhost:5000/paginated-requests?page=${page}`);
+      const response = await axios.get(`http://localhost:5000/paginated-requests?page=${page}&status=pending`);
       setData(response?.data?.data);
-      setCount(response?.data?.items);
+      setCount(response?.data?.queryTotal);
     } catch (error) {
       console.log(error);
     }
@@ -31,13 +30,14 @@ const Dashboard = () => {
   const handlePagination = (page) => {
     setPageNumber(page);
   };
-
   const searchRef = useRef();
   const handleSearch = async (e) => {
     e.preventDefault();
     const result = await axios.get(`http://localhost:5000/searchResult?search=${searchRef.current.value}`);
     setData(result?.data);
   };
+
+  console.log('count', count);
   return (
     <section className="container mx-auto w-full max-w-7xl px-4 py-4">
       <div className="flex flex-col pt-10 pb-5 space-y-4 md:flex-row md:items-center md:justify-center md:space-y-0">
@@ -127,12 +127,24 @@ const Dashboard = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
-                  {data?.map((request, idx) => (
-                    <RequestCard
-                      key={idx}
-                      request={request}
-                    ></RequestCard>
-                  ))}
+                  {count > 0 &&
+                    data?.map((request, idx) => (
+                      <RequestCard
+                        key={idx}
+                        request={request}
+                      ></RequestCard>
+                    ))}
+
+                  {count === 0 && (
+                    <tr>
+                      <td
+                        colSpan="5"
+                        className="text-center"
+                      >
+                        <span className="font-bold py-10 text-xl block">No Pending Data</span>
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -157,4 +169,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default ApprovedDashboard;
