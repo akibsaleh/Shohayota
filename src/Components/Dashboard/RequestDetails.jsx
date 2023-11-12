@@ -129,6 +129,10 @@ const RequestDetails = () => {
               <p className="w-full py-4 pl-5 font-semibold">Area:</p>
               <p className="w-full py-4 pl-5 font-semibold">{data?.area}</p>
             </div>
+            <div className="grid grid-cols-[200px_auto] divide-x divide-gray-200">
+              <p className="w-full py-4 pl-5 font-semibold">Approved at:</p>
+              <p className="w-full py-4 pl-5 font-semibold">{data?.approveDate}</p>
+            </div>
           </>
         )}
         <div className="grid grid-cols-[200px_auto] divide-x divide-gray-200">

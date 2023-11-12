@@ -13,7 +13,6 @@ const Dashboard = () => {
     const result = await axios.get(`http://localhost:5000/searchResult?search=${searchRef.current.value}`);
     setData(result?.data);
   };
-  console.log(data);
   return (
     <section className="container mx-auto w-full max-w-7xl px-4 py-4">
       <div className="flex flex-col pt-10 pb-5 space-y-4 md:flex-row md:items-center md:justify-center md:space-y-0">
