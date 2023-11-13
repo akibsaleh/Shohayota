@@ -9,13 +9,18 @@ import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { BsCircleFill } from 'react-icons/bs';
 import SlideContent from './SlideContent';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const DonationCarousel = () => {
+  const { t, i18n } = useTranslation('global');
+  const isBn = i18n.language === 'bn';
+  const isEn = i18n.language === 'en';
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [data, setData] = useState(null);
   useEffect(() => {
-    axios.get('https://shohahoyta-server.vercel.app/approved').then((res) => setData(res.data));
+    axios.get('http://localhost:5000/slider').then((res) => setData(res.data));
   }, [setData]);
+  console.log(data);
   return (
     <div className="relative flex flex-col w-full items-center">
       <div className="w-full max-w-screen-2xl h-0.5 bg-progressLine absolute top-[51px] z-00"></div>
@@ -34,118 +39,16 @@ const DonationCarousel = () => {
         className="donate-Swiper max-w-screen-2xl mx-auto h-24 w-full"
         loop={true}
       >
-        <SwiperSlide>
-          <div className="w-full flex flex-col justify-center items-center gap-y-5">
-            <p>January 17,2023</p>
-            <div>
-              <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
+        {data?.map((item, idx) => (
+          <SwiperSlide key={idx}>
+            <div className="w-full flex flex-col justify-center items-center gap-y-5">
+              <p className={`${isBn ? 'font-lss' : 'font-archivo'}`}>{isBn ? item?.approveDate.toLocaleString('bn-BD') : 'eng'}</p>
+              <div>
+                <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
+              </div>
             </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="w-full flex flex-col justify-center items-center gap-y-5">
-            <p>January 18,2023</p>
-            <div>
-              <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="w-full flex flex-col justify-center items-center gap-y-5">
-            <p>January 19,2023</p>
-            <div>
-              <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="w-full flex flex-col justify-center items-center gap-y-5">
-            <p>January 20,2023</p>
-            <div>
-              <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="w-full flex flex-col justify-center items-center gap-y-5">
-            <p>January 21,2023</p>
-            <div>
-              <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="w-full flex flex-col justify-center items-center gap-y-5">
-            <p>January 22,2023</p>
-            <div>
-              <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="w-full flex flex-col justify-center items-center gap-y-5">
-            <p>January 23,2023</p>
-            <div>
-              <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="w-full flex flex-col justify-center items-center gap-y-5">
-            <p>January 24,2023</p>
-            <div>
-              <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="w-full flex flex-col justify-center items-center gap-y-5">
-            <p>January 25,2023</p>
-            <div>
-              <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="w-full flex flex-col justify-center items-center gap-y-5">
-            <p>January 26,2023</p>
-            <div>
-              <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="w-full flex flex-col justify-center items-center gap-y-5">
-            <p>January 26,2023</p>
-            <div>
-              <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="w-full flex flex-col justify-center items-center gap-y-5">
-            <p>January 26,2023</p>
-            <div>
-              <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="w-full flex flex-col justify-center items-center gap-y-5">
-            <p>January 26,2023</p>
-            <div>
-              <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="w-full flex flex-col justify-center items-center gap-y-5">
-            <p>January 26,2023</p>
-            <div>
-              <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
-            </div>
-          </div>
-        </SwiperSlide>
+          </SwiperSlide>
+        ))}
       </Swiper>
 
       <Swiper
@@ -165,48 +68,11 @@ const DonationCarousel = () => {
         loop={true}
         className="date-swiper max-w-screen-2xl mx-auto w-full"
       >
-        <SwiperSlide>
-          <SlideContent />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideContent />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideContent />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideContent />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideContent />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideContent />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideContent />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideContent />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideContent />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideContent />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideContent />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideContent />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideContent />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideContent />
-        </SwiperSlide>
+        {data?.map((item, idx) => (
+          <SwiperSlide key={idx}>
+            <SlideContent item={item} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

@@ -1,7 +1,12 @@
+/* eslint-disable react/prop-types */
 // import { PiCircleFill, PiMapPinDuotone } from 'react-icons/pi';
+import { useTranslation } from 'react-i18next';
 import { PiMapPinDuotone } from 'react-icons/pi';
 
-const SlideContent = () => {
+const SlideContent = ({ item }) => {
+  const { t, i18n } = useTranslation('global');
+  const isBn = i18n.language === 'bn';
+  const isEn = i18n.language === 'en';
 
   return (
     <>
@@ -11,9 +16,11 @@ const SlideContent = () => {
         <div className="relative duration-200 transition-all slideContent w-[276px] h-[115px] px-3 py-5 bg-white shadow-donateBox rounded-md text-center drop-shadow-md flex flex-col justify-center items-center">
           <h3 className="flex justify-center items-center -ml-3 leading-[22px]">
             <PiMapPinDuotone className="mr-2" />
-            <span className="font-archivo text-base font-semibold">Mohakhali, Dhaka</span>
+            <span className="font-archivo text-base font-semibold">{isBn ? item?.areaBangla : isEn ? item?.area : ''}</span>
           </h3>
-          <p className="font-archivo text-xs font-semibold pb-[6px]">Amount: 4,500 BDT</p>
+          <p className="font-archivo text-xs font-semibold pb-[6px]">
+            {t('recentDonations.amount')} {isBn ? item?.amount.toLocaleString('bn-BD') : isEn ? item?.amount : ''} {t('recentDonations.currency')}
+          </p>
           <p className="font-archivo text-[10px] px-4">4,500 from us to solve personal and family related problems to an unnamed person.</p>
         </div>
       </div>

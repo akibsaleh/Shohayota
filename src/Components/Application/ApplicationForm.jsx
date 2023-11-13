@@ -40,7 +40,7 @@ const ApplicationForm = () => {
   const checkUniqueness = async (e) => {
     const inputVal = e.target.value;
     if (inputVal.length === 11) {
-      const result = await axios.get(`http://localhost:5000/checkApplicants?phone=${inputVal}`);
+      const result = await axios.get(`https://shohahoyta-server.vercel.app/checkApplicants?phone=${inputVal}`);
       setUnique(result.data);
     }
   };

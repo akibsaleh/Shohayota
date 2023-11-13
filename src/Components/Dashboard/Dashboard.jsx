@@ -24,7 +24,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    setLastPage(Math.floor(parseInt(count) / 2));
+    setLastPage(Math.floor(parseInt(count) / 20));
     getData(pageNumber);
   }, [count, pageNumber]);
 
@@ -35,7 +35,7 @@ const Dashboard = () => {
   const searchRef = useRef();
   const handleSearch = async (e) => {
     e.preventDefault();
-    const result = await axios.get(`http://localhost:5000/searchResult?search=${searchRef.current.value}`);
+    const result = await axios.get(`https://shohahoyta-server.vercel.app/searchResult?search=${searchRef.current.value}`);
     setData(result?.data);
   };
   return (

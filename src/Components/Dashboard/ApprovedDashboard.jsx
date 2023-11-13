@@ -14,7 +14,7 @@ const ApprovedDashboard = () => {
 
   const getData = async (page) => {
     try {
-      const response = await axios.get(`http://localhost:5000/paginated-requests?page=${page}&status=approved`);
+      const response = await axios.get(`https://shohahoyta-server.vercel.app/paginated-requests?page=${page}&status=approved`);
       setData(response?.data?.data);
       setCount(response?.data?.queryTotal);
     } catch (error) {
@@ -34,7 +34,7 @@ const ApprovedDashboard = () => {
   const searchRef = useRef();
   const handleSearch = async (e) => {
     e.preventDefault();
-    const result = await axios.get(`http://localhost:5000/searchResult?search=${searchRef.current.value}`);
+    const result = await axios.get(`https://shohahoyta-server.vercel.app/searchResult?search=${searchRef.current.value}`);
     setData(result?.data);
   };
 
