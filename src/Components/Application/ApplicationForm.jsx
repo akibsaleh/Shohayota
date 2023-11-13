@@ -68,6 +68,7 @@ const ApplicationForm = () => {
       formData.append('phone', data.phone);
       formData.append('checkbox', data.checkbox);
       formData.append('status', 'pending');
+      formData.append('submissionDate', dateTime);
 
       const imageRef = ref(storage, `images/${data.name}_${dateTime}/${singleImage.name}_${dateTime}`);
       await uploadBytes(imageRef, singleImage)
