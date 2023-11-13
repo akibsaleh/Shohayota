@@ -24,7 +24,6 @@ const ApprovedForm = () => {
     const area = data.area;
     const areaBangla = data.areaBangla;
 
-
     const formatedDate = data.approveDate.toLocaleString("en-US", {
       month: "long",
       day: "2-digit",
