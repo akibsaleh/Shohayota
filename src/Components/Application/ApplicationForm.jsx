@@ -45,8 +45,6 @@ const ApplicationForm = () => {
     }
   };
 
-  console.log(unique);
-
   const completeFormStep = async () => {
     const isValidForm = await trigger();
     if (isValidForm && unique === 'absent') {
@@ -71,7 +69,7 @@ const ApplicationForm = () => {
       formData.append('checkbox', data.checkbox);
       formData.append('status', 'pending');
 
-      const imageRef = ref(storage, `images/${data.name}/${singleImage.name + dateTime}`);
+      const imageRef = ref(storage, `images/${data.name}_${dateTime}/${singleImage.name}_${dateTime}`);
       await uploadBytes(imageRef, singleImage)
         .then(async () => {
           const imageUrl = await getDownloadURL(imageRef);
@@ -82,7 +80,7 @@ const ApplicationForm = () => {
         });
 
       for (let i = 0; i < otherFiles.length; i++) {
-        const otherFileRef = ref(storage, `images/${data.name}/otherFiles/${otherFiles[i].name + dateTime}`);
+        const otherFileRef = ref(storage, `images/${data.name}_${dateTime}/otherFiles/${otherFiles[i].name}_${dateTime}`);
 
         await uploadBytes(otherFileRef, otherFiles[i])
           .then(async () => {
