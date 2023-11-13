@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   const getData = async (page) => {
     try {
-      const response = await axios.get(`http://localhost:5000/paginated-requests?page=${page}`);
+      const response = await axios.get(`https://shohahoyta-server.vercel.app/paginated-requests?page=${page}`);
       setData(response?.data?.data);
       setCount(response?.data?.items);
     } catch (error) {

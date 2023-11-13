@@ -23,7 +23,7 @@ const ApprovedDashboard = () => {
   };
 
   useEffect(() => {
-    setLastPage(Math.floor(parseInt(count) / 2));
+    setLastPage(Math.floor(parseInt(count) / 20));
     getData(pageNumber);
   }, [count, pageNumber]);
 
@@ -38,7 +38,6 @@ const ApprovedDashboard = () => {
     setData(result?.data);
   };
 
-  console.log('count', count);
   return (
     <section className="container mx-auto w-full max-w-7xl px-4 py-4">
       <div className="flex flex-col pt-10 pb-5 space-y-4 md:flex-row md:items-center md:justify-center md:space-y-0">

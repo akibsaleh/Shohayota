@@ -20,7 +20,7 @@ const Banner = () => {
         </p>
         <button
           onClick={handleApplicationButton}
-          className="bg-white text-2xl leading-snug font-semibold py-3 px-8 rounded-full mt-12 text-[#215A4D]"
+          className="bg-white text-2xl leading-snug font-semibold py-3 px-8 rounded-full mt-4 sm:mt-12 text-[#215A4D]"
         >
           <span>{t('banner.button')}</span>
         </button>

@@ -2,7 +2,6 @@
 // import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import { FiChevronLeft, FiChevronRight, FiChevronsLeft, FiChevronsRight } from 'react-icons/fi';
 const PaginationCustom = ({ pageNumber, handlePagination, lastPage }) => {
-  console.log(lastPage);
   return (
     <nav className="flex items-center -space-x-px">
       {pageNumber > 5 && (
@@ -137,7 +136,7 @@ const PaginationCustom = ({ pageNumber, handlePagination, lastPage }) => {
           Next
         </span>
       </button>
-      {pageNumber < 6 && (
+      {pageNumber < 6 && lastPage > 8 && (
         <button
           onClick={() => handlePagination(lastPage)}
           type="button"

@@ -18,19 +18,18 @@ const DonationCarousel = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [data, setData] = useState(null);
   useEffect(() => {
-    axios.get('http://localhost:5000/slider').then((res) => setData(res.data));
+    axios.get('https://shohahoyta-server.vercel.app/slider').then((res) => setData(res.data));
   }, [setData]);
-  console.log(data);
+
   return (
     <div className="relative flex flex-col w-full items-center">
       <div className="w-full max-w-screen-2xl h-0.5 bg-progressLine absolute top-[51px] z-00"></div>
       <Swiper
         onSwiper={setThumbsSwiper}
         centeredSlides={true}
-        autoplay={{
-          delay: 3500,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 10000,
+        // }}
         spaceBetween={0}
         slidesPerView={'auto'}
         freeMode={false}
@@ -38,11 +37,13 @@ const DonationCarousel = () => {
         modules={[Autoplay, FreeMode, Navigation, Thumbs]}
         className="donate-Swiper max-w-screen-2xl mx-auto h-24 w-full"
         loop={true}
+        initialSlide={6}
+        loopedSlides={6}
       >
         {data?.map((item, idx) => (
           <SwiperSlide key={idx}>
             <div className="w-full flex flex-col justify-center items-center gap-y-5">
-              <p className={`${isBn ? 'font-lss' : 'font-archivo'}`}>{isBn ? item?.approveDate.toLocaleString('bn-BD') : 'eng'}</p>
+              <p className={`${isBn ? 'font-lss' : 'font-archivo'} text-thunder-500`}>{isBn ? item?.approveBanglaDate : isEn ? item?.approveDate : undefined}</p>
               <div>
                 <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
               </div>
@@ -57,16 +58,17 @@ const DonationCarousel = () => {
           '--swiper-pagination-color': '#fff',
         }}
         centeredSlides={true}
-        autoplay={{
-          delay: 3500,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 10000,
+        // }}
         slidesPerView={'auto'}
         spaceBetween={0}
         thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
         modules={[Autoplay, FreeMode, Thumbs]}
         loop={true}
         className="date-swiper max-w-screen-2xl mx-auto w-full"
+        initialSlide={6}
+        loopedSlides={6}
       >
         {data?.map((item, idx) => (
           <SwiperSlide key={idx}>
