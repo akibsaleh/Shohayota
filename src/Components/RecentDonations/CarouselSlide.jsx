@@ -14,23 +14,6 @@ const CarouselSlide = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <div className="max-w-1440 mx-auto mt-[42px] relative w-full overflow-hidden">
-      {/* <div className="w-full overflow-hidden flex justify-center relative z-20">
-        <span className="absolute left-[7.5%] top-1">
-          <BsCircleFill className="text-white border-2 border-plant-700 rounded-full" />
-        </span>
-        <span className="absolute left-[26.5%] top-1">
-          <BsCircleFill className="text-white border-2 border-plant-700 rounded-full" />
-        </span>
-        <span>
-          <BsCircleFill className="text-plant-700 p-1 text-2xl border-2 border-plant-700 rounded-full" />
-        </span>
-        <span className="absolute right-[26.5%] top-1">
-          <BsCircleFill className="text-white border-2 border-plant-700 rounded-full" />
-        </span>
-        <span className="absolute right-[7.5%] top-1">
-          <BsCircleFill className="text-white border-2 border-plant-700 rounded-full" />
-        </span>
-      </div> */}
       <div className="w-full max-w-1440 h-0.5 bg-progressLine absolute top-[11px] z-10"></div>
       <div className="w-[1440px] ">
         <Swiper

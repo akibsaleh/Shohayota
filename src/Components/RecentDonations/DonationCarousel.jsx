@@ -27,9 +27,6 @@ const DonationCarousel = () => {
       <Swiper
         onSwiper={setThumbsSwiper}
         centeredSlides={true}
-        // autoplay={{
-        //   delay: 10000,
-        // }}
         spaceBetween={0}
         slidesPerView={'auto'}
         freeMode={false}
@@ -58,9 +55,6 @@ const DonationCarousel = () => {
           '--swiper-pagination-color': '#fff',
         }}
         centeredSlides={true}
-        // autoplay={{
-        //   delay: 10000,
-        // }}
         slidesPerView={'auto'}
         spaceBetween={0}
         thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
