@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-// import CarouselSlide from './CarouselSlide';
 import DonationCarousel from './DonationCarousel';
 
 const RecentDonations = () => {
@@ -16,7 +15,6 @@ const RecentDonations = () => {
           {t('recentDonations.description')}
         </p>
       </div>
-      {/* <CarouselSlide /> */}
       <DonationCarousel />
     </div>
   );

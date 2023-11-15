@@ -37,7 +37,7 @@ const ApprovedForm = () => {
     });
 
     const newData = { status: "approved", amount, area, areaBangla, formatedDate, formatedBanglaDate };
-    fetch(`${import.meta.env.VITE_API_URL}/applications/${id}`, {
+    fetch(`http://localhost:5000/applications/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

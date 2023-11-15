@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 
 import { useRef } from 'react';
-import BangladeshIcon from './BangladeshIcon';
 import { useTranslation } from 'react-i18next';
 import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast';
@@ -45,42 +44,36 @@ const ContactForm = ({ contactRef }) => {
             id="fullName"
             name="fullName"
             required
-            className={`input leading-[26px] w-full pt-2 pb-1.5 px-3 rounded-md border-thunder-300 border bg-haze ${isBn ? 'font-nsb' : 'font-archivo'}`}
+            className={`input leading-[26px] focus-visible:outline-none w-full pt-2 pb-1.5 px-3 rounded-md border-thunder-300 border bg-haze ${isBn ? 'font-nsb' : 'font-archivo'}`}
           />
         </div>
         <div className="form-control flex gap-2 md:gap-5 flex-col md:flex-row">
           <label className="label w-52 text-thunder-500 font-archivo leading-[26px] pt-2 pb-1.5">
             <span className={`label-text ${isBn ? 'font-nsb' : 'font-archivo'}`}>{t('contact.phoneInputLabel')}</span>
-            <span className="text-red-600">*</span>
+            
           </label>
           <div className="flex items-center justify-start w-full pt-2 pb-1.5 px-3 rounded-md border-thunder-300 border bg-haze divide-x divide-solid gap-x-2.5">
-            <span className="flex gap-x-1 leading-[26px] text-thunder-500 font-archivo">
-              <span className="mt-[3px]">
-                <BangladeshIcon />
-              </span>
-              <span className={isBn ? 'font-nsb' : 'font-archivo'}>{t('contact.phoneInputPrefix')}</span>
-            </span>
             <input
               type="text"
               placeholder={t('contact.phoneInput')}
               id="phone"
               name="phone"
-              required
-              className={`input w-full bg-haze pl-2.5 leading-[26px] ${isBn ? 'font-nsb' : 'font-archivo'}`}
+              className={`input w-full bg-haze focus-visible:outline-none leading-[26px] ${isBn ? 'font-nsb' : 'font-archivo'}`}
             />
           </div>
         </div>
         <div className="form-control flex gap-2 md:gap-5 flex-col md:flex-row">
           <label className="label w-52 text-thunder-500 font-archivo leading-[26px] pt-2 pb-1.5">
             <span className={`label-text ${isBn ? 'font-nsb' : 'font-archivo'}`}>{t('contact.emailInputLabel')}</span>
+            <span className="text-red-600">*</span>
           </label>
           <input
-            type="text"
+            type="email"
             placeholder={t('contact.emailInput')}
             id="email"
             name="email"
             required
-            className={`input leading-[26px] w-full pt-2 pb-1.5 px-3 rounded-md border-thunder-300 border bg-haze ${isBn ? 'font-nsb' : 'font-archivo'}`}
+            className={`input leading-[26px] focus-visible:outline-none w-full pt-2 pb-1.5 px-3 rounded-md border-thunder-300 border bg-haze ${isBn ? 'font-nsb' : 'font-archivo'}`}
           />
         </div>
         <div className="form-control flex gap-2 md:gap-5 flex-col md:flex-row">
@@ -89,7 +82,7 @@ const ContactForm = ({ contactRef }) => {
             <span className="text-red-600">*</span>
           </label>
           <textarea
-            className={`textarea textarea-bordered h-24 w-full pt-2 pb-1.5 px-3 rounded-md border-thunder-300 border bg-haze ${isBn ? 'font-nsb' : 'font-archivo'}`}
+            className={`textarea textarea-bordered h-24 focus-visible:outline-none w-full pt-2 pb-1.5 px-3 rounded-md border-thunder-300 border bg-haze ${isBn ? 'font-nsb' : 'font-archivo'}`}
             placeholder={t('contact.messageInput')}
             id="message"
             name="message"

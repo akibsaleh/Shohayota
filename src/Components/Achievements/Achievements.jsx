@@ -9,7 +9,7 @@ const Achievements = ({approvedData}) => {
 
   const totalApproved = approvedData.length;
   const totalAmount = approvedData.reduce((acc, curr) => acc + curr.amount, 0);
-  const totalAmountBD = approvedData.reduce((acc, curr) => acc + curr.amount, 0).toLocaleString("bn-BD");
+  const totalAmountBD = totalAmount.toLocaleString("bn-BD");
   const totalApprovedBD = totalApproved.toLocaleString("bn-BD");
 
   return (
@@ -42,7 +42,7 @@ const Achievements = ({approvedData}) => {
           <div className="text-center lg:text-left pt-5 lg:pt-0">
             <p className="text-lg md:text-2xl font-medium leading-normal md:leading-[36px] -mb-[5px]">{t('achieve.assist')}</p>
             <p className="text-[26px] font-bold leading-[48px]">
-              {isBn ? totalApprovedBD : totalApproved} {isBn ? 'জন' : 'Individuals'}
+              {isBn ? totalApprovedBD + ' জন' : totalApproved + ' Individuals'}
             </p>
           </div>
         </div>
@@ -55,7 +55,7 @@ const Achievements = ({approvedData}) => {
           <div className="text-center lg:text-left pt-5 lg:pt-0">
             <p className="text-lg md:text-2xl font-medium leading-normal -mb-[5px]">{t('achieve.donate')}</p>
             <p className="text-[26px] font-bold leading-[48px]">
-            {isBn ? totalAmountBD : totalAmount} {isBn ? 'টাকা' : 'BDT'}
+            {isBn ? totalAmountBD + ' টাকা' : totalAmount + ' BDT'}
             </p>
           </div>
         </div>

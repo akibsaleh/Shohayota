@@ -2,35 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/shohayota-favicon.svg" />
+    <title>Shohayota | A Small, Anonymous Financial Assistance</title>
+    <!-- Important meta tags -->
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
+      property="og:title"
+      content="Shohayota | A Small, Anonymous Financial Assistance"
     />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/shohayota-favicon.svg"
+    <meta
+      property="og:description"
+      content="We believe in the power of small acts of kindness. We provide discreet financial assistance to those in need, ensuring your identity remains confidential. Together, we make a difference, one small helping hand at a time."
     />
-    <title>Shohayota</title>
+    <meta property="og:url" content="https://shohayota.com/" />
+    <meta
+      property="og:image"
+      content="https://www.example.com/your-image.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
   </head>
   <body>
     <div id="root"></div>
-    <script
-      type="module"
-      src="/src/main.jsx"
-    ></script>
+    <script type="module" src="/src/main.jsx"></script>
     <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
     ></script>
     <script type="text/javascript">
       (function () {
-        emailjs.init('ldur-PuGdgsotgwML');
+        emailjs.init("ldur-PuGdgsotgwML");
       })();
     </script>
-    <script
-      type="module"
-      src="./node_modules/preline/dist/preline.js"
-    ></script>
+    <script type="module" src="./node_modules/preline/dist/preline.js"></script>
   </body>
 </html>
