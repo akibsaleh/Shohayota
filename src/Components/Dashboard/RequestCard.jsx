@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import BkashIcon from '../Application/bkashIcon';
 import NagadIcon from '../Application/NagadIcon';
 import { Link } from 'react-router-dom';
-const RequestCard = ({ request }) => {
+const RequestCard = ({ request, handleDelete }) => {
   return (
     <tr>
       <td className="whitespace-nowrap px-4 py-4">
@@ -33,7 +33,7 @@ const RequestCard = ({ request }) => {
           {request?.status}
         </span>
       </td>
-      <td className="whitespace-nowrap px-4 py-4 text-right text-sm font-medium">
+      <td className="whitespace-nowrap px-4 py-4 text-right text-sm font-medium space-x-3">
         <Link to={`/dashboard/request/${request?._id}`}>
           <button
             type="button"
@@ -42,6 +42,12 @@ const RequestCard = ({ request }) => {
             View
           </button>
         </Link>
+        <button onClick={() => handleDelete(request?._id)}
+            type="button"
+            className="rounded-md border border-red-500 px-3 py-2 text-sm font-semibold text-white bg-red-500 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-plant-700"
+          >
+            Delete
+          </button>
       </td>
     </tr>
   );
@@ -51,4 +57,5 @@ export default RequestCard;
 
 RequestCard.propTypes = {
   request: PropTypes.object,
+  handleDelete: PropTypes.func,
 };

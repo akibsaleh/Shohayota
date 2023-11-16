@@ -4,6 +4,7 @@ import { FiSearch } from 'react-icons/fi';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import PaginationCustom from './PaginationCustom';
+import Swal from 'sweetalert2';
 // import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
@@ -32,12 +33,41 @@ const Dashboard = () => {
     setPageNumber(page);
   };
 
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: 'rgba(239 68 68)',
+      cancelButtonColor: '#215A4D',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`https://shohahoyta-server.vercel.app/delete/${id}`)
+          .then((result) => {
+            getData(pageNumber);
+            if (result.data.deletedCount === 1) {
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your file has been deleted.',
+                icon: 'success',
+              });
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+    });
+  };
+
   const searchRef = useRef();
   const handleSearch = async (e) => {
     e.preventDefault();
     const result = await axios.get(`https://shohahoyta-server.vercel.app/searchResult?search=${searchRef.current.value}`);
     setData(result?.data);
   };
+
   return (
     <section className="container mx-auto w-full max-w-7xl px-4 py-4">
       <div className="flex flex-col pt-10 pb-5 space-y-4 md:flex-row md:items-center md:justify-center md:space-y-0">
@@ -131,6 +161,7 @@ const Dashboard = () => {
                     <RequestCard
                       key={idx}
                       request={request}
+                      handleDelete={handleDelete}
                     ></RequestCard>
                   ))}
                 </tbody>

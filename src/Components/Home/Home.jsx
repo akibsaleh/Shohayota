@@ -23,16 +23,19 @@ const Home = ({ homeRef }) => {
   }, []);
 
   return (
-    <div
-      ref={homeRef}
-      id="home"
-      className="overflow-hidden"
-    >
-      <Banner />
-      <Achievements approvedData={approvedData} />
-      <Application />
+    <>
+      <div
+        ref={homeRef}
+        id="home"
+        className="overflow-hidden"
+      >
+        <Banner />
+        <Achievements approvedData={approvedData} />
+        <Application />
+      </div>
       <RecentDonations />
-    </div>
+    </>
+    
   );
 };
 

@@ -4,6 +4,7 @@ import { FiSearch } from 'react-icons/fi';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import PaginationCustom from './PaginationCustom';
+import Swal from 'sweetalert2';
 // import { useTranslation } from 'react-i18next';
 
 const ApprovedDashboard = () => {
@@ -29,6 +30,34 @@ const ApprovedDashboard = () => {
 
   const handlePagination = (page) => {
     setPageNumber(page);
+  };
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: 'rgba(239 68 68)',
+      cancelButtonColor: '#215A4D',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`https://shohahoyta-server.vercel.app/delete/${id}`)
+          .then((result) => {
+            getData(pageNumber);
+            if (result.data.deletedCount === 1) {
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your file has been deleted.',
+                icon: 'success',
+              });
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+    });
   };
 
   const searchRef = useRef();
@@ -130,7 +159,8 @@ const ApprovedDashboard = () => {
                   {data?.map((request, idx) => (
                     <RequestCard
                       key={idx}
-                      request={request}
+                      request={request} 
+                      handleDelete={handleDelete}
                     ></RequestCard>
                   ))}
                 </tbody>

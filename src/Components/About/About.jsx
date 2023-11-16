@@ -8,9 +8,11 @@ const About = ({ aboutRef }) => {
   const isBn = i18n.language === 'bn';
 
   return (
+    <>
+    <div className='w-full h-20'></div>
     <div
       id="about"
-      className="flex flex-col lg:flex-row max-w-1440 mx-auto w-full justify-center items-center gap-x-[80px] -mt-[86px] pt-[146px] pb-[90px]"
+      className="flex flex-col lg:flex-row max-w-1440 mx-auto w-full justify-center items-center gap-x-[80px] -mt-[86px] pt-[126px] pb-[90px]"
     >
       <div className="w-full lg:w-1/3 flex lg:block justify-center pb-10 lg:pb-0">
         <img
@@ -37,6 +39,7 @@ const About = ({ aboutRef }) => {
         />
       </div>
     </div>
+    </>
   );
 };
 

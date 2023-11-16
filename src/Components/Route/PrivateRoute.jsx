@@ -7,14 +7,17 @@ import BootstrapCardDataTable from '../ContentLoader/BootstrapCardDataTable';
 const PrivateRoute = ({ children }) => {
   const { loggedInUser, loading } = useContext(AuthContext);
 
-  if (loading)
+  if (loading) {
     return (
       <div className="w-full h-screen flex flex-col justify-center items-center">
         <BootstrapCardDataTable />
       </div>
     );
+  }
+
+  if(loggedInUser?.email) return children;
+
   if (!loggedInUser) return <Navigate to="/login" />;
-  return children;
 };
 
 export default PrivateRoute;
