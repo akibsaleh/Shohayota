@@ -34,8 +34,7 @@
   opacity: 100%;
 } */
 
-.date-swiper .swiper-slide,
-.donate-Swiper .swiper-slide {
+.donation-slide .swiper-slide {
   width: 362px !important;
   @apply h-[170px];
 }
@@ -45,6 +44,7 @@
 }
 
 .swiper-slide-active .slideContentContainer {
+  @apply -mt-[17.5px];
   @apply items-start;
 }
 

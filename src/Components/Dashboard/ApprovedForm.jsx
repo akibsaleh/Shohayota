@@ -1,9 +1,9 @@
-import { useState } from "react";
-import toast from "react-hot-toast";
-import { useLoaderData, useNavigate } from "react-router-dom";
-import { Controller, useForm } from "react-hook-form";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import { Controller, useForm } from 'react-hook-form';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const ApprovedForm = () => {
   const [loaderResponse, setLoaderResponse] = useState(useLoaderData());
@@ -23,24 +23,27 @@ const ApprovedForm = () => {
     const amount = data.amount;
     const area = data.area;
     const areaBangla = data.areaBangla;
+    const reason = data.reason;
+    const reasonBangla = data.reasonBangla;
 
-    const formatedDate = data.approveDate.toLocaleString("en-US", {
-      month: "long",
-      day: "2-digit",
-      year: "numeric",  
+    const formatedDate = data.approveDate.toLocaleString('en-US', {
+      month: 'long',
+      day: '2-digit',
+      year: 'numeric',
     });
 
-    const formatedBanglaDate = data.approveDate.toLocaleString("bn-BD", {
-      month: "long",
-      day: "2-digit",
-      year: "numeric",  
+    const formatedBanglaDate = data.approveDate.toLocaleString('bn-BD', {
+      month: 'long',
+      day: '2-digit',
+      year: 'numeric',
     });
 
-    const newData = { status: "approved", amount, area, areaBangla, formatedDate, formatedBanglaDate };
+    const newData = { status: 'approved', amount, area, areaBangla, reason, reasonBangla, formatedDate, formatedBanglaDate };
+    console.log(newData);
     fetch(`${import.meta.env.VITE_API_URL}/applications/${id}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
       body: JSON.stringify(newData),
     })
@@ -50,7 +53,7 @@ const ApprovedForm = () => {
           setLoaderResponse(latestRequest);
           toast.success(`Request approved`);
           setTimeout(() => {
-            navigate("/dashboard");
+            navigate('/dashboard');
           }, 1500);
         }
       });
@@ -70,17 +73,13 @@ const ApprovedForm = () => {
               </div>
               <div className="w-full">
                 <input
-                  {...register("amount", { required: true })}
+                  {...register('amount', { required: true })}
                   type="text"
                   placeholder="Please insert approved amount"
                   className="w-full md:w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none md:text-lg"
                 />
 
-                {errors.amount && (
-                  <p className="text-[#F02727] font-medium">
-                    Please insert approved amount
-                  </p>
-                )}
+                {errors.amount && <p className="text-[#F02727] font-medium">Please insert approved amount</p>}
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6 items-center">
@@ -91,16 +90,12 @@ const ApprovedForm = () => {
               </div>
               <div className="w-full">
                 <input
-                  {...register("area", { required: true })}
+                  {...register('area', { required: true })}
                   type="text"
                   placeholder="Enter area of the applicant"
                   className="w-full md:w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none md:text-lg"
                 />
-                {errors.area && (
-                  <p className="text-[#F02727] font-medium">
-                    Please insert Area info
-                  </p>
-                )}
+                {errors.area && <p className="text-[#F02727] font-medium">Please insert Area info</p>}
               </div>
             </div>
 
@@ -112,16 +107,45 @@ const ApprovedForm = () => {
               </div>
               <div className="w-full">
                 <input
-                  {...register("areaBangla", { required: true })}
+                  {...register('areaBangla', { required: true })}
                   type="text"
                   placeholder="আবেদনকারীর এলাকা"
                   className="w-full md:w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none md:text-lg"
                 />
-                {errors.area && (
-                  <p className="text-[#F02727] font-medium">
-                  আবেদনকারীর এলাকাটি লিখুন
-                  </p>
-                )}
+                {errors.area && <p className="text-[#F02727] font-medium">আবেদনকারীর এলাকাটি লিখুন</p>}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6 items-center">
+              <div className="w-full font-medium md:text-lg text-thunder-500">
+                <label>
+                  <span>Reason</span>
+                </label>
+              </div>
+              <div className="w-full">
+                <input
+                  {...register('reason', { required: true })}
+                  type="text"
+                  placeholder="Enter the reason here"
+                  className="w-full md:w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none md:text-lg"
+                />
+                {errors.reason && <p className="text-[#F02727] font-medium">Reason is required</p>}
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6 items-center">
+              <div className="w-full font-medium md:text-lg text-thunder-500">
+                <label>
+                  <span>আবেদনের কারণ</span>
+                </label>
+              </div>
+              <div className="w-full">
+                <input
+                  {...register('reasonBangla', { required: true })}
+                  type="text"
+                  placeholder="এখানে কারণটি লিখুন"
+                  className="w-full md:w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none md:text-lg"
+                />
+                {errors.reasonBangla && <p className="text-[#F02727] font-medium">আবেদনের কারণটি লিখতেই হবে।</p>}
               </div>
             </div>
 
@@ -142,17 +166,13 @@ const ApprovedForm = () => {
                       selected={field.value}
                       onChange={(date) => {
                         field.onChange(date);
-                        setValue("approveDate", date);
+                        setValue('approveDate', date);
                       }}
                       className="w-full md:w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none md:text-lg"
                     />
                   )}
                 />
-                {errors.approveDate && (
-                  <p className="text-[#F02727] font-medium">
-                    Please Select a Date
-                  </p>
-                )}
+                {errors.approveDate && <p className="text-[#F02727] font-medium">Please Select a Date</p>}
               </div>
             </div>
 

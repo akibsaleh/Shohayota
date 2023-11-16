@@ -23,46 +23,12 @@ const DonationCarousel = () => {
 
   return (
     <div className="relative flex flex-col w-full items-center">
-      <div className="w-full max-w-screen-2xl h-0.5 bg-progressLine absolute top-[51px] z-00"></div>
+      <div className="w-full h-0.5 bg-progressLine absolute top-[51px] z-00"></div>
       <Swiper
-        onSwiper={setThumbsSwiper}
-        centeredSlides={true}
-        spaceBetween={0}
         slidesPerView={'auto'}
-        freeMode={false}
-        watchSlidesProgress={true}
-        modules={[Autoplay, FreeMode, Navigation, Thumbs]}
-        className="donate-Swiper max-w-screen-2xl mx-auto h-24 w-full"
         loop={true}
-        initialSlide={6}
-        loopedSlides={6}
-      >
-        {data?.map((item, idx) => (
-          <SwiperSlide key={idx}>
-            <div className="w-full flex flex-col justify-center items-center gap-y-5">
-              <p className={`${isBn ? 'font-lss' : 'font-archivo'} text-thunder-500`}>{isBn ? item?.approveBanglaDate : isEn ? item?.approveDate : undefined}</p>
-              <div>
-                <BsCircleFill className="text-white border-2 border-plant-700 rounded-full text-base" />
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-      <Swiper
-        style={{
-          '--swiper-navigation-color': '#fff',
-          '--swiper-pagination-color': '#fff',
-        }}
-        centeredSlides={true}
-        slidesPerView={'auto'}
-        spaceBetween={0}
-        thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
-        modules={[Autoplay, FreeMode, Thumbs]}
-        loop={true}
-        className="date-swiper max-w-screen-2xl mx-auto w-full"
-        initialSlide={6}
-        loopedSlides={6}
+        className="donation-slide max-w-screen-2xl mx-auto w-full relative left-[7vw] sm:left-[26.5vw] lg:left-[30vw] !overflow-visible"
+        initialSlide={3}
       >
         {data?.map((item, idx) => (
           <SwiperSlide key={idx}>
