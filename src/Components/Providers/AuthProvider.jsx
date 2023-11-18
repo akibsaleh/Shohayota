@@ -35,10 +35,10 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setLoggedInUser(user);
       setLoading(false);
-      return () => {
-        unsubscribe();
-      };
     });
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   const authInfo = { loggedInUser, loading, handleRegistration, handleLogin, logOut, profileUpdate };
