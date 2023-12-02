@@ -27,11 +27,11 @@ const DonationCarouselCard = ({ item }) => {
           <p className="font-archivo font-semibold pb-[10px] delay-100 duration-200 transition-all [.swiper-slide-active_&]:opacity-100 opacity-50">
             {t('recentDonations.amount')} {isBn ? item?.amount.toLocaleString('bn-BD') : isEn ? item?.amount : ''} {t('recentDonations.currency')}
           </p>
-          <p className="font-archivo text-xs px-4 delay-100 duration-200 transition-all [.swiper-slide-active_&]:opacity-100 opacity-50">
-            {isBn
-              ? `নাম অপ্রকাশিত একজনকে ব্যাক্তিগত এবং পরিবারজনিত সমস্যা সমাধানের জন্যে আমাদের থেকে ${item?.amount.toLocaleString('bn-BD')} টাকা প্রদান করা হয়।`
+          <p className="font-archivo text-xs px-4 delay-100 duration-200 transition-all [.swiper-slide-active_&]:opacity-100 opacity-50 min-w-[316px] min-h-[28px]">
+          {isBn
+              ? item?.remarkBangla
               : isEn
-              ? `We extended a sum of ${item?.amount} BDT to an individual to address personal and family-related challenges.`
+              ? item?.remark
               : undefined}
           </p>
         </div>

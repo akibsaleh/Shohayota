@@ -28,9 +28,9 @@ const SlideContent = ({ item }) => {
           </p>
           <p className="font-archivo text-[10px] px-4">
             {isBn
-              ? `নাম অপ্রকাশিত একজনকে ব্যাক্তিগত এবং পরিবারজনিত সমস্যা সমাধানের জন্যে আমাদের থেকে ${item?.amount.toLocaleString('bn-BD')} টাকা প্রদান করা হয়।`
+              ? item?.remarkBangla
               : isEn
-              ? `We extended a sum of ${item?.amount} BDT to an individual to address personal and family-related challenges.`
+              ? item?.remark
               : undefined}
           </p>
         </div>

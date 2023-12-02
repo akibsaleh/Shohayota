@@ -29,8 +29,8 @@ const ApprovedForm = () => {
       amount: data?.amount,
       area: data?.area,
       areaBangla: data?.areaBangla,
-      reason: data?.reason,
-      reasonBangla: data?.reasonBangla
+      remark: data?.remark,
+      remarkBangla: data?.remarkBangla
     }
   });
 
@@ -38,8 +38,8 @@ const ApprovedForm = () => {
     const amount = data.amount;
     const area = data.area;
     const areaBangla = data.areaBangla;
-    const reason = data.reason;
-    const reasonBangla = data.reasonBangla;
+    const remark = data.remark;
+    const remarkBangla = data.remarkBangla;
 
     const formatedDate = data.approveDate.toLocaleString('en-US', {
       month: 'long',
@@ -53,10 +53,10 @@ const ApprovedForm = () => {
       year: 'numeric',
     });
 
-    const newData = { status: 'approved', amount, area, areaBangla, reason, reasonBangla, formatedDate, formatedBanglaDate };
+    const newData = { status: 'approved', amount, area, areaBangla, remark, remarkBangla, formatedDate, formatedBanglaDate };
     console.log(newData);
     fetch(`${import.meta.env.VITE_API_URL}/applications/${id}`, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
         'content-type': 'application/json',
       },
@@ -134,33 +134,33 @@ const ApprovedForm = () => {
             <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6 items-center">
               <div className="w-full font-medium md:text-lg text-thunder-500">
                 <label>
-                  <span>Reason</span>
+                  <span>Remark</span>
                 </label>
               </div>
               <div className="w-full">
                 <input
-                  {...register('reason', { required: true })}
+                  {...register('remark', { required: true })}
                   type="text"
-                  placeholder="Enter the reason here"
+                  placeholder="Type remark here"
                   className="w-full md:w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none md:text-lg"
                 />
-                {errors.reason && <p className="text-[#F02727] font-medium">Reason is required</p>}
+                {errors.remark && <p className="text-[#F02727] font-medium">Remark field is required</p>}
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-[210px_auto] gap-x-6 gap-y-2 md:gap-6 items-center">
               <div className="w-full font-medium md:text-lg text-thunder-500">
                 <label>
-                  <span>আবেদনের কারণ</span>
+                  <span>মন্তব্য</span>
                 </label>
               </div>
               <div className="w-full">
                 <input
-                  {...register('reasonBangla', { required: true })}
+                  {...register('remarkBangla', { required: true })}
                   type="text"
-                  placeholder="এখানে কারণটি লিখুন"
+                  placeholder="এখানে মন্তব্য লিখুন"
                   className="w-full md:w-[480px] px-3 py-2 bg-haze border-[1px] border-plant-100 rounded-md text-thunder-700 focus-visible: outline-none md:text-lg"
                 />
-                {errors.reasonBangla && <p className="text-[#F02727] font-medium">আবেদনের কারণটি লিখতেই হবে।</p>}
+                {errors.remarkBangla && <p className="text-[#F02727] font-medium">মন্তব্য লেখা আৱশ্যকীয়</p>}
               </div>
             </div>
 
