@@ -4,12 +4,19 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+// import axios from 'axios';
 
 const ApprovedForm = () => {
   const [loaderResponse, setLoaderResponse] = useState(useLoaderData());
   const [data] = loaderResponse;
   const navigate = useNavigate();
   const id = data?._id;
+  // const [existing, setExisting] = useState(null);
+
+  // useEffect(() => {
+  //   axios.get(`${import.meta.env.VITE_API_URL}/applications/${id}`)
+  //   .then(res => setExisting(res.data[0]))
+  // }, [id]);
 
   const {
     register,
@@ -17,7 +24,15 @@ const ApprovedForm = () => {
     control,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      amount: data?.amount,
+      area: data?.area,
+      areaBangla: data?.areaBangla,
+      reason: data?.reason,
+      reasonBangla: data?.reasonBangla
+    }
+  });
 
   const formSubmit = async (data) => {
     const amount = data.amount;
@@ -159,7 +174,7 @@ const ApprovedForm = () => {
                 <Controller
                   name="approveDate"
                   control={control}
-                  defaultValue={new Date()}
+                  defaultValue={data?.approveDate ? new Date(data?.approveDate) : new Date()}
                   render={({ field }) => (
                     <DatePicker
                       {...field}

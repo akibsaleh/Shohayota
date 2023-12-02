@@ -34,32 +34,40 @@
   opacity: 100%;
 } */
 
-.donation-slide .swiper-slide {
-  width: 362px !important;
-  @apply h-[170px];
-}
-
-.swiper-slide .slideContentContainer {
-  @apply h-full;
-}
-
-.swiper-slide-active .slideContentContainer {
+/* .slick-current .slideContentContainer {
   @apply -mt-[17.5px];
   @apply items-start;
+
 }
 
-.swiper-slide-active .slideContent {
+.slick-current .slideContent {
+  @apply duration-300;
+  @apply delay-100;
+  @apply transition-all;
   @apply w-[362px];
   @apply h-[153px];
-}
+} */
 
-.swiper-slide-prev .slideContentContainer {
-  @apply -ml-9;
-}
+/* .donation-slide .swiper-slide {
+  @apply !w-[362px];
+} */
 
-.swiper-slide-next .slideContentContainer {
-  @apply -mr-9;
-}
+/* .swiper-slide-active .slideContentContainer {
+  @apply -mt-[17.5px];
+  @apply items-start;
+} */
+
+/* .swiper-slide-active {
+  @apply !w-[362px];
+} */
+
+/* .swiper-slide-active .slideContent {
+  @apply duration-300;
+  @apply delay-100;
+  @apply transition-all;
+  @apply !w-[362px];
+  @apply !h-[153px];
+} 
 
 .donate-Swiper .swiper-slide-active svg {
   @apply text-plant-700;
@@ -67,7 +75,7 @@
   @apply p-0.5;
   @apply bg-white;
   @apply -mt-0.5;
-}
+} */
 
 canvas.react-pdf__Page__canvas {
   width: 320px !important;

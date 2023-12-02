@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast';
@@ -8,13 +8,16 @@ import toast from 'react-hot-toast';
 const ContactForm = ({ contactRef }) => {
   const { t, i18n } = useTranslation('global');
   const isBn = i18n.language === 'bn';
+  const [loader, setLoader] = useState(false)
 
   const form = useRef();
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoader(true);
     emailjs.sendForm('service_97cax8q', 'template_4pgmo4q', form.current, 'ldur-PuGdgsotgwML').then(
       (result) => {
         if (result.status === 200) {
+          setLoader(false);
           toast.success('Your message sent successfully');
           form.reset();
         }
@@ -50,7 +53,6 @@ const ContactForm = ({ contactRef }) => {
         <div className="form-control flex gap-2 md:gap-5 flex-col md:flex-row">
           <label className="label w-52 text-thunder-500 font-archivo leading-[26px] pt-2 pb-1.5">
             <span className={`label-text ${isBn ? 'font-nsb' : 'font-archivo'}`}>{t('contact.phoneInputLabel')}</span>
-            
           </label>
           <div className="flex items-center justify-start w-full pt-2 pb-1.5 px-3 rounded-md border-thunder-300 border bg-haze divide-x divide-solid gap-x-2.5">
             <input
@@ -95,8 +97,16 @@ const ContactForm = ({ contactRef }) => {
         >
           <button
             type="submit"
-            className={`text-xl font-semibold leading-8 text-white bg-plant-700 rounded-[70px] py-2.5 px-7 ${isBn ? 'font-nsb' : 'font-archivo'}`}
+            className={`text-xl font-semibold leading-8 text-white bg-plant-700 rounded-[70px] py-2.5 px-7 inline-flex items-center gap-x-3 ${isBn ? 'font-nsb' : 'font-archivo'}`}
           >
+            {loader && <div
+              className="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-gray-800 rounded-full dark:text-white"
+              role="status"
+              aria-label="loading"
+            >
+              <span className="sr-only">Loading...</span>
+            </div>}
+
             <span className="h-8">{t('contact.submitButton')}</span>
           </button>
         </div>

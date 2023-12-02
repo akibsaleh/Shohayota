@@ -42,7 +42,7 @@ const ApplicationForm = () => {
   const checkUniqueness = async (e) => {
     const inputVal = e.target.value;
     if (inputVal.length === 11) {
-      const result = await axios.get(`https://shohahoyta-server.vercel.app/checkApplicants?phone=${inputVal}`);
+      const result = await axios.get(`https://shohayota.vercel.app/checkApplicants?phone=${inputVal}`);
       setUnique(result.data);
     }
   };
@@ -96,7 +96,7 @@ const ApplicationForm = () => {
           });
       }
 
-      const response = await axios.post('https://shohahoyta-server.vercel.app/applications', formData);
+      const response = await axios.post('https://shohayota.vercel.app/applications', formData);
 
       if (response.data.insertedId) {
         setLoading(false);

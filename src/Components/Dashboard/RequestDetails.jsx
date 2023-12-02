@@ -23,7 +23,7 @@ const RequestDetails = () => {
   const handleStatus = (status) => {
   
     const newData = { status };
-    fetch(`https://shohahoyta-server.vercel.app/applications/${id}`, {
+    fetch(`https://shohayota.vercel.app/applications/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

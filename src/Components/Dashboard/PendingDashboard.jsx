@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import PaginationCustom from './PaginationCustom';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 // import { useTranslation } from 'react-i18next';
 
 const ApprovedDashboard = () => {
@@ -15,7 +16,7 @@ const ApprovedDashboard = () => {
 
   const getData = async (page) => {
     try {
-      const response = await axios.get(`https://shohahoyta-server.vercel.app/paginated-requests?page=${page}&status=pending`);
+      const response = await axios.get(`https://shohayota.vercel.app/paginated-requests?page=${page}&status=pending`);
       setData(response?.data?.data);
       setCount(response?.data?.queryTotal);
     } catch (error) {
@@ -44,7 +45,7 @@ const ApprovedDashboard = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`https://shohahoyta-server.vercel.app/delete/${id}`)
+          .delete(`https://shohayota.vercel.app/delete/${id}`)
           .then((result) => {
             getData(pageNumber);
             if (result.data.deletedCount === 1) {
@@ -63,7 +64,7 @@ const ApprovedDashboard = () => {
   const searchRef = useRef();
   const handleSearch = async (e) => {
     e.preventDefault();
-    const result = await axios.get(`https://shohahoyta-server.vercel.app/searchResult?search=${searchRef.current.value}`);
+    const result = await axios.get(`https://shohayota.vercel.app/searchResult?search=${searchRef.current.value}`);
     setData(result?.data);
   };
 
@@ -71,8 +72,8 @@ const ApprovedDashboard = () => {
     <section className="container mx-auto w-full max-w-7xl px-4 py-4">
       <div className="flex flex-col pt-10 pb-5 space-y-4 md:flex-row md:items-center md:justify-center md:space-y-0">
         <div className="text-center">
-          <h2 className="text-lg font-semibold">All Requests</h2>
-          <p className="mt-1 text-sm text-gray-700">This is a list of all requests. You can also check the pending requests here and approved requests here.</p>
+          <h2 className="text-lg font-semibold">All Pending Requests</h2>
+          <p className="mt-1 text-sm text-gray-700">This is a list of all pending requests. You can also check the approved requests <Link to={'/dashboard/approved'}>here</Link>.</p>
         </div>
       </div>
       <div className="w-full py-10 flex justify-center">

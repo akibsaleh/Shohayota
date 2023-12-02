@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import DonationCarousel from './DonationCarousel';
+// import DonationSlick from './DonationSlick';
 
 const RecentDonations = () => {
   const { t, i18n } = useTranslation('global');
   const isBn = i18n.language === 'bn';
 
   return (
-    <div className="my-[140px]">
+    <div className="mt-[140px] mb-5">
       <div className="text-center gap-y-3 flex flex-col items-center pb-16">
         <h2 className={`text-thunder-700 ${isBn ? 'font-lss text-3xl md:text-[40px] leading-[50px]' : 'text-3xl md:text-[42px] leading-[56px] font-extrabold'}  px-5 md:px-0`}>
           {t('recentDonations.title')}

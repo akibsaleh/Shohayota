@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   const getData = async (page) => {
     try {
-      const response = await axios.get(`https://shohahoyta-server.vercel.app/paginated-requests?page=${page}`);
+      const response = await axios.get(`https://shohayota.vercel.app/paginated-requests?page=${page}`);
       setData(response?.data?.data);
       setCount(response?.data?.items);
     } catch (error) {
@@ -45,7 +45,7 @@ const Dashboard = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`https://shohahoyta-server.vercel.app/delete/${id}`)
+          .delete(`https://shohayota.vercel.app/delete/${id}`)
           .then((result) => {
             getData(pageNumber);
             if (result.data.deletedCount === 1) {
@@ -64,7 +64,7 @@ const Dashboard = () => {
   const searchRef = useRef();
   const handleSearch = async (e) => {
     e.preventDefault();
-    const result = await axios.get(`https://shohahoyta-server.vercel.app/searchResult?search=${searchRef.current.value}`);
+    const result = await axios.get(`https://shohayota.vercel.app/searchResult?search=${searchRef.current.value}`);
     setData(result?.data);
   };
 

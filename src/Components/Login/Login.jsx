@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import loginBg from '../../assets/loginBG.png';
 import relief from '../../assets/relief.png';
 import logoWhite from '../../assets/shohayota-white.svg';
@@ -43,15 +43,6 @@ const Login = () => {
               alt="Shohayota"
               className="h-8 w-auto"
             />
-            <p className="mt-2 text-sm text-gray-600 ">
-              Don&#39;t have an account yet?{' '}
-              <Link
-                to="/register"
-                className="text-plant-700 decoration-2 hover:underline font-medium"
-              >
-                Sign up here
-              </Link>
-            </p>
           </div>
           <div className="mt-5">
             {/* Form */}

@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from '../../App';
 import Layout from '../../Layout';
 import Login from '../Login/Login';
-import Register from '../Register/Register';
+// import Register from '../Register/Register';
 import PrivateRoute from './PrivateRoute';
 import Dashboard from '../Dashboard/Dashboard';
 import DashboardLayout from '../Dashboard/DashboardLayout';
@@ -23,10 +23,6 @@ export const route = createBrowserRouter([
       {
         path: '/login',
         element: <Login />,
-      },
-      {
-        path: '/register',
-        element: <Register />,
       },
       {
         path: '/dashboard',
@@ -51,7 +47,7 @@ export const route = createBrowserRouter([
                 <RequestDetails />
               </PrivateRoute>
             ),
-            loader: ({ params }) => fetch(`https://shohahoyta-server.vercel.app/applications/${params.id}`),
+            loader: ({ params }) => fetch(`https://shohayota.vercel.app/applications/${params.id}`),
           },
           {
             path: '/dashboard/request/:id/approvedForm',
@@ -60,7 +56,7 @@ export const route = createBrowserRouter([
                 <ApprovedForm></ApprovedForm>
               </PrivateRoute>
             ),
-            loader: ({ params }) => fetch(`https://shohahoyta-server.vercel.app/applications/${params.id}`),
+            loader: ({ params }) => fetch(`https://shohayota.vercel.app/applications/${params.id}`),
           },
           {
             path: '/dashboard/pending',

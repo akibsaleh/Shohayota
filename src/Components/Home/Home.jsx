@@ -12,7 +12,7 @@ const Home = ({ homeRef }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://shohahoyta-server.vercel.app/approvedStatus');
+        const response = await axios.get('https://shohayota.vercel.app/approvedStatus');
         setApprovedData(response.data);
       } catch (error) {
         console.error('Error fetching approvedData: ', error);
