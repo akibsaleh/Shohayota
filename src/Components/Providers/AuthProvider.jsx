@@ -34,12 +34,12 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setLoggedInUser(user);
-      setLoading(false);
+      if (loggedInUser) setLoading(false);
     });
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [loggedInUser]);
 
   const authInfo = { loggedInUser, loading, handleRegistration, handleLogin, logOut, profileUpdate };
 

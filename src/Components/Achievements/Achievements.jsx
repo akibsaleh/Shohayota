@@ -14,7 +14,7 @@ const Achievements = ({approvedData}) => {
 
   return (
     <div className="relative max-w-screen-xl lg:mx-auto bg-apache min-h-[212px] -mt-[106px] z-20 rounded-[20px] px-10 md:px-[60px] py-[50px] flex flex-col md:flex-row mx-5">
-      <div className="w-full md:w-1/3 lg:w-6/12">
+      <div className="w-full md:w-1/2 lg:w-6/12">
         <h2 className=" text-3xl md:text-[42px] text-thunder-700 leading-snug font-bold text-center lg:text-left pb-5 md:pb-0">
           {isBn && (
             <span className="font-lss">
@@ -32,28 +32,28 @@ const Achievements = ({approvedData}) => {
           )}
         </h2>
       </div>
-      <div className="w-full md:w-2/3 lg:w-6/12 flex items-start md:items-center">
-        <div className="w-1/2 flex flex-col lg:flex-row items-center justify-center gap-x-6 text-thunder-700">
+      <div className="w-full md:w-1/2 lg::w-2/3 lg:w-6/12 flex gap-x-6 items-start md:items-center">
+        <div className="w-1/2 lg:w-auto flex flex-col lg:flex-row items-center lg:items-start justify-center gap-x-6 text-thunder-700">
           <img
             src={people}
             alt="Assited"
             className="w-[68] h-auto p-[14px] bg-white/40 rounded-[20px]"
           />
           <div className="text-center lg:text-left pt-5 lg:pt-0">
-            <p className="text-lg md:text-2xl font-medium leading-normal md:leading-[36px] -mb-[5px]">{t('achieve.assist')}</p>
+            <p className="text-lg md:text-xl lg:text-2xl font-medium leading-normal md:leading-[36px] -mb-[5px]">{t('achieve.assist')}</p>
             <p className="text-[26px] font-bold leading-[48px]">
               {isBn ? totalApprovedBD + ' জন' : totalApproved + ' Individuals'}
             </p>
           </div>
         </div>
-        <div className="w-1/2 flex flex-col lg:flex-row justify-center items-center gap-x-6 text-thunder-700">
+        <div className="w-1/2 lg:w-auto flex flex-col lg:flex-row justify-center items-center lg:items-start gap-x-6 text-thunder-700">
           <img
             src={gift}
             alt="Donated"
             className="w-[68] h-auto p-[14px] bg-white/40 rounded-[20px]"
           />
           <div className="text-center lg:text-left pt-5 lg:pt-0">
-            <p className="text-lg md:text-2xl font-medium leading-normal -mb-[5px]">{t('achieve.donate')}</p>
+            <p className="text-lg md:text-xl lg:text-2xl font-medium leading-normal -mb-[5px]">{t('achieve.donate')}</p>
             <p className="text-[26px] font-bold leading-[48px]">
             {isBn ? totalAmountBD + ' টাকা' : totalAmount + ' BDT'}
             </p>
